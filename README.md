@@ -49,11 +49,6 @@ src/
    dela automaticamente, e qualquer botão dentro da nova página pode abrir
    o mesmo modal de cadastro com `useBookingModal()`.
 
-> **Atenção de layout:** o header agora é `position: sticky` com fundo azul
-> sólido sempre visível (antes ele era transparente e "flutuava" só sobre o
-> gradiente do herói da home). Isso é proposital: garante que o menu fique
-> legível em qualquer página nova, mesmo que ela não tenha fundo azul no topo.
-
 ## Explicar umas coisinhas
 
 - **Vue Router** está configurado com a rota `/` (Home) e redireciona
