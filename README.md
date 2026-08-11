@@ -1,44 +1,73 @@
-# instituto-med
 
-This template should help get you started developing with Vue 3 in Vite.
+## Estrutura do projeto
 
-## Recommended IDE Setup
-
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```
+src/
+  assets/
+    img/          → imagens reais (logo, médicos, hospitais, blog, etc.)
+    styles/        → variáveis de cor, reset e botões globais
+  components/
+    layout/        → AppHeader e AppFooter (o "casco" do site, vive em App.vue)
+    home/           → seções específicas da página inicial
+    shared/         → componentes reutilizáveis (BaseButton, BookingModal)
+  composables/
+    useBookingModal.js → estado compartilhado do modal de cadastro/contato
+    useScrollSpy.js     → detecta a seção ativa e o scroll do header
+  constants/
+    nav.js          → itens do menu de navegação
+  router/
+    index.js        → rotas + rolagem suave até âncoras (#hospitais, #duvidas, etc.)
+  views/
+    HomeView.vue    → conteúdo exclusivo da página inicial (sem header/footer)
+  App.vue           → layout persistente: AppHeader + <router-view/> + AppFooter + BookingModal
+  main.js
 ```
 
-### Compile and Hot-Reload for Development
 
-```sh
-npm run dev
-```
+**nasce com os 3 sozinha**. Passos:
 
-### Compile and Minify for Production
+1. Crie o arquivo da página em `src/views/`, por exemplo `SobreView.vue`:
+   ```vue
+   <template>
+     <div class="sobre">
+       <section>
+         <h1>Sobre o Instituto Med</h1>
+       </section>
+     </div>
+   </template>
+   ```
+2. Registre a rota em `src/router/index.js`, dentro do array `routes`:
+   ```js
+   {
+     path: '/sobre',
+     name: 'sobre',
+     component: () => import('../views/SobreView.vue'),
+     meta: { title: 'Sobre nós — Instituto Med' }
+   }
+   ```
+3. Pronto — `App.vue` já injeta `<AppHeader />` e `<AppFooter />` em volta
+   dela automaticamente, e qualquer botão dentro da nova página pode abrir
+   o mesmo modal de cadastro com `useBookingModal()`.
 
-```sh
-npm run build
-```
+> **Atenção de layout:** o header agora é `position: sticky` com fundo azul
+> sólido sempre visível (antes ele era transparente e "flutuava" só sobre o
+> gradiente do herói da home). Isso é proposital: garante que o menu fique
+> legível em qualquer página nova, mesmo que ela não tenha fundo azul no topo.
 
-### Lint with [ESLint](https://eslint.org/)
+## Explicar umas coisinhas
 
-```sh
-npm run lint
-```
+- **Vue Router** está configurado com a rota `/` (Home) e redireciona
+  qualquer rota desconhecida de volta pra ela. Os itens do menu (Atendimento,
+  Hospitais, Sobre nós, Dúvidas) são âncoras (`#hospitais`, `#duvidas`...)
+  dentro da própria home; o `scrollBehavior` do router cuida da rolagem
+  suave quando a navegação passa pelo router (ex: acessar a URL já com
+  `#duvidas` no final).
+- O modal de cadastro/contato (`BookingModal.vue`) é compartilhado por vários
+  componentes (header, hero, médicos, parceiros, app, rodapé) através do
+  composable `useBookingModal`, evitando duplicar estado — e agora existe
+  uma única instância dele, declarada em `App.vue`, disponível em qualquer
+  página.
+- Todas as imagens reais enviadas (logo, foto dos médicos, mockup do app,
+  logos dos hospitais parceiros, ícones e fotos das notícias) estão em
+  `src/assets/img/` e são importadas normalmente nos componentes — o Vite
+  cuida do empacotamento e da otimização no build.
