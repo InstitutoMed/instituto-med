@@ -1,11 +1,10 @@
 <script setup>
-
 </script>
 
 <template>
-<section>
-<h2>Kennedy Araújo</h2>
-<ul>
+<section class="card">
+<h2 class="title_card">Kennedy Araújo</h2>
+<ul class="infos_card">
     <li>
         CPF: 011.201.321-45
     </li>
@@ -24,11 +23,11 @@
 </ul>
 </section>
 
-<section>
-<h3>
+<section class="consultas">
+<h3 class="title_c">
     Sua consulta é hoje!
 </h3>
-<p>
+<p class="avi_c">
  Consulta marcada
 </p>
  <ul>
@@ -47,11 +46,11 @@
  </ul>
 </section>
 
-<section>
+<section class="vac">
+    <h3 class="title_vac"> Histórico de Vacinas</h3>
     <ul>
-        Histórico de Vacinas
-        <li>
-            Dengue
+        <li class="tipo_vac">
+            <h4>Dengue</h4>
             <ul>
                 <li>
                     Dia: 17 / 03 / 26
@@ -65,8 +64,8 @@
             </ul>
         </li>
 
-        <li>
-            Covid-19
+        <li class="tipo_vac">
+           <h4>Covid-19</h4>
             <ul>
                 <li>
                     Dia: 03 / 02 / 26
@@ -80,8 +79,8 @@
             </ul>
         </li>
 
-        <li>
-            Gripe
+        <li class="tipo_vac">
+            <h4>Gripe</h4>
             <ul>
                 <li>
                     Dia: 24 / 02 / 26
@@ -94,6 +93,10 @@
                 </li>
             </ul>
         </li>
+
+        <li class="sm">
+            <a href="#">SAIBA MAIS</a>
+        </li>
     </ul>
 </section>
 
@@ -101,4 +104,55 @@
 
 <style scoped>
 
+.card{
+    margin: 40px;
+}
+
+.title_card{
+    font-size: 2.3rem;
+    font-weight: bolder;
+}
+
+.infos_card{
+    gap: 4px;
+    font-size: 1.2rem;
+}   
+
+.consultas{
+    box-shadow: 2px;
+}
+
+.tilte_c{
+    background-color: blue;
+    border-radius: 5px;
+    font-size: 2rem;
+}
+
+.avi_c{
+font-weight: bolder;
+font-size: 1.2rem;
+}
+
+.vac{
+    box-shadow: 2px;
+}
+
+.title_vac{
+    font-size: 2.5rem;
+    font-weight: bolder;
+}
+
+.tipo_vac{
+    box-shadow: 2px;
+}
+
+h4{
+    font-family: 1.8rem;
+}
+
+.sm{
+font-size: 0.8rem;
+color: gray;
+
+}
 </style>
