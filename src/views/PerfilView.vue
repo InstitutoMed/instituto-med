@@ -26,12 +26,17 @@ const vacinas = ref([
 
 <template>
   <main class="container">
- 
+  
     <section class="card">
+<button class="edit-btn" aria-label="Editar perfil">
+  <img src="../../public/pictures/lapis.png" alt="Editar" class="icon-lapis" />
+</button>
+
       <div class="avatar-container">
         <img src="../../public/pictures/kennedyrs.jpg" alt="Foto de Perfil" class="foto-perfil" />
       </div>
-      <div>
+
+      <div class="user-info">
         <h2 class="title_card">{{ usuario.nome }}</h2>
         <ul class="infos_card">
           <li><strong>CPF:</strong> {{ usuario.cpf }}</li>
@@ -59,10 +64,11 @@ const vacinas = ref([
       </section>
 
       <section class="foto-container">
-       <img src="../../public/pictures/calendar.jpg" alt="Calendário" class="calendario" />
+        <img src="../../public/pictures/calendar.jpg" alt="Calendário" class="calendario" />
       </section>
     </div>
 
+    
     <section class="vac">
       <h3 class="titulo_vac">Histórico de Vacinas</h3>
       <div class="vacinas-lista">
@@ -90,7 +96,8 @@ const vacinas = ref([
   display: flex;
   flex-direction: column;
   gap: 24px;
-  font-family: sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #1a1a1a;
 }
 
 ul {
@@ -102,17 +109,36 @@ ul {
 .card {
   background: #fff;
   border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  gap: 24px;
+  border-radius: 20px;
+  padding: 32px 40px;
+  display: flex ;
+  flex-direction: row ;
+  align-items: center ;
+  justify-content: flex-start ;
+  text-align: left ;
+  gap: 40px;
+  position: relative;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
+.edit-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.icon-lapis {
+  width: 18px;
+  height: 18px;
+}
+
 .avatar-container {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   overflow: hidden;
   background-color: #e5e7eb;
@@ -125,17 +151,31 @@ ul {
   object-fit: cover;
 }
 
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start ;
+  text-align: left ;
+}
+
 .title_card {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin: 0 0 12px 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 0 0 16px 0;
+  color: #000;
+  text-align: left ;
 }
 
 .infos_card {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
   font-size: 0.95rem;
+  text-align: left ;
+}
+
+.infos_card li {
+  text-align: left;
 }
 
 
@@ -177,7 +217,7 @@ ul {
   margin-bottom: 8px;
 }
 
-.foto-perfil {
+.foto-container {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -189,6 +229,7 @@ ul {
   object-fit: cover;
 }
 
+/* Vacinas */
 .vac {
   background: #fff;
   border: 1px solid #e5e7eb;
