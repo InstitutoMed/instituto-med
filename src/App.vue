@@ -4,8 +4,6 @@ import PerfilView from './views/PerfilView.vue';
 </script>
 
 <template>
-  <PerfilView />
-
   <RouterView />
 </template>
 
