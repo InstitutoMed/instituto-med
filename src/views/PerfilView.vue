@@ -1,158 +1,237 @@
 <script setup>
+import { ref } from 'vue'
+
+const usuario = ref({
+  nome: 'Kennedy Araújo',
+  cpf: '011.201.321-45',
+  cep: '67.800.912',
+  telefone: '+55 47 9 5467-9814',
+  tipoSanguineo: 'A+',
+  email: 'kennedyA@gmail.com'
+})
+
+const consulta = ref({
+  tipo: 'Exame de Sangue',
+  hora: '10:30h',
+  medico: 'Dr. Fábio Longo de Moura',
+  local: 'Hospital São Bernardino'
+})
+
+const vacinas = ref([
+  { id: 1, nome: 'Dengue', dia: '17 / 03 / 26', horario: '11:05', local: 'Hospital São Bernardino' },
+  { id: 2, nome: 'Covid-19', dia: '03 / 02 / 26', horario: '08:45', local: 'Hospital São José' },
+  { id: 3, nome: 'Gripe', dia: '24 / 02 / 26', horario: '09:05', local: 'Hospital Santa Helena' }
+])
 </script>
 
 <template>
-<section class="card">
-<h2 class="title_card">Kennedy Araújo</h2>
-<ul class="infos_card">
-    <li>
-        CPF: 011.201.321-45
-    </li>
-    <li>
-        CEP: 67.800.912
-    </li>
-    <li>
-        Telefone: +55 47 9 5467-9814
-    </li>
-    <li>
-        Tipo Sanguineo: A+
-    </li>
-    <li>
-        Email: kennedyA@gmail.com
-    </li>
-</ul>
-</section>
+  <main class="container">
+ 
+    <section class="card">
+      <div class="avatar-container">
+        <img src="../../public/pictures/kennedyrs.jpg" alt="Foto de Perfil" class="foto-perfil" />
+      </div>
+      <div>
+        <h2 class="title_card">{{ usuario.nome }}</h2>
+        <ul class="infos_card">
+          <li><strong>CPF:</strong> {{ usuario.cpf }}</li>
+          <li><strong>CEP:</strong> {{ usuario.cep }}</li>
+          <li><strong>Telefone:</strong> {{ usuario.telefone }}</li>
+          <li><strong>Tipo Sanguíneo:</strong> {{ usuario.tipoSanguineo }}</li>
+          <li><strong>Email:</strong> {{ usuario.email }}</li>
+        </ul>
+      </div>
+    </section>
 
-<section class="consultas">
-<h3 class="title_c">
-    Sua consulta é hoje!
-</h3>
-<p class="avi_c">
- Consulta marcada
-</p>
- <ul>
-    <li>
-        Tipo: Exame de Sangue
-    </li>
-    <li>
-        Hora: 10:30h
-    </li>
-    <li>
-        Dr. Fábio Longo de Moura
-    </li>
-    <li>
-        Local: Hospital São Bernadinho
-    </li>
- </ul>
-</section>
+    <div class="sec1">
+      <section class="consultas">
+        <h3 class="title_c">Sua consulta é hoje!</h3>
+        <div class="consultas-content">
+          <p class="avi_c">Consulta marcada</p>
+          <ul>
+            <li><strong>Tipo:</strong> {{ consulta.tipo }}</li>
+            <li><strong>Hora:</strong> {{ consulta.hora }}</li>
+            <li><strong>Médico:</strong> {{ consulta.medico }}</li>
+            <li><strong>Local:</strong> {{ consulta.local }}</li>
+          </ul>
+          <a href="#" class="sm">SAIBA MAIS</a>
+        </div>
+      </section>
 
-<section class="vac">
-    <h3 class="title_vac"> Histórico de Vacinas</h3>
-    <ul>
-        <li class="tipo_vac">
-            <h4>Dengue</h4>
-            <ul>
-                <li>
-                    Dia: 17 / 03 / 26
-                </li>
-                <li>
-                    Horário: 11:05
-                </li>
-                <li>
-                    Local: Hospital São Bernadino
-                </li>
-            </ul>
-        </li>
+      <section class="foto-container">
+       <img src="../../public/pictures/calendar.jpg" alt="Calendário" class="calendario" />
+      </section>
+    </div>
 
-        <li class="tipo_vac">
-           <h4>Covid-19</h4>
-            <ul>
-                <li>
-                    Dia: 03 / 02 / 26
-                </li>
-                <li>
-                    Horário: 08:45
-                </li>
-                <li>
-                    Local: Hospital São José
-                </li>
-            </ul>
-        </li>
-
-        <li class="tipo_vac">
-            <h4>Gripe</h4>
-            <ul>
-                <li>
-                    Dia: 24 / 02 / 26
-                </li>
-                <li>
-                    Horário: 09:05
-                </li>
-                <li>
-                    Local: Hospital Santa Helena
-                </li>
-            </ul>
-        </li>
-
-        <li class="sm">
-            <a href="#">SAIBA MAIS</a>
-        </li>
-    </ul>
-</section>
-
+    <section class="vac">
+      <h3 class="titulo_vac">Histórico de Vacinas</h3>
+      <div class="vacinas-lista">
+        <div v-for="vacina in vacinas" :key="vacina.id" class="tipo_vac">
+          <h4>{{ vacina.nome }}</h4>
+          <ul>
+            <li><strong>Dia:</strong> {{ vacina.dia }}</li>
+            <li><strong>Horário:</strong> {{ vacina.horario }}</li>
+            <li><strong>Local:</strong> {{ vacina.local }}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="sm-container">
+        <a href="#" class="sm">SAIBA MAIS</a>
+      </div>
+    </section>
+  </main>
 </template>
 
 <style scoped>
-
-.card{
-    margin: 40px;
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-family: sans-serif;
 }
 
-.title_card{
-    font-size: 2.3rem;
-    font-weight: bolder;
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.infos_card{
-    gap: 4px;
-    font-size: 1.2rem;
-}   
-
-.consultas{
-    box-shadow: 2px;
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.tilte_c{
-    background-color: blue;
-    border-radius: 5px;
-    font-size: 2rem;
+.avatar-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #e5e7eb;
+  flex-shrink: 0;
 }
 
-.avi_c{
-font-weight: bolder;
-font-size: 1.2rem;
+.foto-perfil {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.vac{
-    box-shadow: 2px;
+.title_card {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0 0 12px 0;
 }
 
-.title_vac{
-    font-size: 2.5rem;
-    font-weight: bolder;
+.infos_card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.95rem;
 }
 
-.tipo_vac{
-    box-shadow: 2px;
+
+.sec1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
 }
 
-h4{
-    font-family: 1.8rem;
+.consultas {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.sm{
-font-size: 0.8rem;
-color: gray;
+.title_c {
+  background-color: #2b7b9b;
+  color: white;
+  padding: 12px 16px;
+  font-size: 1.1rem;
+  margin: 0;
+}
 
+.consultas-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.avi_c {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.foto-perfil {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.calendario {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vac {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.titulo_vac {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.vacinas-lista {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.tipo_vac {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.tipo_vac h4 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.sm-container {
+  text-align: right;
+  margin-top: 16px;
+}
+
+.sm {
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-decoration: underline;
+  font-weight: bold;
 }
 </style>
