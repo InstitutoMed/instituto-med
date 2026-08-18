@@ -20,6 +20,15 @@ function mascararCpf(valor) {
     .replace(/(\d{3})(\d{1,2})$/, '$1-$2')
 }
 
+
+function mascararTelefone(valor) {
+  return valor
+    .replace(/\D/g, '')
+    .slice(0, 11)
+    .replace(/(\d{2})(\d)/, '($1) $2')
+    .replace(/(\d{5})(\d{1,4})$/, '$1-$2')
+}
+
 const erros = computed(() => {
   const e = {}
   if (!/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(form.cpf)) e.cpf = 'CPF inválido.'
@@ -181,12 +190,8 @@ function confirmarAgendamento(event) {
       <option>Giovana Bandoch</option>
       <option>Tiago Cardoso</option>
       <option>Ana Julia Bonfim</option>
-      <option>Gabriel safadel</option>
-      <option>Miguel irmaozel</option>
-      <option>Vesguel gulosel</option>
-      <option>Renel piranhel</option>
-      <option>Bolzani lindel</option>
-      <option>Pripri perigosel</option>
+      <option>Nicholas Oyafuso</option>
+
 
     </select>
           </div>
