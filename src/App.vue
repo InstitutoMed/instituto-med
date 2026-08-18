@@ -1,12 +1,9 @@
-<script setup>
-import { RouterView } from 'vue-router'
-import AppHeader from './components/AppHeader.vue'
-</script>
-
 <template>
-  <AppHeader />
-
-  <RouterView />
+  <router-view />
 </template>
 
-<style scoped></style>
+<style>
+#app {
+  min-height: 100vh;
+}
+</style>
