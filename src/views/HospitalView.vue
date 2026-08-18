@@ -105,7 +105,10 @@ function abrirMapa() {
         <p class="slogan">{{ hospital.slogan }}</p>
 
         <div class="info-item">
-          <span class="icone">☎</span>
+          <img
+            src="/img/icones/telefone 3.png"
+            :alt="`Telefone`"
+          />
           <div>
             <strong>Telefone</strong>
             <p>{{ hospital.telefone }}</p>
@@ -113,7 +116,10 @@ function abrirMapa() {
         </div>
 
         <div class="info-item">
-          <span class="icone">◷</span>
+          <img
+            src="/img/icones/relogio.png"
+            :alt="`Horário`"
+            />
           <div>
             <strong>Atendimento</strong>
             <p>{{ hospital.atendimento }}</p>
@@ -159,19 +165,28 @@ function abrirMapa() {
 
         <div class="indicadores">
           <div class="indicador">
-            <span class="indicador-icone">♟</span>
+            <img
+              src="/img/icones/grupo.png"
+              :alt="`Profissionais`"
+                />
             <strong>{{ hospital.profissionais }}</strong>
             <small>Profissionais</small>
           </div>
 
           <div class="indicador">
-            <span class="indicador-icone">▰</span>
+            <img
+              src="/img/icones/cama.png"
+              :alt="`Leitos`"
+            />
             <strong>{{ hospital.leitos }}</strong>
             <small>Leitos</small>
           </div>
 
           <div class="indicador">
-            <span class="indicador-icone">♡</span>
+            <img
+              src="/img/icones/coracao.png"
+              :alt="`Especialidades`"
+            />
             <strong>{{ hospital.especialidades }}</strong>
             <small>Especialidades</small>
           </div>
@@ -307,20 +322,23 @@ function abrirMapa() {
 
 .icone {
   color: #0877b9;
-  font-size: 20px;
+  font-size: 10px;
 }
 
 .info-item strong {
   display: block;
-  font-size: 13px;
+  font-size: 1rem;
 }
 
 .info-item p {
   margin: 2px 0;
-  font-size: 11px;
+  font-size: 0.8rem;
   color: #777;
 }
-
+.info-item img {
+  width: 3%;
+  height: 20px;
+}
 .btn-fluxo {
   margin-top: 10px;
   padding: 9px 35px;

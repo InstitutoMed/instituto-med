@@ -82,7 +82,10 @@ function selecionarHospital(hospital) {
             <span>{{ hospital.endereco }}</span>
           </div>
           <div class="informacao telefone">
-            <span class="icone">☎</span>
+            <img
+              src="/img/icones/telefone.png"
+              :alt="`Telefone`"
+            />
             <span>{{ hospital.telefone }}</span>
           </div>
           <button
