@@ -1,0 +1,22 @@
+:root{
+  --blue-900:#0d4c78;
+  --blue-800:#125c8f;
+  --blue-700:#1a6c9c;
+  --blue-600:#2179ab;
+  --blue-500:#2a71a3;
+  --blue-400:#4a93bd;
+  --blue-300:#7fb8d8;
+  --blue-100:#cceefa;
+  --blue-50:#f4f8fe;
+  --ink:#123049;
+  --muted:#5c7690;
+  --white:#ffffff;
+
+  --radius-lg:28px;
+  --radius-md:16px;
+  --radius-pill:999px;
+
+  --shadow-soft:0 20px 45px -22px rgba(13,76,120,.28);
+
+  --container-width:1240px;
+}

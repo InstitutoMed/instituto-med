@@ -1,44 +1,91 @@
-# instituto-med
 
-This template should help get you started developing with Vue 3 in Vite.
+## Estrutura do projeto
 
-## Recommended IDE Setup
-
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```
+src/
+  assets/
+    img/          → imagens reais (logo, médicos, hospitais, blog, etc.)
+    styles/        → variáveis de cor, reset e botões globais
+  components/
+    layout/        → AppHeader e AppFooter (o "casco" do site, vive em App.vue)
+    home/           → seções específicas da página inicial
+    shared/         → componentes reutilizáveis (BaseButton, BookingModal)
+  composables/
+    useBookingModal.js → estado compartilhado do modal de cadastro/contato
+    useScrollSpy.js     → detecta a seção ativa e o scroll do header
+  constants/
+    nav.js          → itens do menu de navegação
+  router/
+    index.js        → rotas + rolagem suave até âncoras (#hospitais, #duvidas, etc.)
+  views/
+    HomeView.vue    → conteúdo exclusivo da página inicial (sem header/footer)
+  App.vue           → layout persistente: AppHeader + <router-view/> + AppFooter + BookingModal
+  main.js
 ```
 
-### Compile and Hot-Reload for Development
+## Como adicionar uma página nova
 
-```sh
-npm run dev
-```
+Como o header, o footer e o modal já vivem em `App.vue`, uma página nova
+**nasce com os três automaticamente**. O projeto já tem um exemplo real
+disso — a página `/hospitais` (`src/views/HospitaisView.vue`) — feita
+exatamente com os passos abaixo:
 
-### Compile and Minify for Production
+1. Crie o arquivo da página em `src/views/`, por exemplo `SobreView.vue`:
+   ```vue
+   <template>
+     <div class="sobre">
+       <section>
+         <div class="container">
+           <h1>Sobre o Instituto Med</h1>
+         </div>
+       </section>
+     </div>
+   </template>
+   ```
+   Use a classe `.container` (já definida em `assets/styles/base.css`) para
+   alinhar o conteúdo com o resto do site — é a mesma classe usada em todas
+   as seções da home.
+2. Registre a rota em `src/router/index.js`, dentro do array `routes`
+   (sempre **antes** da rota coringa `/:pathMatch(.*)*`):
+   ```js
+   {
+     path: '/sobre',
+     name: 'sobre',
+     component: () => import('../views/SobreView.vue'),
+     meta: { title: 'Sobre nós — Instituto Med' }
+   }
+   ```
+   O `component: () => import(...)` (em vez de um import normal no topo do
+   arquivo) faz *lazy-loading*: o código dessa página só é baixado pelo
+   navegador quando alguém realmente visita `/sobre`, não no carregamento
+   inicial do site.
+3. Se a página precisa aparecer no menu, adicione em `src/constants/nav.js`
+   com `to` (não `hash`) apontando pra rota:
+   ```js
+   { id: 'sobre-nos', label: 'Sobre nós', to: '/sobre' }
+   ```
+   Itens com `hash` (ex: `#duvidas`) rolam até uma seção dentro da própria
+   home; itens com `to` (ex: `/hospitais`) navegam para uma página própria.
+   O `AppHeader.vue` já sabe renderizar os dois tipos automaticamente.
+4. Pronto — `App.vue` já injeta `<AppHeader />` e `<AppFooter />` em volta
+   dela automaticamente, e qualquer botão dentro da nova página pode abrir
+   o mesmo modal de cadastro com `useBookingModal()` (é assim que o botão
+   "Agendar consulta" de cada card em `HospitaisView.vue` funciona).
 
-```sh
-npm run build
-```
+## Decisões técnicas
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- **Vue Router** está configurado com a rota `/` (Home) e redireciona
+  qualquer rota desconhecida de volta pra ela. Os itens do menu (Atendimento,
+  Hospitais, Sobre nós, Dúvidas) são âncoras (`#hospitais`, `#duvidas`...)
+  dentro da própria home; o `scrollBehavior` do router cuida da rolagem
+  suave quando a navegação passa pelo router (ex: acessar a URL já com
+  `#duvidas` no final).
+- O modal de cadastro/contato (`BookingModal.vue`) é compartilhado por vários
+  componentes (header, hero, médicos, parceiros, app, rodapé) através do
+  composable `useBookingModal`, evitando duplicar estado — e agora existe
+  uma única instância dele, declarada em `App.vue`, disponível em qualquer
+  página.
+- Todas as imagens reais enviadas (logo, foto dos médicos, mockup do app,
+  logos dos hospitais parceiros, ícones e fotos das notícias) estão em
+  `src/assets/img/` e são importadas normalmente nos componentes — o Vite
+  cuida do empacotamento e da otimização no build.
