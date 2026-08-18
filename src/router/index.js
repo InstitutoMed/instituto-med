@@ -9,6 +9,12 @@ const routes = [
     meta: { title: 'Instituto Med — Sua saúde conectada' }
   },
   {
+    path: '/hospitais',
+    name: 'hospitais',
+    component: () => import('../views/HospitaisView.vue'),
+    meta: { title: 'Hospitais parceiros — Instituto Med' }
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: { name: 'home' }
   }
@@ -17,7 +23,6 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
-
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) return savedPosition
     if (to.hash) {

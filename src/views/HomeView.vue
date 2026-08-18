@@ -14,7 +14,6 @@
 </template>
 
 <script setup>
-
 import HeroSection from '../components/home/HeroSection.vue'
 import DoctorsSection from '../components/home/DoctorsSection.vue'
 import PartnersSection from '../components/home/PartnersSection.vue'

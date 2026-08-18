@@ -1,7 +1,5 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
-
-
 export function useScrollSpy(sectionIds = []) {
   const activeSection = ref(sectionIds[0] || '')
   const scrolled = ref(false)

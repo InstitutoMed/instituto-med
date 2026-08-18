@@ -1,38 +1,35 @@
 <template>
   <section id="hospitais">
-    <div class="section-head center">
-      <span class="eyebrow">Hospitais parceiros</span>
-      <h2>Estrutura e confiança perto de você</h2>
-      <p>Trabalhamos com os melhores hospitais e clínicas para garantir o melhor cuidado.</p>
-    </div>
-
-    <div class="partner-logos">
-      <div v-for="p in partners" :key="p.name" class="partner-logo">
-        <img v-if="p.logo" :src="p.logo" :alt="p.name" class="partner-logo-img">
-        <template v-else>
-          <div class="ic">{{ p.icon }}</div>
-          <span>{{ p.name }}</span>
-        </template>
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Hospitais parceiros</span>
+        <h2>Estrutura e confiança perto de você</h2>
+        <p>Trabalhamos com os melhores hospitais e clínicas para garantir o melhor cuidado.</p>
       </div>
-    </div>
 
-    <div class="partner-cta">
-      <p>Encontre o mais próximo de você</p>
-      <BaseButton variant="solid" @click="openModal('Encontrar hospital')">Clique aqui</BaseButton>
+      <div class="partner-logos">
+        <div v-for="p in partners" :key="p.name" class="partner-logo">
+          <img v-if="p.logo" :src="p.logo" :alt="p.name" class="partner-logo-img">
+          <template v-else>
+            <div class="ic">{{ p.icon }}</div>
+            <span>{{ p.name }}</span>
+          </template>
+        </div>
+      </div>
+
+      <div class="partner-cta">
+        <p>Encontre o mais próximo de você</p>
+        <router-link to="/hospitais" class="btn btn-solid">Clique aqui</router-link>
+      </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import BaseButton from '../shared/BaseButton.vue'
-import { useBookingModal } from '../../composables/useBookingModal'
-
 import logoDonaHelena from '../../assets/img/logo-dona-helena.png'
 import logoJoinvilleSaoJose from '../../assets/img/logo-joinville-sao-jose.png'
 import logoHapvida from '../../assets/img/logo-hapvida.png'
 import logoSaoMarcos from '../../assets/img/logo-sao-marcos.png'
-
-const { openModal } = useBookingModal()
 
 const partners = [
   { logo: logoDonaHelena, name: 'Hospital Dona Helena' },
@@ -43,7 +40,7 @@ const partners = [
 </script>
 
 <style scoped>
-section{padding-top:0;}
+section{padding-top:0;padding-left:0;padding-right:0;}
 .partner-logos{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
 .partner-logo{
   background:#fff;border:1px solid var(--blue-100);border-radius:var(--radius-md);

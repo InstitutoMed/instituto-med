@@ -1,6 +1,6 @@
 <template>
   <section id="sobre" class="doctors-wrap">
-    <div class="doctors-row">
+    <div class="container doctors-row">
       <div class="doctors-text">
         <span class="eyebrow">Médicos em destaque</span>
         <h2>Profissionais que cuidam de você</h2>
@@ -52,7 +52,7 @@ const doctors = [
 </script>
 
 <style scoped>
-.doctors-wrap{background:var(--blue-50);}
+.doctors-wrap{background:var(--blue-50);padding-left:0;padding-right:0;}
 .doctors-row{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center;}
 .doctors-text p{margin-top:14px;color:var(--muted);line-height:1.75;font-size:15px;}
 .doctors-text .btn{margin-top:24px;}

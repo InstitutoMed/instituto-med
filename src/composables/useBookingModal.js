@@ -1,6 +1,5 @@
 import { reactive, toRefs } from 'vue'
 
-
 const state = reactive({
   visible: false,
   step: 'form', 

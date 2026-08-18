@@ -5,6 +5,7 @@
 
   <AppFooter />
 
+
   <BookingModal />
 </template>
 

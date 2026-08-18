@@ -5,12 +5,14 @@
       <span class="blog-tag">{{ post.tag }}</span>
       <h4>{{ post.title }}</h4>
       <p class="excerpt">{{ post.excerpt }}</p>
-      <div class="meta"> {{ post.date }}</div>
+      <div class="meta"><img :src="iconAgenda" alt="" class="meta-ic"> {{ post.date }}</div>
     </div>
   </article>
 </template>
 
 <script setup>
+import iconAgenda from '../../assets/img/icon-agenda.png'
+
 defineProps({
   post: { type: Object, required: true }
 })
@@ -29,4 +31,5 @@ defineProps({
 .blog-body h4{margin-top:8px;font-size:14px;color:var(--ink);line-height:1.4;}
 .blog-body .excerpt{margin-top:8px;font-size:12px;color:var(--muted);line-height:1.6;}
 .blog-body .meta{margin-top:12px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:5px;}
+.meta-ic{width:12px;height:12px;object-fit:contain;}
 </style>

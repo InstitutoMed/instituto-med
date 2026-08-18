@@ -23,20 +23,30 @@ src/
   main.js
 ```
 
+## Como adicionar uma página nova
 
-**nasce com os 3 sozinha**. Passos:
+Como o header, o footer e o modal já vivem em `App.vue`, uma página nova
+**nasce com os três automaticamente**. O projeto já tem um exemplo real
+disso — a página `/hospitais` (`src/views/HospitaisView.vue`) — feita
+exatamente com os passos abaixo:
 
 1. Crie o arquivo da página em `src/views/`, por exemplo `SobreView.vue`:
    ```vue
    <template>
      <div class="sobre">
        <section>
-         <h1>Sobre o Instituto Med</h1>
+         <div class="container">
+           <h1>Sobre o Instituto Med</h1>
+         </div>
        </section>
      </div>
    </template>
    ```
-2. Registre a rota em `src/router/index.js`, dentro do array `routes`:
+   Use a classe `.container` (já definida em `assets/styles/base.css`) para
+   alinhar o conteúdo com o resto do site — é a mesma classe usada em todas
+   as seções da home.
+2. Registre a rota em `src/router/index.js`, dentro do array `routes`
+   (sempre **antes** da rota coringa `/:pathMatch(.*)*`):
    ```js
    {
      path: '/sobre',
@@ -45,11 +55,24 @@ src/
      meta: { title: 'Sobre nós — Instituto Med' }
    }
    ```
-3. Pronto — `App.vue` já injeta `<AppHeader />` e `<AppFooter />` em volta
+   O `component: () => import(...)` (em vez de um import normal no topo do
+   arquivo) faz *lazy-loading*: o código dessa página só é baixado pelo
+   navegador quando alguém realmente visita `/sobre`, não no carregamento
+   inicial do site.
+3. Se a página precisa aparecer no menu, adicione em `src/constants/nav.js`
+   com `to` (não `hash`) apontando pra rota:
+   ```js
+   { id: 'sobre-nos', label: 'Sobre nós', to: '/sobre' }
+   ```
+   Itens com `hash` (ex: `#duvidas`) rolam até uma seção dentro da própria
+   home; itens com `to` (ex: `/hospitais`) navegam para uma página própria.
+   O `AppHeader.vue` já sabe renderizar os dois tipos automaticamente.
+4. Pronto — `App.vue` já injeta `<AppHeader />` e `<AppFooter />` em volta
    dela automaticamente, e qualquer botão dentro da nova página pode abrir
-   o mesmo modal de cadastro com `useBookingModal()`.
+   o mesmo modal de cadastro com `useBookingModal()` (é assim que o botão
+   "Agendar consulta" de cada card em `HospitaisView.vue` funciona).
 
-## Explicar umas coisinhas
+## Decisões técnicas
 
 - **Vue Router** está configurado com a rota `/` (Home) e redireciona
   qualquer rota desconhecida de volta pra ela. Os itens do menu (Atendimento,

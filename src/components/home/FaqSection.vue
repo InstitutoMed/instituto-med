@@ -1,18 +1,20 @@
 <template>
   <section id="duvidas" class="faq-section">
-    <div class="section-head">
-      <h2>Tire suas dúvidas</h2>
-    </div>
+    <div class="container">
+      <div class="section-head">
+        <h2>Tire suas dúvidas</h2>
+      </div>
 
-    <div class="faq-grid">
-      <FaqItem
-        v-for="(f, i) in faqs"
-        :key="f.q"
-        :question="f.q"
-        :answer="f.a"
-        :is-open="openIndex === i"
-        @toggle="toggle(i)"
-      />
+      <div class="faq-grid">
+        <FaqItem
+          v-for="(f, i) in faqs"
+          :key="f.q"
+          :question="f.q"
+          :answer="f.a"
+          :is-open="openIndex === i"
+          @toggle="toggle(i)"
+        />
+      </div>
     </div>
   </section>
 </template>
@@ -55,7 +57,7 @@ const faqs = [
 </script>
 
 <style scoped>
-.faq-section{padding-top:70px;}
+.faq-section{padding:70px 0 76px;}
 .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 
 @media (max-width:980px){

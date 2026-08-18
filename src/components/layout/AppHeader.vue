@@ -7,9 +7,15 @@
 
       <ul class="nav-links">
         <li v-for="item in navItems" :key="item.id">
+          <router-link
+            v-if="item.to"
+            :to="item.to"
+            :class="{ active: $route.path === item.to }"
+          >{{ item.label }}</router-link>
           <a
-            :href="`#${item.id}`"
-            :class="{ active: activeSection === item.id }"
+            v-else
+            :href="item.hash"
+            :class="{ active: $route.path === '/' && activeSection === item.id }"
           >{{ item.label }}</a>
         </li>
       </ul>
@@ -30,12 +36,14 @@
     </nav>
 
     <div class="mobile-menu" :class="{ open: mobileOpen }">
-      <a
-        v-for="item in navItems"
-        :key="item.id"
-        :href="`#${item.id}`"
-        @click="closeMobile"
-      >{{ item.label }}</a>
+      <template v-for="item in navItems" :key="item.id">
+        <router-link v-if="item.to" :to="item.to" @click="closeMobile">
+          {{ item.label }}
+        </router-link>
+        <a v-else :href="item.hash" @click="closeMobile">
+          {{ item.label }}
+        </a>
+      </template>
     </div>
   </header>
 </template>
@@ -51,7 +59,9 @@ import iconUser from '../../assets/img/icon-user.png'
 const navItems = NAV_ITEMS
 const mobileOpen = ref(false)
 const { openModal } = useBookingModal()
-const { activeSection, scrolled } = useScrollSpy(navItems.map((i) => i.id))
+const { activeSection, scrolled } = useScrollSpy(
+  navItems.filter((i) => i.hash).map((i) => i.id)
+)
 
 function closeMobile() {
   mobileOpen.value = false
@@ -71,7 +81,7 @@ header.scrolled{
 }
 .nav{display:flex;align-items:center;justify-content:space-between;padding:22px 32px;}
 .logo{display:flex;align-items:center;}
-.logo-img{height:30px;width:auto;display:block;}
+.logo-img{height:38px;width:auto;display:block;}
 
 .nav-links{
   display:flex;gap:36px;list-style:none;margin:0;padding:0;

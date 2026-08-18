@@ -15,7 +15,7 @@
           <BaseButton variant="white" @click="openModal('Criar conta')">
             Comece agora
           </BaseButton>
-          <span class="hero-secure"> Seus dados protegidos com segurança.</span>
+          <span class="hero-secure"><img :src="iconShield" alt="" class="shield-ic"> Seus dados protegidos com segurança.</span>
         </div>
       </div>
 
@@ -44,6 +44,7 @@ import iconAgenda from '../../assets/img/icon-agenda.png'
 import iconFarmacia from '../../assets/img/icon-farmacia.png'
 import iconRelogio from '../../assets/img/icon-relogio.png'
 import iconConta from '../../assets/img/icon-conta.png'
+import iconShield from '../../assets/img/icon-shield.png'
 
 const { openModal } = useBookingModal()
 
@@ -73,8 +74,9 @@ const floatingItems = [
 .hero p.lead{max-width:460px;margin:20px 0 28px;color:rgba(255,255,255,.88);font-size:15.5px;line-height:1.75;}
 .hero-actions{display:flex;flex-direction:column;align-items:flex-start;gap:16px;}
 .hero-secure{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.9);font-size:13px;font-weight:500;}
+.shield-ic{width:16px;height:16px;object-fit:contain;}
 
-.hero-photo{position:relative;display:flex;justify-content:center;align-items:flex-end;height:100%;min-height:340px;}
+.hero-photo{position:relative;display:flex;justify-content:center;align-items:flex-end;align-self:stretch;min-height:340px;}
 .hero-doctors-img{
   position:relative;z-index:2;width:100%;max-width:460px;height:auto;
   display:block;margin:0 auto;
