@@ -1,35 +1,37 @@
-@import './base.css';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root {
+  --azul-profundo: #0b3d5c;
+  --azul-medio: #1e6fa8;
+  --azul-claro: #4fb3e8;
+  --azul-gelo: #eaf6fd;
+  --branco: #ffffff;
+  --cinza-texto: #4a5568;
+  --cinza-borda: #d7e3ec;
+  --vermelho-erro: #d64545;
+  --sombra: 0 20px 50px -20px rgba(11, 61, 92, 0.35);
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+  --fonte-titulo: 'Poppins', sans-serif;
+  --fonte-corpo: 'Inter', sans-serif;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+* {
+  box-sizing: border-box;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+body {
+  margin: 0;
+  font-family: var(--fonte-corpo);
+  color: var(--azul-profundo);
+  background: var(--azul-gelo);
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+button {
+  cursor: pointer;
 }
