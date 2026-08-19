@@ -11,7 +11,7 @@ const hospitais = ref([
     id: 1,
     nome: "Hospital Dona Helena",
     endereco:
-      "Rua Blumenau, 123 - América, Joinville - SC 89204-250, Brazil",
+      "Rua Blumenau, 123 - América, Joinville - SC 89204-2500, Brazil",
     telefone: "+55 47 3451-3333",
     imagem: "img/maps/dona-helena.png",
   },
@@ -65,8 +65,11 @@ function selecionarHospital(hospital) {
         placeholder="Buscar Hospital"
         v-model="searchQuery"
       />
-      <span class="material-symbols-outlined">
-        search
+      <span class="lupa">
+        <img
+          src="/img/icones/lupa.png"
+          :alt="`Lupa`"
+        />
       </span>
     </div>
     <div class="lista-hospitais">
@@ -126,7 +129,7 @@ function selecionarHospital(hospital) {
 h1 {
   margin: 0 0 28px;
   text-align: center;
-  font-size: 21px;
+  font-size: clamp(30px,3.4vw,42px);
   font-weight: 700;
   color: #111111;
 }
@@ -135,7 +138,7 @@ h1 {
   width: 100%;
   max-width: 302px;
   height: 17px;
-  margin: 0 auto 23px;
+  margin: 2vw auto 2vw;
   display: flex;
   align-items: center;
   padding: 0 8px;
@@ -155,9 +158,9 @@ h1 {
 .barra-pesquisa input::placeholder {
   color: #999;
 }
-.barra-pesquisa .material-symbols-outlined {
-  font-size: 10px;
-  color: #555;
+.lupa img {
+  width: 65%;
+  height: 65%;
 }
 
 .lista-hospitais {
@@ -196,11 +199,7 @@ h1 {
 
 .informacoes-hospital h2 {
   margin: 0 0 4px;
-
-  font-size: 7px;
-  font-weight: 700;
-  line-height: 1.2;
-
+  font-size:clamp(20px,2.6vw,28px);
   color: #111111;
 }
 
@@ -219,13 +218,13 @@ h1 {
   font-weight: 700;
 }
 
-.telefone {
+.telefone img {
+  width: 20px;
+  height: 18px;
   flex-direction: row;
   align-items: center;
   gap: 2px;
-
   margin-top: 1px;
-
   color: #0067a8;
 }
 
@@ -236,7 +235,7 @@ h1 {
 .btn-selecionar {
   width: 50px;
   height: 15px;
-
+  padding: 0.1vw 0;
   border: none;
   border-radius: 10px;
 
@@ -249,6 +248,9 @@ h1 {
   cursor: pointer;
 
   transition: 0.2s;
+}
+.btn-selecionar {
+  margin: 1vw 0 0 0;
 }
 
 .btn-selecionar:hover {

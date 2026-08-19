@@ -157,9 +157,14 @@ function abrirMapa() {
     <section class="cards-inferiores">
       <div class="card sobre-hospital">
         <div class="titulo-card">
-          <span class="icone-cruz">+</span>
-          <h2>Sobre o Hospital</h2>
-        </div>
+          <span class="icone-cruz">
+              <img
+                src="/img/icones/farmacia.png"
+                :alt="`Cruz`"
+              />
+              <h2>Sobre o Hospital</h2>
+            </span>
+          </div>
 
         <p>{{ hospital.descricao }}</p>
 
@@ -312,6 +317,7 @@ function abrirMapa() {
 .slogan {
   font-size: 12px;
   color: #777;
+  margin: 0.5vw 0;
 }
 
 .info-item {
@@ -336,7 +342,7 @@ function abrirMapa() {
   color: #777;
 }
 .info-item img {
-  width: 3%;
+  width: 4%;
   height: 20px;
 }
 .btn-fluxo {
@@ -427,16 +433,28 @@ function abrirMapa() {
 .titulo-card h2,
 .informacoes-gerais h2 {
   font-size: 14px;
+  font-weight: bold;
 }
 
 .icone-cruz {
-  color: #0877b9;
-  font-size: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.icone-cruz img {
+  width: 20%;
+  height: 20%;
+  margin: 0 1vw 0 0;
+}
+.icone-cruz h2 {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .sobre-hospital p {
+  font-size: 12px;
   color: #777;
-  font-size: 11px;
+  margin: 0.5vw 0;
   line-height: 1.5;
 }
 
@@ -471,6 +489,7 @@ function abrirMapa() {
 }
 
 .informacoes-gerais h2 {
+  font-weight: bold;
   text-align: center;
 }
 
@@ -478,7 +497,7 @@ function abrirMapa() {
   display: grid;
   grid-template-columns: 45% 55%;
   margin-bottom: 10px;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .informacao span {
