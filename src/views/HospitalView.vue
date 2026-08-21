@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from "vue";
+import { computed, ref, onMounted, onBeforeUnmount } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
@@ -66,7 +66,120 @@ const hospitais = [
     diretor: "Dr. Responsável",
     crm: "CRM/SC 00000",
   },
+  {
+    id: 4,
+    nome: "Hospital Bethesda",
+    slogan: "Saúde e cuidado para toda a comunidade.",
+    telefone: "+55 47 3441-6666",
+    atendimento: "24 horas por dia, todos os dias",
+    endereco: "Rua do Príncipe, 280 - Centro, Joinville - SC, 89201-001",
+    imagem: "/img/hospitais/bethesda.png",
+    mapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3579.7748586266007!2d-48.90868272458477!3d-26.20400117707665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dea6425e47a65b%3A0x1757ad0f0ffcf4e3!2sHospital%20Bethesda!5e0!3m2!1spt-BR!2sbr!4v1787322279768!5m2!1spt-BR!2sbr",
+    descricao: "O Hospital Bethesda é uma instituição de saúde que oferece atendimento à comunidade de Joinville e região, contando com profissionais e serviços especializados.",
+    profissionais: "400+",
+    leitos: "250+",
+    especialidades: "30+",
+    cnpj: "00.000.000/0001-00",
+    tipo: "Privado",
+    administracao: "Hospital Bethesda",
+    fundacao: "1906/01/01",
+    diretor: "Dr. Responsável",
+    crm: "CRM/SC 00000"
+},
+    {
+    id: 5,
+  nome: "Hospital Erasto Gaertner",
+  slogan: "Cuidado e saúde para a comunidade.",
+  telefone: "+55 47 0000-0000",
+  atendimento: "Conforme horários da unidade",
+  endereco: "Joinville - SC",
+  imagem: "/img/hospitais/erasto.png",
+  mapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3576.9590537731165!2d-48.842445824581574!3d-26.295427377020506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94deb15d6ab37063%3A0xff2c6e5c3953cd6f!2sCentro%20de%20Sa%C3%BAde%20Erasto%20Gaertner%20-%20Joinville!5e0!3m2!1spt-BR!2sbr!4v1787322333781!5m2!1spt-BR!2sbr",
+  descricao: "O Centro de Saúde Erasto Gaertner oferece serviços e atendimento em saúde à população de Joinville.",
+  profissionais: "A definir",
+  leitos: "A definir",
+  especialidades: "Diversas",
+  cnpj: "00.000.000/0001-00",
+  tipo: "Centro de Saúde",
+  administracao: "A definir",
+  fundacao: "A definir",
+  diretor: "Dr. Responsável",
+  crm: "CRM/SC 00000"
+  },
 ];
+
+const medicos = [
+  {
+    id: 1,
+    nome: "Dra. Juliana Andrade",
+    hospital: "",
+    avaliacao: "4.9",
+    crm: "CRM 09609",
+    imagem: "/img/medicos/juliana.png",
+  },
+  {
+    id: 2,
+    nome: "Dr. Anthony Augusto",
+    hospital: "Hospital Dona Helena",
+    avaliacao: "5.0",
+    crm: "CRM 67676",
+    imagem: "/img/medicos/anthony.png",
+  },
+  {
+    id: 3,
+    nome: "Dra. Paula Fernandez",
+    hospital: "Hospital Dona Helena",
+    avaliacao: "4.8",
+    crm: "CRM 12345",
+    imagem: "/img/medicos/paula.png",
+  },
+    {
+    id: 4,
+    nome: "Dr. Ana Julia",
+    hospital: "Hospital Dona Helena",
+    avaliacao: "4.8",
+    crm: "CRM 12345",
+    imagem: "/img/medicos/ana.png",
+  },
+    {
+    id: 5,
+    nome: "Dr. Tiago",
+    hospital: "Hospital Dona Helena",
+    avaliacao: "4.8",
+    crm: "CRM 12345",
+    imagem: "/img/medicos/tiago.png",
+  },
+];
+
+const indiceMedico = ref(0);
+let intervaloMedicos;
+
+const medicosVisiveis = computed(() => {
+  const quantidadeVisivel = 3;
+
+  return Array.from({ length: quantidadeVisivel }, (_, index) => {
+    return medicos[(indiceMedico.value + index) % medicos.length];
+  });
+});
+
+function proximoMedico() {
+  indiceMedico.value = (indiceMedico.value + 1) % medicos.length;
+}
+
+function medicoAnterior() {
+  indiceMedico.value =
+    (indiceMedico.value - 1 + medicos.length) % medicos.length;
+}
+
+onMounted(() => {
+  intervaloMedicos = setInterval(() => {
+    proximoMedico();
+  }, 4000);
+});
+
+onBeforeUnmount(() => {
+  clearInterval(intervaloMedicos);
+});
 
 const hospital = computed(() => {
   const id = Number(route.query.id);
@@ -227,6 +340,55 @@ function abrirMapa() {
         </div>
       </div>
     </section>
+
+    <section class="secao-medicos">
+  <h2>Médicos disponíveis</h2>
+
+  <div class="carrossel-medicos">
+    <button
+      class="seta-carrossel seta-esquerda"
+      @click="medicoAnterior"
+      aria-label="Médico anterior"
+    >
+      ❮
+    </button>
+
+    <div class="medicos-container">
+      <TransitionGroup name="slide" tag="div" class="medicos-lista">
+        <div
+          v-for="medico in medicosVisiveis"
+          :key="medico.id"
+          class="card-medico"
+        >
+          <img
+            :src="medico.imagem"
+            :alt="medico.nome"
+            class="imagem-medico"
+          />
+
+          <div class="dados-medico">
+            <h3>{{ medico.nome }}</h3>
+            <p>{{ hospital.nome }}</p>
+
+            <div class="avaliacao-medico">
+              <span>★ {{ medico.avaliacao }}</span>
+              <span class="separador">•</span>
+              <span>{{ medico.crm }}</span>
+            </div>
+          </div>
+        </div>
+      </TransitionGroup>
+    </div>
+
+    <button
+      class="seta-carrossel seta-direita"
+      @click="proximoMedico"
+      aria-label="Próximo médico"
+    >
+      ❯
+    </button>
+  </div>
+</section>
   </main>
 
   <main v-else class="hospital-nao-encontrado">
@@ -518,6 +680,137 @@ function abrirMapa() {
   cursor: pointer;
 }
 
+.secao-medicos {
+  margin-top: 45px;
+  padding-bottom: 30px;
+}
+
+.secao-medicos  h2 {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 28px;
+  color: #222;
+  font-weight: bold;
+}
+
+.carrossel-medicos {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.medicos-container {
+  width: 85%;
+  overflow: hidden;
+  padding: 8px;
+}
+
+.medicos-lista {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.card-medico {
+  width: 240px;
+  min-width: 240px;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16);
+}
+
+.imagem-medico {
+  width: 100%;
+  height: 230px;
+  display: block;
+  object-fit: cover;
+  object-position: top;
+  background: #f2f2f2;
+}
+
+.dados-medico {
+  padding: 12px 14px 14px;
+}
+
+.dados-medico h3 {
+  margin: 0;
+  color: #3d6d86;
+  font-size: 16px;
+}
+
+.dados-medico p {
+  margin: 5px 0 10px;
+  color: #777;
+  font-size: 12px;
+}
+
+.avaliacao-medico {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #777;
+  font-size: 11px;
+}
+
+.avaliacao-medico span:first-child {
+  color: #3d6d86;
+  font-weight: bold;
+}
+
+.separador {
+  font-size: 14px;
+}
+
+.seta-carrossel {
+  position: absolute;
+  z-index: 2;
+  width: 58px;
+  height: 58px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(191, 221, 234, 0.8);
+  color: #111;
+  font-size: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.seta-carrossel:hover {
+  transform: scale(1.08);
+}
+
+.seta-esquerda {
+  left: 0;
+}
+
+.seta-direita {
+  right: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.35s ease;
+}
+
+.slide-enter-from {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.slide-move {
+  transition: transform 0.35s ease;
+}
+
 @media (max-width: 700px) {
   .card-principal,
   .card-localizacao {
@@ -534,5 +827,50 @@ function abrirMapa() {
   .cards-inferiores {
     grid-template-columns: 1fr;
   }
+
+  .secao-medicos {
+  margin-top: 35px;
 }
+
+.medicos-container {
+  width: 100%;
+}
+
+.medicos-lista {
+  gap: 15px;
+  justify-content: flex-start;
+}
+
+.card-medico {
+  width: 190px;
+  min-width: 190px;
+}
+
+.imagem-medico {
+  height: 190px;
+}
+
+.dados-medico h3 {
+  font-size: 13px;
+}
+
+.dados-medico p {
+  font-size: 10px;
+}
+
+.seta-carrossel {
+  width: 42px;
+  height: 42px;
+  font-size: 22px;
+}
+
+.seta-esquerda {
+  left: -8px;
+}
+
+.seta-direita {
+  right: -8px;
+}
+}
+
 </style>

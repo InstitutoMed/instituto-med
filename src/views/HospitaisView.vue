@@ -12,7 +12,7 @@ const hospitais = ref([
     nome: "Hospital Dona Helena",
     endereco:
       "Rua Blumenau, 123 - América, Joinville - SC 89204-2500, Brazil",
-    telefone: "+55 47 3451-3333",
+    telefone: "+55 (47) 3451-3333",
     imagem: "img/maps/dona-helena.png",
   },
   {
@@ -20,7 +20,7 @@ const hospitais = ref([
     nome: "Hospital Regional Hans Dieter Schmidt (HRHDS)",
     endereco:
       "Rua Xavier Arp, 320 - Boa Vista, Joinville - SC 89220-680, Brazil",
-    telefone: "+55 47 3451-3100",
+    telefone: "+55 (47) 3451-3100",
     imagem: "img/maps/hrhds.png",
   },
   {
@@ -28,7 +28,23 @@ const hospitais = ref([
     nome: "Hospital Municipal São José",
     endereco:
       "Av. Getúlio Vargas, 238 - Anita Garibaldi, Joinville - SC 89202-030, Brazil",
-    telefone: "+55 47 3441-6666",
+    telefone: "+55 (47) 3441-6666",
+    imagem: "img/maps/sao-jose.png",
+  },
+  {
+    id: 4,
+    nome: "Hospital Erasto Gaertner",
+    endereco:
+      "R. Conselheiro Pedreira, 624 - Pirabeiraba, Joinville - SC, 89239-200, Brazil",
+    telefone: "+55 (47) 3121-5400",
+    imagem: "img/maps/sao-jose.png",
+  },
+    {
+    id: 3,
+    nome: "Hospital Bethesda",
+    endereco:
+      "R. Saguaçu, 120 - Saguaçu, Joinville - SC, 89221-010, Brazil",
+    telefone: "+55 (47) 3511-2815",
     imagem: "img/maps/sao-jose.png",
   },
 ]);
