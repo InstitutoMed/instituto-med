@@ -76,16 +76,6 @@ Pronto — `App.vue` já injeta `<AppHeader />` e `<AppFooter />` em volta
    dela automaticamente, e qualquer botão dentro da nova página pode abrir
    o mesmo modal de cadastro/contato com `useBookingModal()` se precisar.
 
-> **Removido de propósito:** o botão de "Entrar na conta" (ícone de perfil
-> no header) foi retirado — não existe ainda uma página de login/conta.
-> Quando você criar essa página, é só adicionar um botão ou item de menu
-> apontando pra ela seguindo os mesmos passos acima.
-
-> **Atenção de layout:** o header agora é `position: sticky` com fundo azul
-> sólido sempre visível (antes ele era transparente e "flutuava" só sobre o
-> gradiente do herói da home). Isso é proposital: garante que o menu fique
-> legível em qualquer página nova, mesmo que ela não tenha fundo azul no topo.
-
 ## ...
 
 - **Vue Router** está configurado com a rota `/` (Home) e redireciona
