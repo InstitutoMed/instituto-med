@@ -1,9 +1,9 @@
 <template>
   <header :class="{ scrolled }">
     <nav class="nav container">
-      <a href="#inicio" class="logo" @click="closeMobile">
+      <router-link to="/" class="logo" @click="closeMobile">
         <img :src="logo" alt="Instituto Med" class="logo-img">
-      </a>
+      </router-link>
 
       <ul class="nav-links">
         <li v-for="item in navItems" :key="item.id">
@@ -12,18 +12,18 @@
             :to="item.to"
             :class="{ active: $route.path === item.to }"
           >{{ item.label }}</router-link>
-          <a
+          <router-link
             v-else
-            :href="item.hash"
+            :to="{ path: '/', hash: item.hash }"
             :class="{ active: $route.path === '/' && activeSection === item.id }"
-          >{{ item.label }}</a>
+          >{{ item.label }}</router-link>
         </li>
       </ul>
 
       <div class="nav-actions">
-        <button class="profile-btn" aria-label="Minha conta" @click="openModal('Entrar na conta')">
+        <router-link to="/conta" class="profile-btn" aria-label="Minha conta">
           <img :src="iconUser" alt="">
-        </button>
+        </router-link>
         <button
           class="burger"
           :aria-expanded="mobileOpen"
@@ -40,9 +40,9 @@
         <router-link v-if="item.to" :to="item.to" @click="closeMobile">
           {{ item.label }}
         </router-link>
-        <a v-else :href="item.hash" @click="closeMobile">
+        <router-link v-else :to="{ path: '/', hash: item.hash }" @click="closeMobile">
           {{ item.label }}
-        </a>
+        </router-link>
       </template>
     </div>
   </header>
@@ -52,13 +52,11 @@
 import { ref } from 'vue'
 import { NAV_ITEMS } from '../../constants/nav'
 import { useScrollSpy } from '../../composables/useScrollSpy'
-import { useBookingModal } from '../../composables/useBookingModal'
 import logo from '../../assets/img/logo.png'
 import iconUser from '../../assets/img/icon-user.png'
 
 const navItems = NAV_ITEMS
 const mobileOpen = ref(false)
-const { openModal } = useBookingModal()
 const { activeSection, scrolled } = useScrollSpy(
   navItems.filter((i) => i.hash).map((i) => i.id)
 )
@@ -72,7 +70,7 @@ function closeMobile() {
 header{
   position:sticky;top:0;z-index:50;
   background:linear-gradient(120deg,var(--blue-600),var(--blue-500));
-  transition:background .25s ease, box-shadow .25s ease;
+  transition: background .25s ease, box-shadow .25s ease;
 }
 header.scrolled{
   background:rgba(13,76,120,.94);
@@ -81,7 +79,7 @@ header.scrolled{
 }
 .nav{display:flex;align-items:center;justify-content:space-between;padding:22px 32px;}
 .logo{display:flex;align-items:center;}
-.logo-img{height:38px;width:auto;display:block;}
+.logo-img{height:60px;width:auto;display:block;}
 
 .nav-links{
   display:flex;gap:36px;list-style:none;margin:0;padding:0;

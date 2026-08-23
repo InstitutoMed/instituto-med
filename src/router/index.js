@@ -15,6 +15,18 @@ const routes = [
     meta: { title: 'Hospitais parceiros — Instituto Med' }
   },
   {
+    path: '/sobre',
+    name: 'sobre',
+    component: () => import('../views/SobreView.vue'),
+    meta: { title: 'Sobre nós — Instituto Med' }
+  },
+  {
+    path: '/conta',
+    name: 'conta',
+    component: () => import('../views/ContaView.vue'),
+    meta: { title: 'Minha conta — Instituto Med' }
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: { name: 'home' }
   }
@@ -26,13 +38,9 @@ const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) return savedPosition
     if (to.hash) {
-      return {
-        el: to.hash,
-        behavior: 'smooth',
-        top: 90
-      }
+      return { el: to.hash, top: 90 }
     }
-    return { top: 0, behavior: 'smooth' }
+    return { top: 0 }
   }
 })
 

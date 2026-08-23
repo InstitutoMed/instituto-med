@@ -14,7 +14,7 @@ import { computed } from 'vue'
 const props = defineProps({
   variant: {
     type: String,
-    default: 'solid', 
+    default: 'solid',
     validator: (v) => ['solid', 'white', 'outline'].includes(v)
   },
   type: {

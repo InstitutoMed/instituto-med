@@ -2,7 +2,7 @@ import { reactive, toRefs } from 'vue'
 
 const state = reactive({
   visible: false,
-  step: 'form', 
+  step: 'form',
   title: 'Criar conta',
   form: { nome: '', email: '', telefone: '' },
   errors: {}

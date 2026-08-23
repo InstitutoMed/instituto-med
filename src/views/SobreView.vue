@@ -1,5 +1,5 @@
 <template>
-  <div class="hospitais">
+  <div class="sobre">
     <section>
       <div class="container">
       </div>

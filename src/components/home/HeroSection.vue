@@ -76,11 +76,10 @@ const floatingItems = [
 .hero-secure{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.9);font-size:13px;font-weight:500;}
 .shield-ic{width:16px;height:16px;object-fit:contain;}
 
-.hero-photo{position:relative;display:flex;justify-content:center;align-items:flex-end;align-self:stretch;min-height:340px;}
+.hero-photo{position:relative;display:flex;justify-content:flex-end;align-items:flex-end;align-self:stretch;min-height:340px;}
 .hero-doctors-img{
-  position:relative;z-index:2;width:100%;max-width:460px;height:auto;
-  display:block;margin:0 auto;
-  filter:drop-shadow(0 24px 40px rgba(8,40,66,.35));
+  position:relative;z-index:2;width:100%;max-width:600px;height:auto;
+  display:block;margin:0;
 }
 
 .floating-card{
@@ -105,7 +104,7 @@ const floatingItems = [
   .hero h1{max-width:100%;margin:0 auto;}
   .hero p.lead{margin:20px auto 28px;}
   .hero-actions{align-items:center;}
-  .hero-photo{margin-top:30px;min-height:280px;}
+  .hero-photo{margin-top:30px;min-height:280px;justify-content:center;}
   .floating-card{grid-template-columns:repeat(2,1fr);}
   .floating-item + .floating-item::before{display:none;}
 }

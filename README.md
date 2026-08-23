@@ -26,11 +26,14 @@ src/
 ## Como adicionar uma página nova
 
 Como o header, o footer e o modal já vivem em `App.vue`, uma página nova
-**nasce com os três automaticamente**. O projeto já tem um exemplo real
-disso — a página `/hospitais` (`src/views/HospitaisView.vue`) — feita
-exatamente com os passos abaixo:
+**nasce com os três automaticamente**. O projeto já tem a estrutura pronta
+como exemplo — a rota `/hospitais` (`src/views/HospitaisView.vue`) já existe
+e o menu "Hospitais" já navega até ela — só que **de propósito o conteúdo
+dela está vazio**, esperando você preencher. Os passos pra fazer isso (ou
+criar qualquer outra página) são:
 
-1. Crie o arquivo da página em `src/views/`, por exemplo `SobreView.vue`:
+ Preencha (ou crie) o arquivo da página em `src/views/`, por exemplo
+   `SobreView.vue`:
    ```vue
    <template>
      <div class="sobre">
@@ -45,8 +48,9 @@ exatamente com os passos abaixo:
    Use a classe `.container` (já definida em `assets/styles/base.css`) para
    alinhar o conteúdo com o resto do site — é a mesma classe usada em todas
    as seções da home.
-2. Registre a rota em `src/router/index.js`, dentro do array `routes`
-   (sempre **antes** da rota coringa `/:pathMatch(.*)*`):
+ Registre a rota em `src/router/index.js`, dentro do array `routes`
+   (sempre **antes** da rota coringa `/:pathMatch(.*)*`) — a de `/hospitais`
+   já está registrada, é só seguir o mesmo padrão para outras páginas:
    ```js
    {
      path: '/sobre',
@@ -59,20 +63,30 @@ exatamente com os passos abaixo:
    arquivo) faz *lazy-loading*: o código dessa página só é baixado pelo
    navegador quando alguém realmente visita `/sobre`, não no carregamento
    inicial do site.
-3. Se a página precisa aparecer no menu, adicione em `src/constants/nav.js`
-   com `to` (não `hash`) apontando pra rota:
+ Se a página precisa aparecer no menu, adicione em `src/constants/nav.js`
+   com `to` (não `hash`) apontando pra rota — o item "Hospitais" já está
+   assim:
    ```js
    { id: 'sobre-nos', label: 'Sobre nós', to: '/sobre' }
    ```
    Itens com `hash` (ex: `#duvidas`) rolam até uma seção dentro da própria
    home; itens com `to` (ex: `/hospitais`) navegam para uma página própria.
    O `AppHeader.vue` já sabe renderizar os dois tipos automaticamente.
-4. Pronto — `App.vue` já injeta `<AppHeader />` e `<AppFooter />` em volta
+Pronto — `App.vue` já injeta `<AppHeader />` e `<AppFooter />` em volta
    dela automaticamente, e qualquer botão dentro da nova página pode abrir
-   o mesmo modal de cadastro com `useBookingModal()` (é assim que o botão
-   "Agendar consulta" de cada card em `HospitaisView.vue` funciona).
+   o mesmo modal de cadastro/contato com `useBookingModal()` se precisar.
 
-## Decisões técnicas
+> **Removido de propósito:** o botão de "Entrar na conta" (ícone de perfil
+> no header) foi retirado — não existe ainda uma página de login/conta.
+> Quando você criar essa página, é só adicionar um botão ou item de menu
+> apontando pra ela seguindo os mesmos passos acima.
+
+> **Atenção de layout:** o header agora é `position: sticky` com fundo azul
+> sólido sempre visível (antes ele era transparente e "flutuava" só sobre o
+> gradiente do herói da home). Isso é proposital: garante que o menu fique
+> legível em qualquer página nova, mesmo que ela não tenha fundo azul no topo.
+
+## ...
 
 - **Vue Router** está configurado com a rota `/` (Home) e redireciona
   qualquer rota desconhecida de volta pra ela. Os itens do menu (Atendimento,
