@@ -27,6 +27,30 @@ const routes = [
     meta: { title: 'Minha conta — Instituto Med' }
   },
   {
+    path: '/editprofile',
+    name: 'editprofile',
+    component: () => import('../views/EditProfileView.vue'),
+    meta: { title: 'Editar perfil — Instituto Med' }
+  },
+  {
+    path: '/fluxograma',
+    name: 'fluxograma',
+    component: () => import('../views/FluxogramaView.vue'),
+    meta: { title: 'Fluxograma — Instituto Med' }
+  },
+  {
+    path: '/consultas',
+    name: 'consultas',
+    component: () => import('../views/ConsultasView.vue'),
+    meta: { title: 'Consultas — Instituto Med' }
+  },
+  {
+    path: '/vacinas',
+    name: 'vacinas',
+    component: () => import('../views/VacinasView.vue'),
+    meta: { title: 'Vacinas — Instituto Med' }
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: { name: 'home' }
   }

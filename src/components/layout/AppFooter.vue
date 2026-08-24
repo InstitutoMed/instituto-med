@@ -86,7 +86,7 @@ footer{
   color:rgba(255,255,255,.72);padding:64px 32px 0;margin-top:0;
 }
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:40px;padding-bottom:36px;}
-.footer-about .logo-img{height:60px;width:auto;}
+.footer-about .logo-img{height:38px;width:auto;}
 .footer-about p{margin-top:14px;font-size:13px;line-height:1.7;max-width:280px;color:rgba(255,255,255,.6);}
 .footer-about h5{margin-top:22px;color:#fff;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
 .social{display:flex;gap:10px;}

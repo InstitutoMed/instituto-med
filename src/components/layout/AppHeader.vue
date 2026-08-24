@@ -70,7 +70,7 @@ function closeMobile() {
 header{
   position:sticky;top:0;z-index:50;
   background:linear-gradient(120deg,var(--blue-600),var(--blue-500));
-  transition: background .25s ease, box-shadow .25s ease;
+  transition:background .25s ease, box-shadow .25s ease;
 }
 header.scrolled{
   background:rgba(13,76,120,.94);
@@ -79,7 +79,7 @@ header.scrolled{
 }
 .nav{display:flex;align-items:center;justify-content:space-between;padding:22px 32px;}
 .logo{display:flex;align-items:center;}
-.logo-img{height:60px;width:auto;display:block;}
+.logo-img{height:38px;width:auto;display:block;}
 
 .nav-links{
   display:flex;gap:36px;list-style:none;margin:0;padding:0;
