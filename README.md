@@ -74,8 +74,12 @@ Pronto — `App.vue` já injeta `<AppHeader />` e `<AppFooter />` em volta
    dela automaticamente, e qualquer botão dentro da nova página pode abrir
    o mesmo modal de cadastro/contato com `useBookingModal()` se precisar.
 
+<<<<<<< HEAD
 
 ## Decisões técnicas
+=======
+## ...
+>>>>>>> 6bf57e1a9ff74d0e79084c2a2cf1145b13ee29aa
 
 - **Vue Router** está configurado com a rota `/` (Home) e redireciona
   qualquer rota desconhecida de volta pra ela. Os itens do menu (Atendimento,
