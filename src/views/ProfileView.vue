@@ -90,12 +90,12 @@ const linkGoogleAgenda = computed(() => {
   <main class="container">
   
     <section class="card">
-      <RouterLink to="/editarperfil" class="edit-btn" aria-label="Editar perfil">
-        <img src="../../public/pictures/lapis.png" alt="Editar" class="icon-lapis" />
+      <RouterLink to="/editprofile" class="edit-btn" aria-label="Editar perfil">
+        <img src="../img/lapis.png" alt="Editar" class="icon-lapis" />
       </RouterLink>
 
       <div class="avatar-container">
-        <img src="../../public/pictures/kennedyrs.jpg" alt="Foto de Perfil" class="foto-perfil" />
+        <img src="../../public/pictures/" alt="Foto de Perfil" class="foto-perfil" />
       </div>
 
       <div class="user-info">

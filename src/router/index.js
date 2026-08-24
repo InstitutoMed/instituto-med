@@ -1,25 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import PerfilView from '@/views/PerfilView.vue'
-import FluxogramaView from '@/views/FluxogramaView.vue'
-import EditarPerfilView from '@/views/EditarPerfilView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/', 
-      name: 'perfil',
-      component: PerfilView,
+      path: '/profile', 
+      name: 'profile',
+      component: () => import('../views/ProfileView.vue'),
     },
     {
       path: '/fluxograma',
       name: 'fluxograma',
-      component: FluxogramaView,
+      component: () => import('../views/FluxogramaView.vue'),
     },
     {
-      path: '/editarperfil',
-      name: 'editarperfil',
-      component: EditarPerfilView,
+      path: '/editprofile',
+      name: 'editprofile',
+      component: () => import('../views/EditProfileView.vue'),
     }
   ],
 })
