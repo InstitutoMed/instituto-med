@@ -149,7 +149,6 @@ const cancelar = () => {
   padding: 40px 20px;
   background-color: #f9fafb;
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .card-editar {
