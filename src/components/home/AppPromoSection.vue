@@ -5,7 +5,6 @@
         <span class="eyebrow">Aplicativo Instituto Med</span>
         <h2>Obtenha um perfil adaptado para a sua rotina</h2>
         <p>Acesse seus exames, vacinas, histórico médico e acompanhe sua saúde de maneira prática e segura.</p>
-        <router-link to="/cadastro" class="btn btn-solid">Criar conta</router-link>
       </div>
 
       <div class="app-visual">
