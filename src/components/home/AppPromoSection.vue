@@ -5,7 +5,7 @@
         <span class="eyebrow">Aplicativo Instituto Med</span>
         <h2>Obtenha um perfil adaptado para a sua rotina</h2>
         <p>Acesse seus exames, vacinas, histórico médico e acompanhe sua saúde de maneira prática e segura.</p>
-        <BaseButton variant="solid" @click="openModal('Criar conta')">Criar conta</BaseButton>
+        <router-link to="/cadastro" class="btn btn-solid">Criar conta</router-link>
       </div>
 
       <div class="app-visual">
@@ -21,12 +21,8 @@
 </template>
 
 <script setup>
-import BaseButton from '../shared/BaseButton.vue'
-import { useBookingModal } from '../../composables/useBookingModal'
 import phoneMockup from '../../assets/img/phone-mockup.png'
 import iconNotificacao from '../../assets/img/icon-notificacao.png'
-
-const { openModal } = useBookingModal()
 </script>
 
 <style scoped>

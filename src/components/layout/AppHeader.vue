@@ -79,7 +79,7 @@ header.scrolled{
 }
 .nav{display:flex;align-items:center;justify-content:space-between;padding:22px 32px;}
 .logo{display:flex;align-items:center;}
-.logo-img{height:38px;width:auto;display:block;}
+.logo-img{height:60px;width:auto;display:block;}
 
 .nav-links{
   display:flex;gap:36px;list-style:none;margin:0;padding:0;

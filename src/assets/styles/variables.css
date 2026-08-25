@@ -19,4 +19,16 @@
   --shadow-soft:0 20px 45px -22px rgba(13,76,120,.28);
 
   --container-width:1600px;
+
+  --azul-profundo:var(--blue-900);
+  --azul-medio:var(--blue-500);
+  --azul-claro:var(--blue-300);
+  --azul-gelo:var(--blue-50);
+  --branco:var(--white);
+  --cinza-texto:var(--muted);
+  --cinza-borda:var(--blue-100);
+  --vermelho-erro:#d64545;
+  --sombra:var(--shadow-soft);
+  --fonte-titulo:'Poppins', sans-serif;
+  --fonte-corpo:'Inter', sans-serif;
 }

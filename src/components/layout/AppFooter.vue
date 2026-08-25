@@ -24,7 +24,7 @@
             <li><a href="#inicio">Home</a></li>
             <li><a href="#sobre">Especialistas</a></li>
             <li><a href="#hospitais">Hospitais Parceiros</a></li>
-            <li><a href="#" @click.prevent="openModal('Cadastro')">Cadastro</a></li>
+            <li><router-link to="/cadastro">Cadastro</router-link></li>
             <li><a href="#duvidas">FAQ</a></li>
             <li><a href="#" @click.prevent>Notícias &amp; Saúde</a></li>
             <li class="disabled"><a href="#" @click.prevent>Contato</a></li>
@@ -47,7 +47,7 @@
       <div class="footer-strip">
         <div class="item">Precisa de Ajuda? <a href="#" class="link" @click.prevent>Contate-nos</a></div>
         <div class="item">+55 (47) 9999-9999</div>
-        <BaseButton variant="solid" style="padding:10px 20px;" @click="openModal('Fazer doação')">
+        <BaseButton variant="solid" style="padding:10px 20px;">
           Faça uma doação
         </BaseButton>
         <div class="item"><img :src="iconEmail" alt="" class="strip-ic"> institutoMed@gmail.com</div>
@@ -68,7 +68,6 @@
 
 <script setup>
 import BaseButton from '../shared/BaseButton.vue'
-import { useBookingModal } from '../../composables/useBookingModal'
 import logo from '../../assets/img/logo.png'
 import iconInstagram from '../../assets/img/icon-instagram.png'
 import iconFacebook from '../../assets/img/icon-facebook.png'
@@ -77,7 +76,6 @@ import iconGithub from '../../assets/img/icon-github.png'
 import iconMap from '../../assets/img/icon-map.png'
 import iconEmail from '../../assets/img/icon-email.png'
 
-const { openModal } = useBookingModal()
 </script>
 
 <style scoped>
@@ -86,7 +84,7 @@ footer{
   color:rgba(255,255,255,.72);padding:64px 32px 0;margin-top:0;
 }
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:40px;padding-bottom:36px;}
-.footer-about .logo-img{height:38px;width:auto;}
+.footer-about .logo-img{height:60px;width:auto;}
 .footer-about p{margin-top:14px;font-size:13px;line-height:1.7;max-width:280px;color:rgba(255,255,255,.6);}
 .footer-about h5{margin-top:22px;color:#fff;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
 .social{display:flex;gap:10px;}

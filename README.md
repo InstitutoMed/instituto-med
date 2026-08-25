@@ -1,3 +1,24 @@
+# Instituto Med
+
+Site institucional do Instituto Med, construído com **Vue 3**, **Vue Router** e **Vite**, dividido em componentes reutilizáveis.
+
+## Como rodar
+
+Pré-requisito: [Node.js](https://nodejs.org) 18 ou mais recente.
+
+```bash
+# instalar dependências
+npm install
+
+# ambiente de desenvolvimento (http://localhost:5173)
+npm run dev
+
+# build de produção (gera a pasta dist/)
+npm run build
+
+# pré-visualizar o build de produção
+npm run preview
+```
 
 ## Estrutura do projeto
 
@@ -28,9 +49,11 @@ src/
 Como o header, o footer e o modal já vivem em `App.vue`, uma página nova
 **nasce com os três automaticamente**. O projeto já tem a estrutura pronta
 como exemplo — a rota `/hospitais` (`src/views/HospitaisView.vue`) já existe
-e o menu "Hospitais" já navega até ela. Os passos pra fazer isso são:
+e o menu "Hospitais" já navega até ela — só que **de propósito o conteúdo
+dela está vazio**, esperando você preencher. Os passos pra fazer isso (ou
+criar qualquer outra página) são:
 
-Preencha (ou crie) o arquivo da página em `src/views/`, por exemplo
+1. Preencha (ou crie) o arquivo da página em `src/views/`, por exemplo
    `SobreView.vue`:
    ```vue
    <template>
@@ -46,7 +69,7 @@ Preencha (ou crie) o arquivo da página em `src/views/`, por exemplo
    Use a classe `.container` (já definida em `assets/styles/base.css`) para
    alinhar o conteúdo com o resto do site — é a mesma classe usada em todas
    as seções da home.
-Registre a rota em `src/router/index.js`, dentro do array `routes`
+2. Registre a rota em `src/router/index.js`, dentro do array `routes`
    (sempre **antes** da rota coringa `/:pathMatch(.*)*`) — a de `/hospitais`
    já está registrada, é só seguir o mesmo padrão para outras páginas:
    ```js
@@ -61,7 +84,7 @@ Registre a rota em `src/router/index.js`, dentro do array `routes`
    arquivo) faz *lazy-loading*: o código dessa página só é baixado pelo
    navegador quando alguém realmente visita `/sobre`, não no carregamento
    inicial do site.
-Se a página precisa aparecer no menu, adicione em `src/constants/nav.js`
+3. Se a página precisa aparecer no menu, adicione em `src/constants/nav.js`
    com `to` (não `hash`) apontando pra rota — o item "Hospitais" já está
    assim:
    ```js
@@ -70,16 +93,21 @@ Se a página precisa aparecer no menu, adicione em `src/constants/nav.js`
    Itens com `hash` (ex: `#duvidas`) rolam até uma seção dentro da própria
    home; itens com `to` (ex: `/hospitais`) navegam para uma página própria.
    O `AppHeader.vue` já sabe renderizar os dois tipos automaticamente.
-Pronto — `App.vue` já injeta `<AppHeader />` e `<AppFooter />` em volta
+4. Pronto — `App.vue` já injeta `<AppHeader />` e `<AppFooter />` em volta
    dela automaticamente, e qualquer botão dentro da nova página pode abrir
    o mesmo modal de cadastro/contato com `useBookingModal()` se precisar.
 
-<<<<<<< HEAD
+> **Removido de propósito:** o botão de "Entrar na conta" (ícone de perfil
+> no header) foi retirado — não existe ainda uma página de login/conta.
+> Quando você criar essa página, é só adicionar um botão ou item de menu
+> apontando pra ela seguindo os mesmos passos acima.
+
+> **Atenção de layout:** o header agora é `position: sticky` com fundo azul
+> sólido sempre visível (antes ele era transparente e "flutuava" só sobre o
+> gradiente do herói da home). Isso é proposital: garante que o menu fique
+> legível em qualquer página nova, mesmo que ela não tenha fundo azul no topo.
 
 ## Decisões técnicas
-=======
-## ...
->>>>>>> 6bf57e1a9ff74d0e79084c2a2cf1145b13ee29aa
 
 - **Vue Router** está configurado com a rota `/` (Home) e redireciona
   qualquer rota desconhecida de volta pra ela. Os itens do menu (Atendimento,

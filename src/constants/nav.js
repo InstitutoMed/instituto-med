@@ -1,6 +1,8 @@
 export const NAV_ITEMS = [
-  { id: 'inicio', label: 'Atendimento', hash: '#inicio' },
+  { id: 'home', label: 'Home', to: '/' },
+  { id: 'atendimento', label: 'Atendimento', to: '/atendimento' },
   { id: 'hospitais', label: 'Hospitais', to: '/hospitais' },
   { id: 'sobre', label: 'Sobre nós', to: '/sobre' },
-  { id: 'duvidas', label: 'Dúvidas', hash: '#duvidas' }
+  { id: 'caderneta', label: 'Caderneta', to: '/caderneta' },
+  { id: 'fluxograma', label: 'Fluxograma', to: '/fluxograma' }
 ]

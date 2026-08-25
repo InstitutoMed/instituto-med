@@ -5,7 +5,7 @@
         <span class="eyebrow">Médicos em destaque</span>
         <h2>Profissionais que cuidam de você</h2>
         <p>Especialistas prontos para oferecer o melhor atendimento direcionado a você.</p>
-        <BaseButton variant="solid" @click="openModal('Saiba mais')">Saiba mais</BaseButton>
+        <BaseButton variant="solid">Saiba mais</BaseButton>
       </div>
 
       <div class="doctors-cards">
@@ -27,11 +27,9 @@
 
 <script setup>
 import BaseButton from '../shared/BaseButton.vue'
-import { useBookingModal } from '../../composables/useBookingModal'
 import doctorJuliana from '../../assets/img/doctor-juliana.png'
 import doctorRafael from '../../assets/img/doctor-rafael.png'
 
-const { openModal } = useBookingModal()
 
 const doctors = [
   {

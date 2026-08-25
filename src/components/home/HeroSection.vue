@@ -12,9 +12,9 @@
           personalizado em um só lugar.
         </p>
         <div class="hero-actions">
-          <BaseButton variant="white" @click="openModal('Criar conta')">
+          <router-link to="/cadastro" class="btn btn-white">
             Comece agora
-          </BaseButton>
+          </router-link>
           <span class="hero-secure"><img :src="iconShield" alt="" class="shield-ic"> Seus dados protegidos com segurança.</span>
         </div>
       </div>
@@ -36,17 +36,12 @@
 </template>
 
 <script setup>
-import BaseButton from '../shared/BaseButton.vue'
-import { useBookingModal } from '../../composables/useBookingModal'
-
 import doctorsHero from '../../assets/img/doctors-hero.png'
 import iconAgenda from '../../assets/img/icon-agenda.png'
 import iconFarmacia from '../../assets/img/icon-farmacia.png'
 import iconRelogio from '../../assets/img/icon-relogio.png'
 import iconConta from '../../assets/img/icon-conta.png'
 import iconShield from '../../assets/img/icon-shield.png'
-
-const { openModal } = useBookingModal()
 
 const floatingItems = [
   { icon: iconAgenda, text: 'Agendamentos rápidos' },
