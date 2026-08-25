@@ -56,7 +56,7 @@ import hanna from '@/assets/fotos/hanna.jpg'
               </div>
               <p>
                 Responsável na criação do design gráfico do site e de sua identidade visual, aliar
-                criatividade, funcionalidade e estética.
+                criatividade, funcionalidade e estética, desenvolvedora Caderneta e Atendimentos.
               </p>
             </div>
           </article>
@@ -72,7 +72,7 @@ import hanna from '@/assets/fotos/hanna.jpg'
               </div>
               <p>
                 Responsável na criação do design gráfico do site e de sua identidade visual, em
-                aliar criatividade, funcionalidade e estética.
+                aliar criatividade, funcionalidade e estética desenvolvedora das páginas Hospital e Hospitais.
               </p>
             </div>
           </article>
@@ -88,7 +88,7 @@ import hanna from '@/assets/fotos/hanna.jpg'
               </div>
               <p>
                 Responsável na criação do modelo lógico do banco de dados, por instalar,
-                configurar, gerenciar e otimizar banco de dados.
+                configurar, gerenciar e otimizar banco de dados desenvolvedora da página Criar Perfil , Perfil e Fluxograma.
               </p>
             </div>
           </article>
@@ -104,7 +104,7 @@ import hanna from '@/assets/fotos/hanna.jpg'
               </div>
               <p>
                 Responsável na criação dos requisitos, em traduzir as necessidades dos usuários de
-                software e do sistema.
+                software e do sistema desenvolvedor das páginas Cadastros e Login.
               </p>
             </div>
           </article>
@@ -120,7 +120,7 @@ import hanna from '@/assets/fotos/hanna.jpg'
               </div>
               <p>
                 Responsável na pesquisa e segurança da informação, garantindo a veracidade das
-                notícias.
+                notícias ,desnvolvedor da página Home e criador do banco de dados Mysql.
               </p>
             </div>
           </article>
@@ -134,7 +134,7 @@ import hanna from '@/assets/fotos/hanna.jpg'
                 <h3>Tiago Cardoso</h3>
                 <span class="badge">Projetista</span>
               </div>
-              <p>Responsável na criação do modelo conceitual do banco de dados no brModelo.</p>
+              <p>Responsável na criação do modelo conceitual do banco de dados no brModelo e desnvolvedor da página Sobre Nós e criador do banco de dados Mysql e wireframe no figma.</p>
             </div>
           </article>
         </li>
@@ -350,10 +350,6 @@ import hanna from '@/assets/fotos/hanna.jpg'
   gap: 0.5rem;
 }
 
-.iconInline {
-  width: 18px;
-  height: 18px;
-}
 
 .contato a,
 .contato p {
