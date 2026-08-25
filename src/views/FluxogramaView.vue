@@ -27,16 +27,7 @@ const totalAtendimentos = 16
   </div>
 
   <div class="graf1">
-    <section>
-      <div>
-        <h3>Movimento</h3>
-      </div>
-
-      <div>
-        <h3>Overview</h3>
-        <p class="min">Essa semana</p>
-      </div>
-    </section>
+   
   </div>
 </template>
 

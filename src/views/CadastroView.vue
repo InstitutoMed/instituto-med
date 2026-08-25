@@ -422,6 +422,7 @@ function cancelar() {
   Object.keys(form).forEach((k) => (form[k] = ''))
   tentouEnviar.value = false
   camposBasicosObrigatorios.forEach((c) => (tocado[c] = false))
+  router.push('/')
 }
 </script>
 

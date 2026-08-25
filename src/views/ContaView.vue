@@ -16,7 +16,7 @@ const consulta = ref({
   hora: '10:30h',
   medico: 'Dr. Fábio Longo de Moura',
   local: 'Hospital São Bernardino',
-  dataConsulta: new Date(2026, 7, 23)
+  dataConsulta: new Date(2026, 7, 26)
 })
 
 const vacinas = ref([
@@ -123,7 +123,7 @@ const linkGoogleAgenda = computed(() => {
             <li><strong>Local:</strong> {{ consulta.local }}</li>
           </ul>
 
-          <RouterLink to="/consultas" class="sm">SAIBA MAIS</RouterLink>
+          <RouterLink to="/atendimento" class="sm">SAIBA MAIS</RouterLink>
         </div>
       </section>
 
