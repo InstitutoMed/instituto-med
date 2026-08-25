@@ -6,10 +6,9 @@ import fotoLucas from '@/assets/fotos/img - lucas.jpg'
 import fotoNicholas from '@/assets/fotos/img nicholas.jpg'
 import fotoTiago from '@/assets/fotos/tiago.jpg'
 import iconeContato from '@/assets/fotos/contato.jpg'
-import iconeEmail from '@/assets/fotos/email.jpg'
-import iconeTelefone from '@/assets/fotos/icontelefone.jpg'
 
-const fotoHanna = 'https://via.placeholder.com/90x90?text=Foto'
+import hanna from '@/assets/fotos/hanna.jpg'
+
 </script>
 
 <template>
@@ -81,7 +80,7 @@ const fotoHanna = 'https://via.placeholder.com/90x90?text=Foto'
 
         <li class="devCard">
           <article>
-            <img class="devAvatar" :src="fotoHanna" alt="Foto de Hanna Julia Schroeder" />
+            <img class="devAvatar" :src="hanna" alt="Foto de Hanna Julia Schroeder" />
             <div class="devInfo">
               <div class="devHeader">
                 <h3>Hanna Julia Schroeder</h3>
@@ -151,11 +150,9 @@ const fotoHanna = 'https://via.placeholder.com/90x90?text=Foto'
 
       <address>
         <div class="linha">
-          <img class="iconInline" :src="iconeEmail" alt="" />
           <a href="mailto:institutoMed@gmail.com">Email: institutoMed@gmail.com</a>
         </div>
         <div class="linha">
-          <img class="iconInline" :src="iconeTelefone" alt="" />
           <p>Tel: +55 (47) 9 9384-0212</p>
         </div>
       </address>
