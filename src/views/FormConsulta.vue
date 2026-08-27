@@ -1,5 +1,46 @@
 <script setup>
 import { reactive, computed, ref } from 'vue'
+import { cadastrarAgendamento } from '@/store/agendamentos.js'
+
+function confirmarAgendamento(event) {
+  event.preventDefault()
+  tentouEnviar.value = true
+
+  if (Object.keys(erros.value).length > 0) return
+  if (form.receberEmail && !form.email) return
+
+  cadastrarAgendamento({
+    nome: form.nome,
+    telefone: form.telefone,
+    cpf: form.cpf,
+    consulta: form.consulta,
+    data: form.data,
+    horario: form.horario,
+    hospital: form.hospital,
+    medico: form.medico,
+    motivo: form.motivo,
+    email: form.email
+  })
+
+
+  alert('Agendamento realizado com sucesso!')
+}
+
+function cancelar() {
+  form.nome = ''
+  form.telefone = ''
+  form.cpf = ''
+  form.consulta = ''
+  form.data = ''
+  form.horario = ''
+  form.hospital = ''
+  form.medico = ''
+  form.motivo = ''
+  form.senha = ''
+  form.email = ''
+  form.receberEmail = false
+  tentouEnviar.value = false
+}
 
 const form = reactive({
   cpf: '',
@@ -52,26 +93,13 @@ function ativarEmail() {
   }
 }
 
-function confirmarAgendamento(event) {
-  tentouEnviar.value = true
 
-  if (form.receberEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-    event.preventDefault()
-
-    setTimeout(() => {
-      document.getElementById('inputEmail')?.focus()
-    }, 100)
-
-    return
-  }
-}
 
 </script>
 <template>
 <main class="conteudo">
-  <form action="">
 
-<form>
+<form @submit.prevent="confirmarAgendamento">
 
          <div class="nome">
             <label for="nome">Nome Completo</label>
@@ -119,7 +147,7 @@ function confirmarAgendamento(event) {
 
           <div class="consulta">
     <label for="inputconsulta" class="form-label">Tipo de Consulta</label>
-    <select id="inputconsulta" class="form-select">
+    <select id="inputconsulta" class="form-select"  v-model="form.consulta">
       <option>Exame de Sangue</option>
       <option>Vacinação</option>
       <option>Dentista</option>
@@ -146,21 +174,21 @@ function confirmarAgendamento(event) {
     <legend class="col-form-label col-sm-2 pt-0">Horario</legend>
     <div class="col-sm-10">
       <div class="opM">
-        <input class="form-check-input" type="radio" name="gridHorario" id="gridHorario1" value="option1">
+        <input class="form-check-input" type="radio" name="gridHorario" id="gridHorario1" value="option1" v-model="form.horario">
         <label class="form-check-label" for="gridHorario1">
           Matutino
         </label>
       </div>
 
       <div class="opV">
-        <input class="form-check-input" type="radio" name="gridHorario" id="gridHorario2" value="option2">
+        <input class="form-check-input" type="radio" name="gridHorario" id="gridHorario2" value="option2" v-model="form.horario">
         <label class="form-check-label" for="gridHorario2">
           Vespertino
         </label>
       </div>
 
       <div class="opN">
-        <input class="form-check-input" type="radio" name="gridHorario" id="gridHorario3" value="option3">
+        <input class="form-check-input" type="radio" name="gridHorario" id="gridHorario3" value="option3" v-model="form.horario">
         <label class="form-check-label" for="gridHorario3">
           Noturno
         </label>
@@ -172,7 +200,7 @@ function confirmarAgendamento(event) {
 
             <div class="Hospital">
     <label for="inputhospital" class="form-label">Hospital</label>
-    <select id="inputhospital" class="form-select">
+    <select id="inputhospital" class="form-select" v-model="form.hospital">
       <option>Hospital  Regional Hans Dieter Schmidt (HRHDS)</option>
       <option>Hospital Municipal São José</option>
       <option>Hospital Dona Helena </option>
@@ -184,7 +212,7 @@ function confirmarAgendamento(event) {
 
                       <div class="medico">
     <label for="inputmed" class="form-label">Médico de preferência</label>
-    <select id="inputmed" class="form-select">
+    <select id="inputmed" class="form-select" v-model="form.medico">
       <option>Hanna Schroeder</option>
       <option>Lucas Pereira</option>
       <option>Giovana Bandoch</option>
@@ -230,7 +258,7 @@ function confirmarAgendamento(event) {
   <div class="senha">
     <label for="inputPassword3" class="col-sm-2 col-form-label">Senha</label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" id="inputSenha">
+      <input type="password" class="form-control" id="inputSenha" v-model="form.senha">
     </div>
   </div>
 
@@ -254,12 +282,12 @@ function confirmarAgendamento(event) {
   </div>
 </div>
 
-<button type="submit" class="confirmar" @click="confirmarAgendamento">Confirmar agendamento</button>
-      <button type="submit" class="cancelar">Cancelar</button>
+<button type="submit" class="confirmar">Confirmar agendamento</button>
+      <button type="button" class="cancelar" @click="cancelar">Cancelar</button>
 
 </form>
 
-  </form>
+
 
 </main>
 </template>
