@@ -1,14 +1,53 @@
 <script setup>
-import { ref, computed } from 'vue'
-import { RouterLink } from 'vue-router'
+import { ref, computed, onMounted } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
+import { obterSessao, encerrarSessao, removerUsuario } from '@/store/usuarios.js'
+
+const router = useRouter()
 
 const usuario = ref({
-  nome: 'Kennedy Araújo',
-  cpf: '011.201.321-45',
-  cep: '67.800.912',
-  telefone: '+55 47 9 5467-9814',
-  tipoSanguineo: 'A+',
-  email: 'kennedyA@gmail.com'
+  nome: '',
+  cpf: '',
+  cep: '',
+  telefone: '',
+  tipoSanguineo: '',
+  email: '',
+  foto: ''
+})
+
+onMounted(() => {
+  const dadosSessao = obterSessao()
+  
+  if (dadosSessao) {
+    usuario.value = { ...usuario.value, ...dadosSessao }
+  } else {
+    router.push('/login')
+  }
+})
+
+function sair() {
+  encerrarSessao()
+  router.push('/login')
+}
+
+function deletarPerfil() {
+  const confirmacao = window.confirm(
+    'Tem certeza que deseja excluir permanentemente seu perfil? Essa ação não poderá ser desfeita.'
+  )
+
+  if (confirmacao) {
+    if (usuario.value && usuario.value.cpf) {
+      removerUsuario(usuario.value.cpf)
+    }
+    encerrarSessao()
+    router.push('/entrar')
+  }
+}
+
+const cpfFormatado = computed(() => {
+  const cpf = usuario.value.cpf || ''
+  if (cpf.length !== 11) return cpf
+  return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')
 })
 
 const consulta = ref({
@@ -25,7 +64,6 @@ const vacinas = ref([
   { id: 3, nome: 'Gripe', dia: '24 / 02 / 26', horario: '09:05', local: 'Hospital Santa Helena' }
 ])
 
-// Formatação da data
 const diaFormatado = computed(() => {
   const d = consulta.value.dataConsulta
   const dia = String(d.getDate()).padStart(2, '0')
@@ -33,7 +71,6 @@ const diaFormatado = computed(() => {
   const ano = d.getFullYear()
   return `${dia} / ${mes} / ${ano}`
 })
-
 
 const estadoConsulta = computed(() => {
   const hoje = new Date()
@@ -67,14 +104,12 @@ const avisoConsulta = computed(() => {
   }
 })
 
-// URL GoogleAgenda
 const linkGoogleAgenda = computed(() => {
   const d = consulta.value.dataConsulta
   const dia = String(d.getDate()).padStart(2, '0')
   const mes = String(d.getMonth() + 1).padStart(2, '0')
   const ano = d.getFullYear()
 
-  // Formato para evento de dia inteiro
   const dataISO = `${ano}${mes}${dia}`
   const datas = `${dataISO}/${dataISO}`
 
@@ -95,18 +130,30 @@ const linkGoogleAgenda = computed(() => {
       </RouterLink>
 
       <div class="avatar">
-        <img src="../../public/pictures/" alt="Foto de Perfil" class="foto_perfil" />
+        <img v-if="usuario.foto" :src="usuario.foto" alt="Foto de Perfil" class="foto_perfil" />
+        <div v-else class="foto_placeholder">
+          {{ usuario.nome ? usuario.nome.charAt(0).toUpperCase() : 'U' }}
+        </div>
       </div>
 
       <div class="usuarioInfo">
         <h2 class="titulo_card">{{ usuario.nome }}</h2>
         <ul class="infos_card">
-          <li><strong>CPF:</strong> {{ usuario.cpf }}</li>
+          <li><strong>CPF:</strong> {{ cpfFormatado }}</li>
           <li><strong>CEP:</strong> {{ usuario.cep }}</li>
           <li><strong>Telefone:</strong> {{ usuario.telefone }}</li>
           <li><strong>Tipo Sanguíneo:</strong> {{ usuario.tipoSanguineo }}</li>
           <li><strong>Email:</strong> {{ usuario.email }}</li>
         </ul>
+
+        <div class="acoes_usuario">
+          <button type="button" class="botao_sessao botao_sair_del" @click="sair">
+            Sair
+          </button>
+          <button type="button" class="botao_sessao botao_sair_del" @click="deletarPerfil">
+            Deletar Perfil
+          </button>
+        </div>
       </div>
     </section>
 
@@ -237,12 +284,21 @@ ul {
   overflow: hidden;
   background-color: #e5e7eb;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .foto_perfil {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.foto_placeholder {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #2b7b9b;
 }
 
 .usuarioInfo {
@@ -270,6 +326,32 @@ ul {
 
 .infos_card li {
   text-align: left;
+}
+
+.acoes_usuario {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.botao_sessao {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.botao_sair_del {
+  background-color: #f3f4f6;
+  color: #2b7b9b;
+ 
+}
+
+.botao_sair_del:hover {
+  background-color: #e5e7eb;
 }
 
 .sec_consulta {
@@ -346,9 +428,6 @@ ul {
   align-items: center;
   gap: 12px;
   color: #2b7b9b;
-}
-
-.google_icon {
   width: 56px;
   height: 56px;
   fill: #2b7b9b;
@@ -380,7 +459,7 @@ ul {
   margin-bottom: 20px;
 }
 
-.vacinas-lista {
+.vacinas_lista {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
