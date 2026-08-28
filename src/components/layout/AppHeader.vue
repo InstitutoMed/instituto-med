@@ -1,5 +1,5 @@
 <template>
-  <header :class="{ scrolled }">
+  <header>
     <nav class="nav container">
       <router-link to="/" class="logo" @click="closeMobile">
         <img :src="logo" alt="Instituto Med" class="logo-img">
@@ -15,7 +15,6 @@
           <router-link
             v-else
             :to="{ path: '/', hash: item.hash }"
-            :class="{ active: $route.path === '/' && activeSection === item.id }"
           >{{ item.label }}</router-link>
         </li>
       </ul>
@@ -51,15 +50,11 @@
 <script setup>
 import { ref } from 'vue'
 import { NAV_ITEMS } from '../../constants/nav'
-import { useScrollSpy } from '../../composables/useScrollSpy'
 import logo from '../../assets/img/logo.png'
 import iconUser from '../../assets/img/icon-user.png'
 
 const navItems = NAV_ITEMS
 const mobileOpen = ref(false)
-const { activeSection, scrolled } = useScrollSpy(
-  navItems.filter((i) => i.hash).map((i) => i.id)
-)
 
 function closeMobile() {
   mobileOpen.value = false
@@ -71,11 +66,6 @@ header{
   position:sticky;top:0;z-index:50;
   background:linear-gradient(120deg,var(--blue-600),var(--blue-500));
   transition:background .25s ease, box-shadow .25s ease;
-}
-header.scrolled{
-  background:rgba(13,76,120,.94);
-  backdrop-filter:blur(10px);
-  box-shadow:0 8px 24px -12px rgba(0,0,0,.3);
 }
 .nav{display:flex;align-items:center;justify-content:space-between;padding:22px 32px;}
 .logo{display:flex;align-items:center;}

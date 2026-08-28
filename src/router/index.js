@@ -79,7 +79,8 @@ const routes = [
     path: '/caderneta',
     name: 'caderneta',
     component: () => import('../views/PainelView.vue'),
-    meta: { title: 'Caderneta — Instituto Med' }
+    meta: { title: 'Caderneta — Instituto Med',
+       requerLogin: true}
   },
   {
     path: '/vacina/:id',

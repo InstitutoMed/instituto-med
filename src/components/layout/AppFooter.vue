@@ -39,7 +39,7 @@
             <li><a href="#" @click.prevent>Agendamento de Consultas e Exames</a></li>
             <li><a href="#" @click.prevent>Caderneta Médica Digital</a></li>
             <li><a href="#" @click.prevent>Notificações e Lembretes Automáticos</a></li>
-            <li><a href="#sobre">Sobre Nós</a></li>
+            <li><a href="/sobre">Sobre Nós</a></li>
           </ul>
         </div>
       </div>

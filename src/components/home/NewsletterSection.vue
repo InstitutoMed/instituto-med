@@ -3,7 +3,7 @@
     <div class="newsletter">
       <div>
         <h3>Para Últimas Atualizações<br>Inscreva-se na nossa Newsletter.</h3>
-        <p v-if="sent" class="ok-msg">✓ Inscrição confirmada, obrigado!</p>
+        <p v-if="sent" class="ok-msg"> Inscrição confirmada, obrigado!</p>
       </div>
       <form @submit.prevent="submit">
         <input v-model="email" type="email" placeholder="Informe o seu email" required>

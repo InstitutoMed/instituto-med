@@ -3,7 +3,7 @@ const vacinas = reactive([
   {
     id: 1,
     nome: 'Hepatite B',
-    doencas: 'Doenças evitadas: Hepatite B e Hepatite D',
+    doencas: 'Doenças evitadas: Hepatite B e Hepatite D',
     doses: 'Número de doses: 3',
     categoria: 'gestantes',
     descricao: 'A vacina contra a Hepatite B protege a gestante contra a infecção pelo vírus da hepatite B. Como o vírus da hepatite D depende da presença do vírus da hepatite B para causar infecção, a vacina também previne indiretamente a hepatite D. Além disso, reduz o risco de transmissão da doença da mãe para o bebê durante a gestação e o parto.',
