@@ -6,6 +6,7 @@ import CadastroView from '../views/CadastroView.vue'
 import LoginView from '@/views/LoginView.vue'
 import PainelView from '@/views/PainelView.vue'
 import EditProfileView from '@/views/EditProfileView.vue'
+import vacinaView from '@/views/vacinaView.vue'
 
 const routes = [
   {
@@ -44,12 +45,31 @@ const routes = [
     component: FluxogramaView,
     meta: { title: 'Fluxograma Hospitais — Instituto Med' }
   },
-  {
+    {
     path: '/editprofile',
     name: 'editprofile',
     component: EditProfileView,
     meta: { requerAutenticacao: true }
-  }
+    },
+
+    {
+      path: '/caderneta',
+      component: cadernetaView,
+      meta: { requerAutenticacao: true }
+    },
+
+    {
+      path: '/vacina/:id',
+      name: 'vacina',
+      component: vacinaView,
+      meta: { requerAutenticacao: true }
+    },
+
+    {
+      path: '/agendar',
+      component: AgendarView,
+      meta: { requerAutenticacao: true }
+    },
 ]
 
 const router = createRouter({
