@@ -4,12 +4,6 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-    path: '/',
-    name: 'home',
-    component: HomeView,
-    meta: { title: 'Instituto Med — Sua saúde conectada' }
-  },
-    {
       path: '/profile', 
       name: 'profile',
       component: () => import('../views/ProfileView.vue'),

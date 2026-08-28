@@ -87,19 +87,19 @@ const linkGoogleAgenda = computed(() => {
 </script>
 
 <template>
-  <main class="container">
+  <main class="main">
   
     <section class="card">
-      <RouterLink to="/editprofile" class="edit-btn" aria-label="Editar perfil">
-        <img src="../img/lapis.png" alt="Editar" class="icon-lapis" />
+      <RouterLink to="/editprofile" class="botao_editar" aria-label="Editar perfil">
+        <img src="../img/lapis.png" alt="Editar" class="icon_lapis" />
       </RouterLink>
 
-      <div class="avatar-container">
-        <img src="../../public/pictures/" alt="Foto de Perfil" class="foto-perfil" />
+      <div class="avatar">
+        <img src="../../public/pictures/" alt="Foto de Perfil" class="foto_perfil" />
       </div>
 
-      <div class="user-info">
-        <h2 class="title_card">{{ usuario.nome }}</h2>
+      <div class="usuarioInfo">
+        <h2 class="titulo_card">{{ usuario.nome }}</h2>
         <ul class="infos_card">
           <li><strong>CPF:</strong> {{ usuario.cpf }}</li>
           <li><strong>CEP:</strong> {{ usuario.cep }}</li>
@@ -110,14 +110,14 @@ const linkGoogleAgenda = computed(() => {
       </div>
     </section>
 
-    <div class="sec1">
+    <div class="sec_consulta">
       <section class="consultas">
-        <h3 class="title_c">
+        <h3 class="tituloConsultas">
           {{ tituloConsulta }}
         </h3>
 
-        <div class="consultas-content">
-          <p class="avi_c">
+        <div class="consultas_card">
+          <p class="aviso_consulta">
             {{ avisoConsulta }}
           </p>
 
@@ -129,45 +129,43 @@ const linkGoogleAgenda = computed(() => {
             <li><strong>Local:</strong> {{ consulta.local }}</li>
           </ul>
 
-          <RouterLink to="/consultas" class="sm">SAIBA MAIS</RouterLink>
+          <RouterLink to="/consultas" class="saiba_mais">SAIBA MAIS</RouterLink>
         </div>
       </section>
 
-      <section class="foto-container">
+      <section class="foto_agenda">
         <a 
           v-if="estadoConsulta !== 'passou'"
           :href="linkGoogleAgenda" 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="google-calendar-card"
+          class="google_card"
           title="Clique para adicionar este agendamento no seu Google Agenda"
         >
-          <div class="calendar-icon-wrapper">
-            <svg class="google-calendar-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/>
-            </svg>
-            <span class="btn-text">Adicionar consulta ao Google Agenda</span>
+          <div class="calendar_google">
+            <img class="google_icon" src="../img/check.png">
+            <span class="botao_texto_agenda">Adicionar consulta ao Google Agenda</span>
           </div>
         </a>
 
-        <div v-else class="google-calendar-card desativado">
-          <div class="calendar-icon-wrapper">
-            <svg class="google-calendar-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <div v-else class="google_card desativado">
+          <div class="calendar_google">
+            <svg class="google_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
             </svg>
-            <span class="btn-text">Consulta Concluída</span>
+            <span class="botao_texto_agenda">Consulta Concluída</span>
           </div>
         </div>
       </section>
     </div>
 
-    <section class="vac">
-      <RouterLink to="/vacinas" class="titulo-link">
-        <h3 class="titulo_vac">Histórico de Vacinas</h3>
+    <section class="caderneta">
+      <RouterLink to="/vacinas" class="link_vacinas">
+        <h3 class="titulo_vacinas">Histórico de Vacinas</h3>
       </RouterLink>
 
-      <div class="vacinas-lista">
-        <div v-for="vacina in vacinas" :key="vacina.id" class="tipo_vac">
+      <div class="vacinas_lista">
+        <div v-for="vacina in vacinas" :key="vacina.id" class="tipo_vacina">
           <h4>{{ vacina.nome }}</h4>
           <ul>
             <li><strong>Dia:</strong> {{ vacina.dia }}</li>
@@ -177,15 +175,15 @@ const linkGoogleAgenda = computed(() => {
         </div>
       </div>
 
-      <div class="sm-container">
-        <RouterLink to="/vacinas" class="sm">SAIBA MAIS</RouterLink>
+      <div class="saiba_mais_cader">
+        <RouterLink to="/vacinas" class="saiba_mais">SAIBA MAIS</RouterLink>
       </div>
     </section>
   </main>
 </template>
 
 <style scoped>
-.container {
+.main {
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
@@ -217,7 +215,7 @@ ul {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.edit-btn {
+.botao_editar {
   position: absolute;
   top: 24px;
   right: 24px;
@@ -227,12 +225,12 @@ ul {
   padding: 0;
 }
 
-.icon-lapis {
+.icon_lapis {
   width: 18px;
   height: 18px;
 }
 
-.avatar-container {
+.avatar {
   width: 140px;
   height: 140px;
   border-radius: 50%;
@@ -241,20 +239,20 @@ ul {
   flex-shrink: 0;
 }
 
-.foto-perfil {
+.foto_perfil {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.user-info {
+.usuarioInfo {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
 }
 
-.title_card {
+.titulo_card {
   font-size: 1.75rem;
   font-weight: 800;
   margin: 0 0 16px 0;
@@ -274,7 +272,7 @@ ul {
   text-align: left;
 }
 
-.sec1 {
+.sec_consulta {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
@@ -290,7 +288,7 @@ ul {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.title_c {
+.tituloConsultas {
   background-color: #2b7b9b;
   color: white;
   padding: 12px 16px;
@@ -298,7 +296,7 @@ ul {
   margin: 0;
 }
 
-.consultas-content {
+.consultas_card {
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -306,13 +304,13 @@ ul {
   flex-grow: 1;
 }
 
-.avi_c {
+.aviso_consulta {
   font-weight: bold;
   font-size: 1rem;
   margin-bottom: 8px;
 }
 
-.foto-container {
+.foto_agendas {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -320,7 +318,7 @@ ul {
   border: 1px solid #e5e7eb;
 }
 
-.google-calendar-card {
+.calendar_google {
   display: flex;
   width: 100%;
   height: 100%;
@@ -332,17 +330,17 @@ ul {
   transition: all 0.2s ease;
 }
 
-.google-calendar-card:hover:not(.desativado) {
+.google_card:hover:not(.desativado) {
   background-color: #f1f5f9;
   transform: scale(1.01);
 }
 
-.google-calendar-card.desativado {
+.google_card.desativado {
   opacity: 0.7;
   cursor: default;
 }
 
-.calendar-icon-wrapper {
+.google_icon {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -350,19 +348,19 @@ ul {
   color: #2b7b9b;
 }
 
-.google-calendar-icon {
+.google_icon {
   width: 56px;
   height: 56px;
   fill: #2b7b9b;
 }
 
-.btn-text {
+.botao_texto_agenda {
   font-weight: bold;
   font-size: 0.95rem;
   color: #1a1a1a;
 }
 
-.vac {
+.caderneta {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 16px;
@@ -370,12 +368,12 @@ ul {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.titulo-link {
+.link_vacinas {
   text-decoration: none;
   color: inherit;
 }
 
-.titulo_vac {
+.titulo_vacinas {
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
@@ -388,25 +386,25 @@ ul {
   gap: 16px;
 }
 
-.tipo_vac {
+.tipo_vacina {
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   padding: 16px;
   text-align: center;
 }
 
-.tipo_vac h4 {
+.tipo_vacina h4 {
   font-size: 1.1rem;
   margin-bottom: 8px;
   text-transform: uppercase;
 }
 
-.sm-container {
+.saiba_mais_cader {
   text-align: right;
   margin-top: 16px;
 }
 
-.sm {
+.saiba_mais {
   font-size: 0.8rem;
   color: #6b7280;
   text-decoration: underline;
