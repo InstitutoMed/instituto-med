@@ -1,0 +1,34 @@
+:root{
+  --blue-900:#0d4c78;
+  --blue-800:#125c8f;
+  --blue-700:#1a6c9c;
+  --blue-600:#2179ab;
+  --blue-500:#2a71a3;
+  --blue-400:#4a93bd;
+  --blue-300:#7fb8d8;
+  --blue-100:#cceefa;
+  --blue-50:#f4f8fe;
+  --ink:#123049;
+  --muted:#5c7690;
+  --white:#ffffff;
+
+  --radius-lg:28px;
+  --radius-md:16px;
+  --radius-pill:999px;
+
+  --shadow-soft:0 20px 45px -22px rgba(13,76,120,.28);
+
+  --container-width:1600px;
+
+  --azul-profundo:var(--blue-900);
+  --azul-medio:var(--blue-500);
+  --azul-claro:var(--blue-300);
+  --azul-gelo:var(--blue-50);
+  --branco:var(--white);
+  --cinza-texto:var(--muted);
+  --cinza-borda:var(--blue-100);
+  --vermelho-erro:#d64545;
+  --sombra:var(--shadow-soft);
+  --fonte-titulo:'Poppins', sans-serif;
+  --fonte-corpo:'Inter', sans-serif;
+}
