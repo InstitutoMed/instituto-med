@@ -8,7 +8,7 @@ import fotoTiago from '../assets/fotos/tiago.jpg'
 import iconeContato from '../assets/fotos/contato.jpg'
 import iconeEmail from '../assets/fotos/email.jpg'
 import iconeTelefone from '../assets/fotos/icontelefone.jpg'
-import fotoHanna from '../assets/img/icon-user.png'
+import fotoHanna from '../assets/fotos/fotoHanna.jpg'
 </script>
 
 <template>
@@ -150,11 +150,9 @@ import fotoHanna from '../assets/img/icon-user.png'
 
       <address>
         <div class="linha">
-          <img class="iconInline" :src="iconeEmail" alt="" />
           <a href="mailto:institutoMed@gmail.com">Email: institutoMed@gmail.com</a>
         </div>
         <div class="linha">
-          <img class="iconInline" :src="iconeTelefone" alt="" />
           <p>Tel: +55 (47) 9 9384-0212</p>
         </div>
       </address>

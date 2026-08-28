@@ -58,7 +58,7 @@ function concluirRegistro() {
       Vacinado em {{ formatarData(vacina.dataVacinacao) }}
     </p>
 
-    <RouterLink to="/agendar"><button>Agendar</button></RouterLink>
+    <RouterLink to="/atendimento"><button>Agendar</button></RouterLink>
     <button @click="mostrarModal = true">
       {{ vacina.dataVacinacao ? 'Editar registro' : 'Registro' }}
     </button>

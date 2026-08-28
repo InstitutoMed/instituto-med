@@ -5,7 +5,9 @@
         <span class="eyebrow">Médicos em destaque</span>
         <h2>Profissionais que cuidam de você</h2>
         <p>Especialistas prontos para oferecer o melhor atendimento direcionado a você.</p>
-        <BaseButton variant="solid">Saiba mais</BaseButton>
+      <RouterLink to="/atendimento">
+        <BaseButton variant="solid">atendimento</BaseButton>
+        </RouterLink>
       </div>
 
       <div class="doctors-cards">

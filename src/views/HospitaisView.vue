@@ -43,7 +43,7 @@ const hospitais = ref([
     id: 4,
     nome: "Hospital Bethesda",
     endereco:
-      "R. Saguaçu, 120 - Saguaçu, Joinville - SC, 89221-010, Brazil",
+      "R. Saguaçu, 120 - Saguaçu, Joinville - SC, 89221-0100000, Brazil",
     telefone: "+55 (47) 3511-2815",
     imagem: "/img/maps/sao-jose.png",
   },
@@ -251,10 +251,10 @@ h1 {
 .btn-selecionar {
   width: 50px;
   height: 15px;
-  padding: 0.1vw 0;
+  padding: 0.4vw 0;
   border: none;
   border-radius: 10px;
-
+margin: 15px 15px 15px 0;
   background: #005b96;
   color: white;
 
@@ -265,9 +265,7 @@ h1 {
 
   transition: 0.2s;
 }
-.btn-selecionar {
-  margin: 1vw 0 0 0;
-}
+
 
 .btn-selecionar:hover {
   background: #004875;
