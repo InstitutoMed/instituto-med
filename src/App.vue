@@ -1,18 +1,14 @@
 <template>
-  <InstitutionalShell v-if="usaLayoutInstitucional">
-    <RouterView />
-  </InstitutionalShell>
-  <RouterView v-else />
+  <AppHeader />
+  <RouterView />
+  <AppFooter />
 </template>
 
 <script setup>
-import { computed, defineAsyncComponent } from 'vue'
 import { RouterView } from 'vue-router'
-import { useRoute } from 'vue-router'
-
-const route = useRoute()
-const usaLayoutInstitucional = computed(() => route.meta.layout === 'institucional')
-const InstitutionalShell = defineAsyncComponent(
-  () => import('./components/layout/InstitutionalShell.vue')
-)
+import AppHeader from './components/layout/AppHeader.vue'
+import AppFooter from './components/layout/AppFooter.vue'
+import './assets/styles/variables.css'
+import './assets/styles/base.css'
+import './assets/styles/buttons.css'
 </script>
