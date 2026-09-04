@@ -2,6 +2,18 @@
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { vacinas } from '@/data/vacinas'
+import { salvarRegistro } from '@/store/RegistrosVacinas'
+
+function concluirRegistro() {
+  if (!dataSelecionada.value) {
+    erro.value = true
+    return
+  }
+  vacina.dataVacinacao = dataSelecionada.value
+  salvarRegistro(vacina.id, dataSelecionada.value)
+  fecharModal()
+  router.push('/caderneta')
+}
 
 const route = useRoute()
 const router = useRouter()
@@ -24,15 +36,6 @@ function fecharModal() {
   dataSelecionada.value = ''
 }
 
-function concluirRegistro() {
-  if (!dataSelecionada.value) {
-    erro.value = true
-    return
-  }
-  vacina.dataVacinacao = dataSelecionada.value
-  fecharModal()
-  router.push('/caderneta')
-}
 </script>
 
 <template>
@@ -58,7 +61,7 @@ function concluirRegistro() {
       Vacinado em {{ formatarData(vacina.dataVacinacao) }}
     </p>
 
-    <RouterLink to="/agendar"><button>Agendar</button></RouterLink>
+    <RouterLink to="/Form"><button>Agendar</button></RouterLink>
     <button @click="mostrarModal = true">
       {{ vacina.dataVacinacao ? 'Editar registro' : 'Registro' }}
     </button>

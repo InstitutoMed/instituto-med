@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import cadernetaView from '@/views/cadernetaView.vue'
-import AgendarView from '@/views/agendarView.vue'
+import FormConsulta from '@/views/FormConsulta.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
- 
+
     {
       path: '/caderneta',
       component: cadernetaView,
@@ -17,8 +17,8 @@ const router = createRouter({
       component: () => import('@/views/vacinaView.vue'),
     },
     {
-      path: '/agendar',
-      component: AgendarView,
+      path: '/Form',
+      component: FormConsulta,
     },
   ],
 })
