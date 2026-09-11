@@ -6,13 +6,9 @@
           <span class="eyebrow">Notícias da saúde</span>
           <h2>Fique por dentro do que importa para sua saúde</h2>
         </div>
-        <div class="blog-arrows">
-          <button aria-label="Anterior" @click="scroll(-1)">←</button>
-          <button aria-label="Próximo" @click="scroll(1)">→</button>
-        </div>
       </div>
 
-      <div ref="track" class="blog-track">
+      <div class="blog-track">
         <BlogCard v-for="post in posts" :key="post.title" :post="post" />
       </div>
     </div>
@@ -20,18 +16,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import BlogCard from './BlogCard.vue'
 
 import blogHantavirose from '../../assets/img/blog-hantavirose.png'
 import blogYpe from '../../assets/img/blog-ype.png'
 import blogVitamina from '../../assets/img/blog-vitamina.png'
 import blogSono from '../../assets/img/blog-sono.png'
-
-const track = ref(null)
-function scroll(dir) {
-  track.value?.scrollBy({ left: dir * 280, behavior: 'smooth' })
-}
 
 const posts = [
   {
@@ -69,13 +59,6 @@ const posts = [
 section{padding-top:0;padding-left:0;padding-right:0;}
 .blog-head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:36px;flex-wrap:wrap;}
 .blog-head-row h2{font-size:clamp(24px,2.8vw,32px);color:var(--ink);margin-top:10px;font-weight:700;}
-.blog-arrows{display:flex;gap:10px;}
-.blog-arrows button{
-  width:38px;height:38px;border-radius:50%;background:var(--blue-50);color:var(--blue-700);
-  display:flex;align-items:center;justify-content:center;font-size:15px;transition:background .2s ease;
-}
-.blog-arrows button:hover{background:var(--blue-100);}
-
 .blog-track{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
 
 @media (max-width:980px){

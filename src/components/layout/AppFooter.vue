@@ -47,7 +47,7 @@
       <div class="footer-strip">
         <div class="item">Precisa de Ajuda? <a href="#" class="link" @click.prevent>Contate-nos</a></div>
         <div class="item">+55 (47) 9999-9999</div>
-        <BaseButton variant="solid" style="padding:10px 20px;">
+        <BaseButton variant="solid" style="padding:10px 20px;" @click="abrirDoacao">
           Faça uma doação
         </BaseButton>
         <div class="item"><img :src="iconEmail" alt="" class="strip-ic"> institutoMed@gmail.com</div>
@@ -75,6 +75,12 @@ import iconTwitter from '../../assets/img/icon-twitter.png'
 import iconGithub from '../../assets/img/icon-github.png'
 import iconMap from '../../assets/img/icon-map.png'
 import iconEmail from '../../assets/img/icon-email.png'
+
+const linkDoacao = 'https://nubank.com.br/cobrar/6dn9xi/6aa2ae2d-b87c-48e2-afba-1bd1d161b0c6'
+
+function abrirDoacao() {
+  window.open(linkDoacao, '_blank', 'noopener,noreferrer')
+}
 
 </script>
 
