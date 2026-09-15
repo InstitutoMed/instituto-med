@@ -1,7 +1,7 @@
 <template>
   <header>
     <nav class="nav container">
-      <router-link to="/" class="logo" @click="closeMobile">
+      <router-link to="/home" class="logo" @click="closeMobile">
         <img :src="logo" alt="Instituto Med" class="logo-img">
       </router-link>
 
@@ -14,7 +14,7 @@
           >{{ item.label }}</router-link>
           <router-link
             v-else
-            :to="{ path: '/', hash: item.hash }"
+            :to="{ path: '/home', hash: item.hash }"
           >{{ item.label }}</router-link>
         </li>
       </ul>
@@ -39,7 +39,7 @@
         <router-link v-if="item.to" :to="item.to" @click="closeMobile">
           {{ item.label }}
         </router-link>
-        <router-link v-else :to="{ path: '/', hash: item.hash }" @click="closeMobile">
+        <router-link v-else :to="{ path: '/home', hash: item.hash }" @click="closeMobile">
           {{ item.label }}
         </router-link>
       </template>
