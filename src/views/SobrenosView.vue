@@ -272,6 +272,7 @@ import hanna from '@/assets/fotos/hanna.jpg'
 
 .devInfo {
   flex: 1;
+  min-width: 0;
 }
 
 .devHeader {
@@ -360,5 +361,108 @@ import hanna from '@/assets/fotos/hanna.jpg'
 .contato p {
   text-decoration: none;
   margin: 0;
+}
+
+@media (max-width: 768px) {
+  .sobrenos {
+    padding: 1.75rem 1rem 3rem;
+  }
+
+  .sobrenos h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+
+  .sobreProj,
+  .equipe,
+  .dev {
+    margin-bottom: 2.5rem;
+  }
+
+  .equipeContent {
+    align-items: stretch;
+  }
+
+  .equipeFoto {
+    width: 100%;
+    height: clamp(180px, 42vw, 280px);
+  }
+
+  .contato {
+    margin-top: 5rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .sobrenos {
+    padding-inline: 0.75rem;
+  }
+
+  .infoBox,
+  .devCard {
+    border-radius: 12px;
+    padding: 1rem;
+  }
+
+  .devList {
+    gap: 1rem;
+  }
+
+  .devCard article {
+    align-items: center;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .devAvatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .devHeader {
+    align-items: center;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .devHeader h3 {
+    font-size: 1.05rem;
+    overflow-wrap: anywhere;
+  }
+
+  .contato {
+    border-radius: 16px;
+    padding: 3.75rem 1rem 1.75rem;
+  }
+
+  .contatoIconWrapper {
+    width: 112px;
+    height: 112px;
+    margin: -5.5rem auto 1rem;
+  }
+
+  .contatoIcon {
+    width: 82px;
+    height: 82px;
+  }
+
+  .contato h2 {
+    font-size: 1.5rem;
+  }
+
+  .contato address,
+  .linha {
+    max-width: 100%;
+  }
+
+  .contato a,
+  .contato p {
+    overflow-wrap: anywhere;
+  }
 }
 </style>
