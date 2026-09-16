@@ -1,5 +1,5 @@
 <template>
-  <div class="app-section">
+  <div id="servicos" class="app-section">
     <div class="app-inner">
       <div class="app-text">
         <span class="eyebrow">Aplicativo Instituto Med</span>

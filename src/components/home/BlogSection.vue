@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="noticias">
     <div class="container">
       <div class="blog-head-row">
         <div>

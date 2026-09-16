@@ -1,7 +1,7 @@
 <template>
   <header>
     <nav class="nav container">
-      <router-link to="/" class="logo" @click="closeMobile">
+      <router-link to="/home" class="logo" @click="closeMobile">
         <img :src="logo" alt="Instituto Med" class="logo-img">
       </router-link>
 
@@ -20,9 +20,6 @@
       </ul>
 
       <div class="nav-actions">
-        <router-link to="/conta" class="profile-btn" aria-label="Minha conta">
-          <img :src="iconUser" alt="">
-        </router-link>
         <button
           class="burger"
           :aria-expanded="mobileOpen"
@@ -51,7 +48,6 @@
 import { ref } from 'vue'
 import { NAV_ITEMS } from '../../constants/nav'
 import logo from '../../assets/img/logo.png'
-import iconUser from '../../assets/img/icon-user.png'
 
 const navItems = NAV_ITEMS
 const mobileOpen = ref(false)

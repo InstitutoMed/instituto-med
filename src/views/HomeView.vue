@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <AppHeader />
     <HeroSection />
 
     <main>
@@ -10,10 +11,13 @@
       <BlogSection />
       <NewsletterSection />
     </main>
+    <AppFooter />
   </div>
 </template>
 
 <script setup>
+import AppHeader from '../components/layout/AppHeader.vue'
+import AppFooter from '../components/layout/AppFooter.vue'
 import HeroSection from '../components/home/HeroSection.vue'
 import DoctorsSection from '../components/home/DoctorsSection.vue'
 import PartnersSection from '../components/home/PartnersSection.vue'

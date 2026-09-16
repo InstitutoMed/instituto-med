@@ -24,28 +24,28 @@
             <li><a href="#inicio">Home</a></li>
             <li><a href="#sobre">Especialistas</a></li>
             <li><a href="#hospitais">Hospitais Parceiros</a></li>
-            <li><router-link to="/cadastro">Cadastro</router-link></li>
+            <li><a href="#servicos">Serviços</a></li>
             <li><a href="#duvidas">FAQ</a></li>
-            <li><a href="#" @click.prevent>Notícias &amp; Saúde</a></li>
-            <li class="disabled"><a href="#" @click.prevent>Contato</a></li>
+            <li><a href="#noticias">Notícias &amp; Saúde</a></li>
+            <li><a href="#contato">Contato</a></li>
           </ul>
         </div>
 
         <div>
           <h5>Nossos Serviços</h5>
           <ul>
-            <li><a href="#" @click.prevent>Gestão de Hospitais Parceiros</a></li>
-            <li><a href="#" @click.prevent>Fluxograma Inteligente de Atendimentos</a></li>
-            <li><a href="#" @click.prevent>Agendamento de Consultas e Exames</a></li>
-            <li><a href="#" @click.prevent>Caderneta Médica Digital</a></li>
-            <li><a href="#" @click.prevent>Notificações e Lembretes Automáticos</a></li>
-            <li><a href="/sobre">Sobre Nós</a></li>
+            <li><a href="#servicos">Gestão de Hospitais Parceiros</a></li>
+            <li><a href="#servicos">Fluxograma Inteligente de Atendimentos</a></li>
+            <li><a href="#servicos">Agendamento de Consultas e Exames</a></li>
+            <li><a href="#servicos">Caderneta Médica Digital</a></li>
+            <li><a href="#servicos">Notificações e Lembretes Automáticos</a></li>
+            <li><a href="#sobre">Sobre Nós</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-strip">
-        <div class="item">Precisa de Ajuda? <a href="#" class="link" @click.prevent>Contate-nos</a></div>
+        <div class="item">Precisa de Ajuda? <a href="#contato" class="link">Contate-nos</a></div>
         <div class="item">+55 (47) 9999-9999</div>
         <BaseButton variant="solid" style="padding:10px 20px;">
           Faça uma doação

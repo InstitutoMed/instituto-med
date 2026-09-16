@@ -1,5 +1,5 @@
 <template>
-  <section class="newsletter-wrap">
+  <section id="contato" class="newsletter-wrap">
     <div class="newsletter">
       <div>
         <h3>Para Últimas Atualizações<br>Inscreva-se na nossa Newsletter.</h3>
