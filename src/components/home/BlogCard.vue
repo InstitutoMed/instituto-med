@@ -1,5 +1,11 @@
 <template>
-  <article class="blog-card">
+  <a
+    class="blog-card"
+    :href="post.url"
+    target="_blank"
+    rel="noopener noreferrer"
+    :aria-label="`Ler notícia: ${post.title}`"
+  >
     <div class="blog-thumb"><img :src="post.img" :alt="post.title"></div>
     <div class="blog-body">
       <span class="blog-tag">{{ post.tag }}</span>
@@ -7,7 +13,7 @@
       <p class="excerpt">{{ post.excerpt }}</p>
       <div class="meta"><img :src="iconAgenda" alt="" class="meta-ic"> {{ post.date }}</div>
     </div>
-  </article>
+  </a>
 </template>
 
 <script setup>
@@ -20,6 +26,7 @@ defineProps({
 
 <style scoped>
 .blog-card{
+  display:block;color:inherit;text-decoration:none;
   border-radius:var(--radius-md);overflow:hidden;background:#fff;
   box-shadow:var(--shadow-soft);transition:transform .2s ease;
 }

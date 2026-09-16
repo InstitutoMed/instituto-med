@@ -11,7 +11,7 @@
           :key="f.q"
           :question="f.q"
           :answer="f.a"
-          :is-open="openIndex === i"
+          :is-open="openIndexes.has(i)"
           @toggle="toggle(i)"
         />
       </div>
@@ -23,9 +23,15 @@
 import { ref } from 'vue'
 import FaqItem from './FaqItem.vue'
 
-const openIndex = ref(null)
+const openIndexes = ref(new Set())
 function toggle(i) {
-  openIndex.value = openIndex.value === i ? null : i
+  const updated = new Set(openIndexes.value)
+  if (updated.has(i)) {
+    updated.delete(i)
+  } else {
+    updated.add(i)
+  }
+  openIndexes.value = updated
 }
 
 const faqs = [
