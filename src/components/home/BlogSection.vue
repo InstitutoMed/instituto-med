@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="noticias">
     <div class="container">
       <div class="blog-head-row">
         <div>
@@ -29,28 +29,32 @@ const posts = [
     title: 'Hantavirose: entenda o que é, como acontece...',
     excerpt: 'A hantavirose é uma zoonose viral aguda que pode ser bastante grave.',
     date: '13 de maio de 2026',
-    img: blogHantavirose
+    img: blogHantavirose,
+    url: 'https://drconsulta.com/conteudo/hantavirus-entenda-o-que-e-como-acontece-a-transmissao-e-quais-sao-os-sintomas/'
   },
   {
     tag: 'Saúde Pública',
     title: 'Recolhimento de produtos da marca Ypê é suspende...',
     excerpt: 'Agência identificou "risco à segurança dos produtos".',
     date: '11 de maio de 2026',
-    img: blogYpe
+    img: blogYpe,
+    url: 'https://crfms.org.br/alerta-anvisa-suspende-fabricacao-e-determina-recolhimento-de-produtos-da-marca-ype/'
   },
   {
     tag: 'Saúde Pública',
     title: 'Vitamina B12: uso exagerado levanta alerta sobre câncer',
     excerpt: 'A vitamina B12 é essencial, mas níveis elevados sem causa aparente podem indicar risco.',
     date: '15 de maio de 2026',
-    img: blogVitamina
+    img: blogVitamina,
+    url: 'https://exame.com/ciencia/vitamina-b12-pode-estar-ligada-ao-cancer-novo-estudo-acende-alerta/'
   },
   {
     tag: 'Saúde Pública',
     title: 'Dormir pouco ou demais pode acelerar envelhecimento',
     excerpt: 'Estudo com quase 900 mil pessoas relacionou hábitos noturnos inadequados a maior mortalidade.',
     date: '13 de maio de 2026',
-    img: blogSono
+    img: blogSono,
+    url: 'https://g1.globo.com/saude/noticia/2026/05/13/dormir-pouco-ou-demais-pode-acelerar-envelhecimento-do-corpo-e-aumentar-risco-de-doencas-diz-estudo.ghtml'
   }
 ]
 </script>

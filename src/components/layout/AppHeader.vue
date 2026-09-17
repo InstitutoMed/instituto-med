@@ -20,9 +20,9 @@
       </ul>
 
       <div class="nav-actions">
-        <router-link to="/conta" class="profile-btn" aria-label="Minha conta">
+        <button type="button" class="profile-btn" aria-label="Perfil" title="Perfil">
           <img :src="iconUser" alt="">
-        </router-link>
+        </button>
         <button
           class="burger"
           :aria-expanded="mobileOpen"

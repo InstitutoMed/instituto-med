@@ -12,16 +12,13 @@
           personalizado em um só lugar.
         </p>
         <div class="hero-actions">
-          <router-link to="/cadastro" class="btn btn-white">
+          <a href="#servicos" class="btn btn-white">
             Comece agora
-          </router-link>
+          </a>
           <span class="hero-secure"><img :src="iconShield" alt="" class="shield-ic"> Seus dados protegidos com segurança.</span>
         </div>
       </div>
 
-      <div class="hero-photo">
-        <img :src="doctorsHero" alt="Médicos do Instituto Med" class="hero-doctors-img">
-      </div>
     </div>
 
     <div class="floating-card">
@@ -36,7 +33,6 @@
 </template>
 
 <script setup>
-import doctorsHero from '../../assets/img/doctors-hero.png'
 import iconAgenda from '../../assets/img/icon-agenda.png'
 import iconFarmacia from '../../assets/img/icon-farmacia.png'
 import iconRelogio from '../../assets/img/icon-relogio.png'
@@ -62,20 +58,15 @@ const floatingItems = [
 
 .hero{
   position:relative;z-index:2;
-  display:grid;grid-template-columns:1fr 1fr;align-items:start;gap:20px;
+  display:flex;justify-content:center;text-align:center;
   padding:50px 32px 90px;max-width:var(--container-width);margin:0 auto;
 }
-.hero h1{font-size:clamp(30px,3.4vw,42px);font-weight:800;color:#fff;letter-spacing:-.01em;max-width:520px;}
-.hero p.lead{max-width:460px;margin:20px 0 28px;color:rgba(255,255,255,.88);font-size:15.5px;line-height:1.75;}
-.hero-actions{display:flex;flex-direction:column;align-items:flex-start;gap:16px;}
+.hero-copy{max-width:760px;}
+.hero h1{font-size:clamp(30px,3.4vw,42px);font-weight:800;color:#fff;letter-spacing:-.01em;max-width:720px;margin:0 auto;}
+.hero p.lead{max-width:650px;margin:20px auto 28px;color:rgba(255,255,255,.88);font-size:15.5px;line-height:1.75;}
+.hero-actions{display:flex;flex-direction:column;align-items:center;gap:16px;}
 .hero-secure{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.9);font-size:13px;font-weight:500;}
 .shield-ic{width:16px;height:16px;object-fit:contain;}
-
-.hero-photo{position:relative;display:flex;justify-content:flex-end;align-items:flex-end;align-self:stretch;min-height:340px;}
-.hero-doctors-img{
-  position:relative;z-index:2;width:100%;max-width:600px;height:auto;
-  display:block;margin:0;
-}
 
 .floating-card{
   position:relative;z-index:3;max-width:1080px;margin:-50px auto 0;
@@ -95,11 +86,9 @@ const floatingItems = [
 .bridge .accent{color:var(--blue-400);}
 
 @media (max-width:980px){
-  .hero{grid-template-columns:1fr;text-align:center;}
   .hero h1{max-width:100%;margin:0 auto;}
   .hero p.lead{margin:20px auto 28px;}
   .hero-actions{align-items:center;}
-  .hero-photo{margin-top:30px;min-height:280px;justify-content:center;}
   .floating-card{grid-template-columns:repeat(2,1fr);}
   .floating-item + .floating-item::before{display:none;}
 }

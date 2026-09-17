@@ -48,15 +48,6 @@ const vacinasFiltradas = computed(() => {
 
 <template>
 
-   <div class="breadcrumb">
-    <RouterLink to="/home">Home</RouterLink>
-
-    <span>›</span>
-
-        <RouterLink to="/caderneta">Caderneta</RouterLink>
-
-
-   </div>
   <main>
     <h1>Caderneta</h1>
     <div class="barrapesquisa">
@@ -141,21 +132,6 @@ const vacinasFiltradas = computed(() => {
 </template>
 
 <style scoped>
-.breadcrumb a {
-  margin: 5px;
-  color: #6b7280;
-  text-decoration: none;
-}
-.breadcrumb a:hover {
-  color: #61A5C2;
-}
-
-.breadcrumb a.router-link-exact-active {
-  color: #61A5C2;
-  font-weight: 600;
-  pointer-events: none;
-}
-
 main {
   max-width: 1100px;
   margin: 0 auto;
@@ -235,16 +211,6 @@ p {
 }
 
 @media (max-width: 480px) {
-
-  .breadcrumb {
-    padding: 8px 15px;
-    font-size: 13px;
-  }
-
-  .breadcrumb a {
-    margin: 3px;
-    font-size: 13px;
-  }
 
   main {
     padding: 8px 15px 40px;
