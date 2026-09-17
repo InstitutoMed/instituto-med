@@ -5,6 +5,8 @@ import { obterSessao, encerrarSessao, removerUsuario } from '@/store/usuarios.js
 import { vacinas as vacinasData } from '@/data/vacinas'
 import { aplicarRegistrosSalvos } from '@/store/RegistrosVacinas'
 import { obterAgendamentos } from '@/store/agendamentos.js'
+import iconLapis from '@/assets/img/icon-lapis.png'
+import iconAgenda from '@/assets/img/icon-agenda.png'
 
 const router = useRouter()
 
@@ -170,7 +172,7 @@ const linkGoogleAgenda = computed(() => {
     
     <section class="card">
       <RouterLink to="/editprofile" class="botao_editar" aria-label="Editar perfil">
-        <img src="../img/lapis.png" alt="Editar" class="icon_lapis" />
+        <img :src="iconLapis" alt="Editar" class="icon_lapis" />
       </RouterLink>
 
       <div class="avatar">
@@ -245,14 +247,14 @@ const linkGoogleAgenda = computed(() => {
           title="Clique para adicionar este agendamento no seu Google Agenda"
         >
           <div class="calendar_google">
-            <img class="google_icon" src="../img/relogio-calendario.png">
+            <img class="google_icon" :src="iconAgenda" alt="">
             <span class="botao_texto_agenda">Adicionar consulta ao Google Agenda</span>
           </div>
         </a>
 
         <div v-else class="google_card desativado">
           <div class="calendar_google">
-            <img class="google_icon" src="../img/check.png">
+            <img class="google_icon" :src="iconAgenda" alt="">
             <span class="botao_texto_agenda">Consulta Concluída</span>
           </div>
         </div>

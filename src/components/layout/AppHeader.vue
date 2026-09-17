@@ -7,7 +7,9 @@
 
       <ul class="nav-links">
         <li v-for="item in navItems" :key="item.id">
-          <span class="nav-placeholder">{{ item.label }}</span>
+          <router-link :to="item.to" @click="closeMobile">
+            {{ item.label }}
+          </router-link>
         </li>
       </ul>
 
@@ -27,9 +29,14 @@
     </nav>
 
     <div class="mobile-menu" :class="{ open: mobileOpen }">
-      <span v-for="item in navItems" :key="item.id" class="nav-placeholder">
+      <router-link
+        v-for="item in navItems"
+        :key="item.id"
+        :to="item.to"
+        @click="closeMobile"
+      >
         {{ item.label }}
-      </span>
+      </router-link>
     </div>
   </header>
 </template>
@@ -63,7 +70,7 @@ header{
   font-weight:700;font-size:13px;letter-spacing:.03em;
   text-transform:uppercase;color:rgba(255,255,255,.9);
 }
-.nav-links .nav-placeholder{display:block;padding:6px 0;cursor:default;}
+.nav-links a{display:block;padding:6px 0;}
 
 .nav-actions{display:flex;align-items:center;gap:16px;}
 .profile-btn{
@@ -85,7 +92,7 @@ header{
   display:none;flex-direction:column;gap:2px;
   padding:6px 32px 20px;position:relative;z-index:10;
 }
-.mobile-menu .nav-placeholder{
+.mobile-menu a{
   display:block;
   padding:12px 4px;font-weight:700;color:#fff;
   border-bottom:1px solid rgba(255,255,255,.14);

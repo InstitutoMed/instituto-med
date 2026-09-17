@@ -1,15 +1,11 @@
-
-<script setup>
-import { RouterView } from 'vue-router'
-</script>
-
 <template>
+  <AppHeader />
   <RouterView />
+  <AppFooter />
 </template>
 
 <script setup>
 import { RouterView } from 'vue-router'
-import './assets/styles/variables.css'
-import './assets/styles/base.css'
-import './assets/styles/buttons.css'
+import AppHeader from './components/layout/AppHeader.vue'
+import AppFooter from './components/layout/AppFooter.vue'
 </script>

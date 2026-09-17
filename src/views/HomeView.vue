@@ -1,7 +1,6 @@
 <template>
 
   <div class="home">
-    <AppHeader />
     <HeroSection />
 
     <main>
@@ -12,7 +11,6 @@
       <BlogSection />
       <NewsletterSection />
     </main>
-    <AppFooter />
   </div>
 </template>
 

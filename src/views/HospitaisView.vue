@@ -234,16 +234,17 @@ h1 {
   font-weight: 700;
 }
 
-.telefone img {
-  width: 8px;
-  height: 10px;
+.telefone {
   flex-direction: row;
   align-items: center;
   gap: 2px;
   margin-top: 1px;
   color: #0067a8;
 }
-
+.telefone img{
+  width: 8px;
+  height: 10px;
+}
 .icone {
   font-size: 7px;
 }
@@ -313,6 +314,10 @@ h1 {
   .barra-pesquisa input {
     font-size: 14px;
   }
+  .lupa img {
+  width: 50%;
+  height: 50%;
+}
   .lista-hospitais {
   max-width: 709px;
   gap: 20px;
@@ -340,12 +345,14 @@ h1 {
   flex-direction: row;
   align-items: center;
   gap: 2px;
-
   margin-top: 1px;
 
   color: #0067a8;
 }
-
+.telefone img {
+  width: 14px;
+  height: 18px;
+}
 .icone {
   font-size: 14px;
 }

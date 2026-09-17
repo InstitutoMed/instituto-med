@@ -1,17 +1,19 @@
 <script setup>
-import fotoEquipe from '@/assets/fotos/medicos.jpg'
-import fotoAna from '@/assets/fotos/Anajulia.jpg'
-import fotoGiovana from '@/assets/fotos/giovana.jpg'
-import fotoLucas from '@/assets/fotos/img - lucas.jpg'
-import fotoNicholas from '@/assets/fotos/img nicholas.jpg'
-import fotoTiago from '@/assets/fotos/tiago.jpg'
-import iconeContato from '@/assets/fotos/contato.jpg'
-
-import hanna from '@/assets/fotos/hanna.jpg'
+import AppHeader from '../components/layout/AppHeader.vue'
+import AppFooter from '../components/layout/AppFooter.vue'
+import fotoEquipe from '../assets/fotos/medicos.jpg'
+import fotoAna from '../assets/fotos/Anajulia.jpg'
+import fotoGiovana from '../assets/fotos/giovana.jpg'
+import fotoLucas from '../assets/fotos/img - lucas.jpg'
+import fotoNicholas from '../assets/fotos/img nicholas.jpg'
+import fotoTiago from '../assets/fotos/tiago.jpg'
+import iconeContato from '../assets/fotos/contato.jpg'
+import hanna from '../assets/fotos/hanna.jpg'
 
 </script>
 
 <template>
+
   <main class="sobrenos">
     <section class="sobreProj">
       <header>
@@ -158,6 +160,7 @@ import hanna from '@/assets/fotos/hanna.jpg'
       </address>
     </footer>
   </main>
+
 </template>
 
 <style scoped>
