@@ -7,6 +7,7 @@ import LoginView from '@/views/LoginView.vue'
 import PainelView from '@/views/PainelView.vue'
 import EditProfileView from '@/views/EditProfileView.vue'
 import vacinaView from '@/views/vacinaView.vue'
+import cadernetaView from '@/views/cadernetaView.vue'
 
 const routes = [
   {
@@ -66,10 +67,16 @@ const routes = [
     },
 
     {
-      path: '/agendar',
-      component: AgendarView,
-      meta: { requerAutenticacao: true }
-    },
+    path: '/minhasvacinas',
+    name: 'minhasvacinas',
+    component: () => import('../views/MinhasVacinasView.vue')
+  },
+
+   {
+  path: '/detalhesvacina/:id',
+  name: 'detalhesvacina',
+  component: () => import('../views/DetalheVacinaView.vue')
+},
 ]
 
 const router = createRouter({
@@ -91,6 +98,7 @@ router.beforeEach((to) => {
   if (to.meta.requerAnonimo && usuarioLogado) {
     return { name: 'painel' }
   }
+
 
   return true
 })

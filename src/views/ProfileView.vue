@@ -2,6 +2,8 @@
 import { ref, computed, onMounted } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import { obterSessao, encerrarSessao, removerUsuario } from '@/store/usuarios.js'
+import { vacinas as vacinasData } from '@/data/vacinas'
+import { aplicarRegistrosSalvos } from '@/store/RegistrosVacinas'
 
 const router = useRouter()
 
@@ -23,6 +25,8 @@ onMounted(() => {
   } else {
     router.push('/login')
   }
+
+  aplicarRegistrosSalvos()
 })
 
 function sair() {
@@ -55,14 +59,22 @@ const consulta = ref({
   hora: '10:30h',
   medico: 'Dr. Fábio Longo de Moura',
   local: 'Hospital São Bernardino',
-  dataConsulta: new Date(2026, 7, 23) 
+  dataConsulta: new Date(2026, 7, 29) 
 })
 
-const vacinas = ref([
-  { id: 1, nome: 'Dengue', dia: '17 / 03 / 26', horario: '11:05', local: 'Hospital São Bernardino' },
-  { id: 2, nome: 'Covid-19', dia: '03 / 02 / 26', horario: '08:45', local: 'Hospital São José' },
-  { id: 3, nome: 'Gripe', dia: '24 / 02 / 26', horario: '09:05', local: 'Hospital Santa Helena' }
-])
+const ultimasVacinas = computed(() => {
+  return vacinasData
+    .filter(v => v.dataVacinacao)
+    .sort((a, b) => new Date(b.dataVacinacao) - new Date(a.dataVacinacao))
+    .slice(0, 3)
+})
+
+function formatarDataCurta(dataIso) {
+  if (!dataIso) return ''
+  const [ano, mes, dia] = dataIso.split('-')
+  const anoCurto = ano.slice(-2)
+  return `${dia} / ${mes} / ${anoCurto}`
+}
 
 const diaFormatado = computed(() => {
   const d = consulta.value.dataConsulta
@@ -123,7 +135,7 @@ const linkGoogleAgenda = computed(() => {
 
 <template>
   <main class="main">
-  
+    
     <section class="card">
       <RouterLink to="/editprofile" class="botao_editar" aria-label="Editar perfil">
         <img src="../img/lapis.png" alt="Editar" class="icon_lapis" />
@@ -190,16 +202,14 @@ const linkGoogleAgenda = computed(() => {
           title="Clique para adicionar este agendamento no seu Google Agenda"
         >
           <div class="calendar_google">
-            <img class="google_icon" src="../img/check.png">
+            <img class="google_icon" src="../img/relogio-calendario.png">
             <span class="botao_texto_agenda">Adicionar consulta ao Google Agenda</span>
           </div>
         </a>
 
         <div v-else class="google_card desativado">
           <div class="calendar_google">
-            <svg class="google_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-            </svg>
+            <img class="google_icon" src="../img/check.png">
             <span class="botao_texto_agenda">Consulta Concluída</span>
           </div>
         </div>
@@ -207,23 +217,27 @@ const linkGoogleAgenda = computed(() => {
     </div>
 
     <section class="caderneta">
-      <RouterLink to="/vacinas" class="link_vacinas">
+      <RouterLink to="/minhas-vacinas" class="link_vacinas">
         <h3 class="titulo_vacinas">Histórico de Vacinas</h3>
       </RouterLink>
 
-      <div class="vacinas_lista">
-        <div v-for="vacina in vacinas" :key="vacina.id" class="tipo_vacina">
+      <div v-if="ultimasVacinas.length > 0" class="vacinas_lista">
+        <div v-for="vacina in ultimasVacinas" :key="vacina.id" class="tipo_vacina">
           <h4>{{ vacina.nome }}</h4>
           <ul>
-            <li><strong>Dia:</strong> {{ vacina.dia }}</li>
-            <li><strong>Horário:</strong> {{ vacina.horario }}</li>
-            <li><strong>Local:</strong> {{ vacina.local }}</li>
+            <li><strong>Dia:</strong> {{ formatarDataCurta(vacina.dataVacinacao) }}</li>
+            <li v-if="vacina.horario"><strong>Horário:</strong> {{ vacina.horario }}</li>
+            <li v-if="vacina.local"><strong>Local:</strong> {{ vacina.local }}</li>
           </ul>
         </div>
       </div>
 
+      <div v-else class="sem_vacinas_card">
+        <p>Nenhuma vacina registrada até o momento.</p>
+      </div>
+
       <div class="saiba_mais_cader">
-        <RouterLink to="/vacinas" class="saiba_mais">SAIBA MAIS</RouterLink>
+        <RouterLink to="/minhasvacinas" class="saiba_mais">SAIBA MAIS</RouterLink>
       </div>
     </section>
   </main>
@@ -257,19 +271,21 @@ ul {
   align-items: center;
   justify-content: flex-start;
   text-align: left;
-  gap: 40px;
+  gap: 32px;
   position: relative;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
 }
 
 .botao_editar {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 20px;
+  right: 20px;
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0;
+  padding: 4px;
+  z-index: 2;
 }
 
 .icon_lapis {
@@ -306,14 +322,18 @@ ul {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+  flex: 1;
+  min-width: 0;
+  padding-right: 24px; 
 }
 
 .titulo_card {
-  font-size: 1.75rem;
+  font-size: 1.6rem;
   font-weight: 800;
   margin: 0 0 16px 0;
   color: #000;
   text-align: left;
+  word-break: break-word;
 }
 
 .infos_card {
@@ -322,14 +342,16 @@ ul {
   gap: 8px;
   font-size: 0.95rem;
   text-align: left;
+  width: 100%;
 }
 
 .infos_card li {
   text-align: left;
-}
+  word-break: break-word; }
 
 .acoes_usuario {
   display: flex;
+  flex-wrap: wrap; 
   gap: 12px;
   margin-top: 16px;
 }
@@ -347,7 +369,6 @@ ul {
 .botao_sair_del {
   background-color: #f3f4f6;
   color: #2b7b9b;
- 
 }
 
 .botao_sair_del:hover {
@@ -392,12 +413,10 @@ ul {
   margin-bottom: 8px;
 }
 
-.foto_agendas {
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+.google_card {
+  display: block;
+  text-decoration: none;
+  height: 100%;
 }
 
 .calendar_google {
@@ -410,6 +429,7 @@ ul {
   text-decoration: none;
   background-color: #f8fafc;
   transition: all 0.2s ease;
+  border-radius: 20px;
 }
 
 .google_card:hover:not(.desativado) {
@@ -426,17 +446,15 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  color: #2b7b9b;
+  margin: 15px;
   width: 56px;
   height: 56px;
-  fill: #2b7b9b;
 }
 
 .botao_texto_agenda {
   font-weight: bold;
   font-size: 0.95rem;
-  color: #1a1a1a;
+  color: #2b7b9b;
 }
 
 .caderneta {
@@ -461,7 +479,7 @@ ul {
 
 .vacinas_lista {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
 }
 
@@ -470,12 +488,23 @@ ul {
   border-radius: 12px;
   padding: 16px;
   text-align: center;
+  background-color: #fff;
 }
 
 .tipo_vacina h4 {
   font-size: 1.1rem;
   margin-bottom: 8px;
   text-transform: uppercase;
+}
+
+.sem_vacinas_card {
+  text-align: center;
+  padding: 20px;
+  background-color: #f9fafb;
+  border: 1px dashed #d1d5db;
+  border-radius: 12px;
+  color: #6b7280;
+  font-size: 0.95rem;
 }
 
 .saiba_mais_cader {
@@ -488,5 +517,36 @@ ul {
   color: #6b7280;
   text-decoration: underline;
   font-weight: bold;
+}
+
+@media (max-width: 650px) {
+  .card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 32px 20px 24px;
+    gap: 20px;
+  }
+
+  .usuarioInfo {
+    align-items: center;
+    text-align: center;
+    padding-right: 0;
+    width: 100%;
+  }
+
+  .titulo_card, .infos_card, .infos_card li {
+    text-align: center;
+  }
+
+  .acoes_usuario {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .perfil_stats {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

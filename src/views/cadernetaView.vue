@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import vacinaCard from '@/components/vacinaCard.vue'
 import { vacinas } from '@/data/vacinas'
 import { useRoute, useRouter } from 'vue-router'
+import '@/store/RegistrosVacinas'
 
 const router = useRouter()
 const route = useRoute()
@@ -170,7 +171,7 @@ h1 {
   color: #111827;
 }
 
-/* barra de busca */
+
 .barrapesquisa {
   display: flex;
   justify-content: center;
