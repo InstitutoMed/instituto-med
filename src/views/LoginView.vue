@@ -48,7 +48,7 @@
 
         <p class="rodape">
           Ainda não tem cadastro?
-          <router-link to="/">Cadastre-se</router-link>
+          <router-link to="/cadastro">Cadastre-se</router-link>
         </p>
       </form>
     </main>
