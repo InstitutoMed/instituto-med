@@ -1,12 +1,9 @@
 <template>
   <div class="layout">
-    <PainelVisual />
-
     <main class="conteudo">
       <form class="cartao" @submit.prevent="enviar" novalidate>
         <h1>Cadastro</h1>
 
-        <!-- CADASTRO BÁSICO (obrigatório) -->
         <section class="secao">
           <div class="secao__titulo">
             <h2>Cadastro Básico</h2>
@@ -36,7 +33,7 @@
                 placeholder="000.000.000-00"
                 maxlength="14"
                 :class="{ invalido: erros.cpf }"
-                @input="form.cpf = mascararCpf(form.cpf)"
+                @input="form.cpf = aplicarMascara(form.cpf, 'cpf')"
                 @blur="tocado.cpf = true"
               />
               <span class="erro" v-if="erros.cpf">{{ erros.cpf }}</span>
@@ -64,7 +61,7 @@
                 placeholder="(00) 00000-0000"
                 maxlength="15"
                 :class="{ invalido: erros.telefone }"
-                @input="form.telefone = mascararTelefone(form.telefone)"
+                @input="form.telefone = aplicarMascara(form.telefone, 'telefone')"
                 @blur="tocado.telefone = true"
               />
               <span class="erro" v-if="erros.telefone">{{ erros.telefone }}</span>
@@ -73,11 +70,21 @@
               <span class="label-generico">Gênero</span>
               <div class="radios" :class="{ invalido: erros.genero }">
                 <label class="radio">
-                  <input type="radio" value="masculino" v-model="form.genero" @change="tocado.genero = true" />
+                  <input
+                    type="radio"
+                    value="masculino"
+                    v-model="form.genero"
+                    @change="tocado.genero = true"
+                  />
                   Masculino
                 </label>
                 <label class="radio">
-                  <input type="radio" value="feminino" v-model="form.genero" @change="tocado.genero = true" />
+                  <input
+                    type="radio"
+                    value="feminino"
+                    v-model="form.genero"
+                    @change="tocado.genero = true"
+                  />
                   Feminino
                 </label>
               </div>
@@ -94,16 +101,23 @@
               placeholder="00000-000"
               maxlength="9"
               :class="{ invalido: erros.cep }"
-              @input="form.cep = mascararCep(form.cep)"
+              @input="onCepInput"
               @blur="tocado.cep = true"
             />
             <span class="erro" v-if="erros.cep">{{ erros.cep }}</span>
+            <span class="dica" v-else-if="buscandoCep">Buscando endereço...</span>
+            <span class="erro" v-else-if="cepNaoEncontrado">CEP não encontrado.</span>
           </div>
 
           <div class="grade grade--2">
             <div class="campo">
               <label for="cidade">Cidade</label>
-              <select id="cidade" v-model="form.cidade" :class="{ invalido: erros.cidade }" @blur="tocado.cidade = true">
+              <select
+                id="cidade"
+                v-model="form.cidade"
+                :class="{ invalido: erros.cidade }"
+                @blur="tocado.cidade = true"
+              >
                 <option value="" disabled>Cidade</option>
                 <option v-for="c in cidades" :key="c" :value="c">{{ c }}</option>
               </select>
@@ -111,23 +125,17 @@
             </div>
             <div class="campo">
               <label for="estado">Estado</label>
-              <select id="estado" v-model="form.estado" :class="{ invalido: erros.estado }" @blur="tocado.estado = true">
+              <select
+                id="estado"
+                v-model="form.estado"
+                :class="{ invalido: erros.estado }"
+                @blur="tocado.estado = true"
+              >
                 <option value="" disabled>Estado</option>
                 <option v-for="uf in estados" :key="uf" :value="uf">{{ uf }}</option>
               </select>
               <span class="erro" v-if="erros.estado">{{ erros.estado }}</span>
             </div>
-          </div>
-
-          <div class="campo">
-            <label for="pais">País</label>
-            <select id="pais" v-model="form.pais" :class="{ invalido: erros.pais }" @blur="tocado.pais = true">
-              <option value="" disabled>País</option>
-              <option>Brasil</option>
-              <option>Portugal</option>
-              <option>Outro</option>
-            </select>
-            <span class="erro" v-if="erros.pais">{{ erros.pais }}</span>
           </div>
 
           <div class="campo">
@@ -142,106 +150,8 @@
             />
             <span class="erro" v-if="erros.email">{{ erros.email }}</span>
           </div>
-
-          <div class="grade grade--2">
-            <div class="campo">
-              <label for="altura">Altura</label>
-              <input
-                id="altura"
-                v-model="form.altura"
-                type="number"
-                step="0.01"
-                placeholder="CM"
-                :class="{ invalido: erros.altura }"
-                @blur="tocado.altura = true"
-              />
-              <span class="erro" v-if="erros.altura">{{ erros.altura }}</span>
-            </div>
-            <div class="campo">
-              <label for="peso">Peso</label>
-              <input
-                id="peso"
-                v-model="form.peso"
-                type="number"
-                step="0.01"
-                placeholder="KG"
-                :class="{ invalido: erros.peso }"
-                @blur="tocado.peso = true"
-              />
-              <span class="erro" v-if="erros.peso">{{ erros.peso }}</span>
-            </div>
-          </div>
         </section>
 
-        <!-- CADASTRO ESPECÍFICO (opcional) -->
-        <section class="secao">
-          <div class="secao__titulo">
-            <h2>Cadastro Específico</h2>
-            <span class="tag tag--opcional">opcional</span>
-          </div>
-
-          <div class="grade grade--2">
-            <div class="campo">
-              <label for="deficiencia">Deficiência</label>
-              <select id="deficiencia" v-model="form.deficiencia">
-                <option value="">Nenhuma</option>
-                <option>Física</option>
-                <option>Visual</option>
-                <option>Auditiva</option>
-                <option>Intelectual</option>
-                <option>Outra</option>
-              </select>
-            </div>
-            <div class="campo">
-              <label for="observacoes">Observações</label>
-              <textarea
-                id="observacoes"
-                v-model="form.observacoes"
-                rows="1"
-                placeholder="Informe observações importantes, restrições ou cuidados especiais"
-              ></textarea>
-            </div>
-          </div>
-
-          <div class="campo">
-            <label for="alergias">Alergias</label>
-            <select id="alergias" v-model="form.alergias">
-              <option value="">Nenhuma</option>
-              <option>Medicamentos</option>
-              <option>Alimentos</option>
-              <option>Látex</option>
-              <option>Outras</option>
-            </select>
-          </div>
-
-          <div class="grade grade--3">
-            <div class="campo">
-              <label for="tipoSanguineo">Tipo Sanguíneo</label>
-              <select id="tipoSanguineo" v-model="form.tipoSanguineo">
-                <option value="">Não informado</option>
-                <option v-for="t in tiposSanguineos" :key="t">{{ t }}</option>
-              </select>
-            </div>
-            <div class="campo">
-              <label for="fatorRh">Fator RH</label>
-              <select id="fatorRh" v-model="form.fatorRh">
-                <option value="">Não informado</option>
-                <option>Positivo</option>
-                <option>Negativo</option>
-              </select>
-            </div>
-            <div class="campo">
-              <label for="preferencial">Preferencial</label>
-              <select id="preferencial" v-model="form.preferencial">
-                <option value="">Não informado</option>
-                <option>Sim</option>
-                <option>Não</option>
-              </select>
-            </div>
-          </div>
-        </section>
-
-        <!-- SENHA (obrigatória) -->
         <section class="secao">
           <div class="secao__titulo">
             <h2>Criar Senha</h2>
@@ -275,13 +185,15 @@
         </section>
 
         <p class="mensagem-geral" v-if="tentouEnviar && !formValido">
-          Preencha todos os campos obrigatórios do Cadastro Básico antes de continuar.
+          Preencha todos os campos obrigatórios antes de continuar.
         </p>
         <p class="mensagem-geral" v-if="erroCadastro">{{ erroCadastro }}</p>
 
         <div class="acoes">
           <button type="button" class="botao botao--secundario" @click="cancelar">Cancelar</button>
-          <button type="submit" class="botao botao--primario">Enviar</button>
+          <button type="submit" class="botao botao--primario" :disabled="buscandoCep">
+            Enviar
+          </button>
         </div>
 
         <p class="rodape">
@@ -296,15 +208,45 @@
 <script setup>
 import { reactive, computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import PainelVisual from '../components/PainelVisual.vue'
 import { cadastrarUsuario } from '../store/usuarios.js'
 
 const router = useRouter()
 const erroCadastro = ref('')
 
-const estados = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO']
-const cidades = ['Joinville', 'Florianópolis', 'Blumenau', 'Curitiba', 'São Paulo', 'Outra']
-const tiposSanguineos = ['A', 'B', 'AB', 'O']
+const estados = [
+  'AC',
+  'AL',
+  'AP',
+  'AM',
+  'BA',
+  'CE',
+  'DF',
+  'ES',
+  'GO',
+  'MA',
+  'MT',
+  'MS',
+  'MG',
+  'PA',
+  'PB',
+  'PR',
+  'PE',
+  'PI',
+  'RJ',
+  'RN',
+  'RS',
+  'RO',
+  'RR',
+  'SC',
+  'SP',
+  'SE',
+  'TO',
+]
+const cidades = ref(['Joinville', 'Florianópolis', 'Blumenau', 'Curitiba', 'São Paulo', 'Outra'])
+
+const buscandoCep = ref(false)
+const cepNaoEncontrado = ref(false)
+let ultimoCepBuscado = ''
 
 const form = reactive({
   nome: '',
@@ -315,51 +257,83 @@ const form = reactive({
   cep: '',
   cidade: '',
   estado: '',
-  pais: '',
   email: '',
-  altura: '',
-  peso: '',
-  deficiencia: '',
-  observacoes: '',
-  alergias: '',
-  tipoSanguineo: '',
-  fatorRh: '',
-  preferencial: '',
   senha: '',
-  confirmarSenha: ''
+  confirmarSenha: '',
 })
 
 const camposBasicosObrigatorios = [
-  'nome', 'cpf', 'nascimento', 'telefone', 'genero',
-  'cep', 'cidade', 'estado', 'pais', 'email', 'altura', 'peso',
-  'senha', 'confirmarSenha'
+  'nome',
+  'cpf',
+  'nascimento',
+  'telefone',
+  'genero',
+  'cep',
+  'cidade',
+  'estado',
+  'email',
+  'senha',
+  'confirmarSenha',
 ]
 
 const tocado = reactive(Object.fromEntries(camposBasicosObrigatorios.map((c) => [c, false])))
 const tentouEnviar = ref(false)
 
-function mascararCpf(valor) {
+function aplicarMascara(valor, tipo) {
+  const numeros = valor.replace(/\D/g, '')
+
+  if (tipo === 'cpf') {
+    return numeros
+      .slice(0, 11)
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d{1,2})$/, '$1-$2')
+  }
+
+  if (tipo === 'telefone') {
+    return numeros
+      .slice(0, 11)
+      .replace(/(\d{2})(\d)/, '($1) $2')
+      .replace(/(\d{5})(\d{1,4})$/, '$1-$2')
+  }
+
+  if (tipo === 'cep') {
+    return numeros.slice(0, 8).replace(/(\d{5})(\d{1,3})$/, '$1-$2')
+  }
+
   return valor
-    .replace(/\D/g, '')
-    .slice(0, 11)
-    .replace(/(\d{3})(\d)/, '$1.$2')
-    .replace(/(\d{3})(\d)/, '$1.$2')
-    .replace(/(\d{3})(\d{1,2})$/, '$1-$2')
 }
 
-function mascararTelefone(valor) {
-  return valor
-    .replace(/\D/g, '')
-    .slice(0, 11)
-    .replace(/(\d{2})(\d)/, '($1) $2')
-    .replace(/(\d{5})(\d{1,4})$/, '$1-$2')
-}
+async function onCepInput() {
+  form.cep = aplicarMascara(form.cep, 'cep')
+  cepNaoEncontrado.value = false
 
-function mascararCep(valor) {
-  return valor
-    .replace(/\D/g, '')
-    .slice(0, 8)
-    .replace(/(\d{5})(\d{1,3})$/, '$1-$2')
+  const cepLimpo = form.cep.replace(/\D/g, '')
+  if (cepLimpo.length !== 8 || cepLimpo === ultimoCepBuscado) return
+  ultimoCepBuscado = cepLimpo
+
+  buscandoCep.value = true
+  try {
+    const resposta = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`)
+    const dados = await resposta.json()
+
+    if (dados.erro) {
+      cepNaoEncontrado.value = true
+      return
+    }
+
+    if (dados.uf) form.estado = dados.uf
+    if (dados.localidade) {
+      if (!cidades.value.includes(dados.localidade)) {
+        cidades.value.splice(cidades.value.length - 1, 0, dados.localidade)
+      }
+      form.cidade = dados.localidade
+    }
+  } catch (erro) {
+    cepNaoEncontrado.value = true
+  } finally {
+    buscandoCep.value = false
+  }
 }
 
 const erros = computed(() => {
@@ -373,15 +347,11 @@ const erros = computed(() => {
   if (!/^\d{5}-\d{3}$/.test(form.cep)) e.cep = 'CEP inválido.'
   if (!form.cidade) e.cidade = 'Selecione a cidade.'
   if (!form.estado) e.estado = 'Selecione o estado.'
-  if (!form.pais) e.pais = 'Selecione o país.'
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'Email inválido.'
-  if (!form.altura) e.altura = 'Informe a altura.'
-  if (!form.peso) e.peso = 'Informe o peso.'
   if (!form.senha || form.senha.length < 6) e.senha = 'Mínimo de 6 caracteres.'
   if (!form.confirmarSenha) e.confirmarSenha = 'Confirme a senha.'
   else if (form.confirmarSenha !== form.senha) e.confirmarSenha = 'As senhas não coincidem.'
 
-  // só mostra erro se o campo já foi tocado ou o usuário já tentou enviar
   const visiveis = {}
   for (const campo in e) {
     if (tocado[campo] || tentouEnviar.value) visiveis[campo] = e[campo]
@@ -390,13 +360,11 @@ const erros = computed(() => {
 })
 
 const formValido = computed(() => {
-  return camposBasicosObrigatorios.every((campo) => {
-    const valor = form[campo]
-    return valor !== '' && valor !== null && valor !== undefined
-  }) && form.senha === form.confirmarSenha
+  const camposOk = camposBasicosObrigatorios.every((campo) => !!form[campo])
+  return camposOk && form.senha === form.confirmarSenha
 })
 
-function enviar() {
+async function enviar() {
   tentouEnviar.value = true
   camposBasicosObrigatorios.forEach((c) => (tocado[c] = true))
   erroCadastro.value = ''
@@ -405,7 +373,6 @@ function enviar() {
     return
   }
 
-  // Cadastro Específico é opcional e vai junto, mesmo que vazio
   const payload = { ...form }
 
   try {
@@ -421,14 +388,14 @@ function enviar() {
 function cancelar() {
   Object.keys(form).forEach((k) => (form[k] = ''))
   tentouEnviar.value = false
+  cepNaoEncontrado.value = false
+  ultimoCepBuscado = ''
   camposBasicosObrigatorios.forEach((c) => (tocado[c] = false))
 }
 </script>
 
 <style scoped>
 .layout {
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
   min-height: 100vh;
 }
 
@@ -556,6 +523,11 @@ select.invalido,
 .erro {
   font-size: 0.75rem;
   color: var(--vermelho-erro);
+}
+
+.dica {
+  font-size: 0.75rem;
+  color: var(--azul-medio);
 }
 
 .radios {
