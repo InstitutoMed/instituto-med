@@ -1,7 +1,29 @@
-<script setup></script>
-
 <template>
 
+  <div class="home">
+    <AppHeader />
+    <HeroSection />
 
-  <main></main>
+    <main>
+      <DoctorsSection />
+      <PartnersSection />
+      <AppPromoSection />
+      <FaqSection />
+      <BlogSection />
+      <NewsletterSection />
+    </main>
+    <AppFooter />
+  </div>
 </template>
+
+<script setup>
+import AppHeader from '../components/layout/AppHeader.vue'
+import AppFooter from '../components/layout/AppFooter.vue'
+import HeroSection from '../components/home/HeroSection.vue'
+import DoctorsSection from '../components/home/DoctorsSection.vue'
+import PartnersSection from '../components/home/PartnersSection.vue'
+import AppPromoSection from '../components/home/AppPromoSection.vue'
+import FaqSection from '../components/home/FaqSection.vue'
+import BlogSection from '../components/home/BlogSection.vue'
+import NewsletterSection from '../components/home/NewsletterSection.vue'
+</script>
