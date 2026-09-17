@@ -5,6 +5,7 @@ import { cadastrarAgendamento } from '@/store/agendamentos.js'
 function confirmarAgendamento(event) {
   event.preventDefault()
   tentouEnviar.value = true
+  
 
   if (Object.keys(erros.value).length > 0) return
   if (form.receberEmail && !form.email) return
@@ -24,6 +25,7 @@ function confirmarAgendamento(event) {
 
 
   alert('Agendamento realizado com sucesso!')
+    router.push('/profile')
 }
 
 function cancelar() {
@@ -48,6 +50,7 @@ const form = reactive({
   email: '',
   receberEmail: false
 })
+
 
 const tocado = reactive({ cpf: false, senha: false })
 const tentouEnviar = ref(false)
@@ -204,9 +207,8 @@ function ativarEmail() {
       <option>Hospital  Regional Hans Dieter Schmidt (HRHDS)</option>
       <option>Hospital Municipal São José</option>
       <option>Hospital Dona Helena </option>
-      <option>-</option>
-      <option>-</option>
-      <option>-</option>
+      <option>Hospital Erasto Gaether</option>
+      <option>Hospital Bethesda</option>
     </select>
           </div>
 
@@ -282,8 +284,8 @@ function ativarEmail() {
   </div>
 </div>
 
-<button type="submit" class="confirmar">Confirmar agendamento</button>
-      <button type="button" class="cancelar" @click="cancelar">Cancelar</button>
+<button type="submit" class="confirmar" @click="confirmarAgendamento">Confirmar agendamento</button>
+      <button type="button" class="cancelar" @click="cancelar">Limpar</button>
 
 </form>
 
@@ -396,7 +398,6 @@ input:focus,
 select:focus,
 textarea:focus {
   border-color: #014F86;
-  background: #fff;
 }
 
 textarea {
@@ -579,8 +580,9 @@ input[type="date"] {
   color: #fff;
   font-size: 13px;
   font-weight: 700;
-  padding: 12px 38px;
+  padding: 10px 38px;
   cursor: pointer;
+  margin: 10px 15px;
   transition: 0.2s;
   margin-top: 25px;
 }

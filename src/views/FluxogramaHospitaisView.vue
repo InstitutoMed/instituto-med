@@ -1,24 +1,24 @@
 <script setup>
 const indicadores = [
-  { titulo: 'Total pacientes', valor: 340 },
-  { titulo: 'Total médicos', valor: 98 },
-  { titulo: 'Total atendimentos', valor: 510 }
+  { titulo: 'Total pacientes', valor: 80 },
+  { titulo: 'Total médicos', valor: 44 },
+  { titulo: 'Total atendimentos', valor: 180 }
 ]
 
 const movimentoSemanal = [
-  { dia: 'Seg', valor: 190 },
-  { dia: 'Ter', valor: 140 },
-  { dia: 'Qua', valor: 89 },
-  { dia: 'Qui', valor: 82 },
-  { dia: 'Sex', valor: 96 },
-  { dia: 'Sáb', valor: 78 },
-  { dia: 'Dom', valor: 110 }
+  { dia: 'Seg', valor: 10 },
+  { dia: 'Ter', valor: 45 },
+  { dia: 'Qua', valor: 54 },
+  { dia: 'Qui', valor: 67 },
+  { dia: 'Sex', valor: 47 },
+  { dia: 'Sáb', valor: 30 },
+  { dia: 'Dom', valor: 19 }
 ]
 </script>
 
 <template>
   <main class="fluxograma">
-    <h1 class="title_fluxo">Fluxograma Geral</h1>
+    <h1 class="title_fluxo">Fluxograma Hospital</h1>
 
     <section class="indicadores" aria-label="Indicadores gerais">
       <article v-for="indicador in indicadores" :key="indicador.titulo" class="card_in">

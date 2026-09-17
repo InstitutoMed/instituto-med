@@ -256,7 +256,6 @@ p {
     margin: 5px 0 20px;
   }
 
-  /* BUSCA */
   .barrapesquisa {
     margin-bottom: 18px;
   }
@@ -267,7 +266,6 @@ p {
     font-size: 13px;
   }
 
-  /* CATEGORIAS */
   .categoria-butoes ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -286,13 +284,11 @@ p {
     font-size: 11px;
   }
 
-  /* CONTADOR */
   p {
     font-size: 12px;
     margin-bottom: 16px;
   }
 
-  /* CARDS */
   .vacinacontainer {
     grid-template-columns: 1fr;
     gap: 14px;

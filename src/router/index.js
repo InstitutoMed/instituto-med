@@ -10,6 +10,7 @@ import vacinaView from '@/views/vacinaView.vue'
 import cadernetaView from '@/views/cadernetaView.vue'
 import FormConsulta from '@/views/FormConsulta.vue'
 import MinhasConsultasView from '@/views/MinhasConsultasView.vue'
+import FluxogramaHospitaisView from '@/views/FluxogramaHospitaisView.vue'
 
 const routes = [
   {
@@ -46,7 +47,13 @@ const routes = [
     path: '/fluxograma',
     name: 'fluxograma',
     component: FluxogramaView,
-    meta: { title: 'Fluxograma Hospitais — Instituto Med' }
+    meta: { title: 'Fluxograma Geral' }
+  },
+  {
+    path: '/fluxogramahospital',
+    name: 'fluxogramahospital',
+    component: FluxogramaHospitaisView,
+    meta: { title: 'Fluxograma Hospitais'}
   },
     {
     path: '/editprofile',

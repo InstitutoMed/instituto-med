@@ -48,11 +48,11 @@ const consulta = computed(() => {
   }
 
   return {
-    tipo: 'Exame de Sangue',
-    hora: 'Matutino',
-    medico: 'Dr. Fábio Longo de Moura',
-    local: 'Hospital São Bernardino',
-    dataConsulta: new Date(2026, 7, 29) 
+    tipo: '',
+    hora: '',
+    medico: '',
+    local: '',
+    dataConsulta: new Date(2026, 7, 29)
   }
 })
 
@@ -162,6 +162,7 @@ const linkGoogleAgenda = computed(() => {
 
   return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=${datas}&details=${detalhes}&location=${localizacao}`
 })
+
 </script>
 
 <template>
@@ -206,21 +207,32 @@ const linkGoogleAgenda = computed(() => {
           {{ tituloConsulta }}
         </h3>
 
-        <div class="consultas_card">
-          <p class="aviso_consulta">
-            {{ avisoConsulta }}
-          </p>
+       <div class="consultas_card">
+  <template v-if="consulta.tipo">
+    <p class="aviso_consulta">
+      {{ avisoConsulta }}
+    </p>
 
-          <ul>
-            <li><strong>Tipo:</strong> {{ consulta.tipo }}</li>
-            <li><strong>Dia:</strong> {{ diaFormatado }}</li>
-            <li><strong>Hora:</strong> {{ consulta.hora }}</li>
-            <li><strong>Médico:</strong> {{ consulta.medico }}</li>
-            <li><strong>Local:</strong> {{ consulta.local }}</li>
-          </ul>
+    <ul>
+      <li><strong>Tipo:</strong> {{ consulta.tipo }}</li>
+      <li><strong>Dia:</strong> {{ diaFormatado }}</li>
+      <li><strong>Hora:</strong> {{ consulta.hora }}</li>
+      <li><strong>Médico:</strong> {{ consulta.medico }}</li>
+      <li><strong>Local:</strong> {{ consulta.local }}</li>
+    </ul>
 
-          <RouterLink to="/minhasconsultas" class="saiba_mais">SAIBA MAIS</RouterLink>
-        </div>
+    <RouterLink to="/minhasconsultas" class="saiba_mais">
+      SAIBA MAIS
+    </RouterLink>
+  </template>
+
+  <div v-else class="sem_consulta_card">
+    <p>Você não possui nenhuma consulta agendada.</p>
+    <RouterLink to="/minhasconsultas" class="saiba_mais">
+      AGENDAR CONSULTA
+    </RouterLink>
+  </div>
+</div>
       </section>
 
       <section class="foto_agenda">
@@ -284,6 +296,21 @@ const linkGoogleAgenda = computed(() => {
   gap: 24px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: #1a1a1a;
+}
+.sem_consulta_card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px 16px;
+  color: #6b7280;
+}
+
+.sem_consulta_card p {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
 }
 
 ul {

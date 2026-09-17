@@ -57,7 +57,7 @@ function gerarLinkGoogleAgenda(item) {
 <template>
   <main class="conteudo">
     <div class="header_pagina">
-      <RouterLink to="/perfil" class="voltar">&larr; Voltar ao Perfil</RouterLink>
+      <RouterLink to="/profile" class="voltar">&larr; Voltar ao Perfil</RouterLink>
       <h2>Minhas Consultas Agendadas</h2>
     </div>
 
@@ -101,7 +101,7 @@ function gerarLinkGoogleAgenda(item) {
 
     <div v-else class="sem_agendamentos">
       <p>Você ainda não possui nenhuma consulta agendada.</p>
-      <RouterLink to="/agendar" class="btn_novo_agendamento">Agendar uma Consulta</RouterLink>
+      <RouterLink to="/consultas" class="btn_novo_agendamento">Agendar uma Consulta</RouterLink>
     </div>
   </main>
 </template>
