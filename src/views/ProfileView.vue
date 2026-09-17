@@ -4,6 +4,7 @@ import { RouterLink, useRouter } from 'vue-router'
 import { obterSessao, encerrarSessao, removerUsuario } from '@/store/usuarios.js'
 import { vacinas as vacinasData } from '@/data/vacinas'
 import { aplicarRegistrosSalvos } from '@/store/RegistrosVacinas'
+import { obterAgendamentos } from '@/store/agendamentos.js'
 
 const router = useRouter()
 
@@ -15,6 +16,44 @@ const usuario = ref({
   tipoSanguineo: '',
   email: '',
   foto: ''
+})
+
+function formatarHorario(horario) {
+  if (!horario) return 'Não informado'
+  if (horario === 'option1') return 'Matutino'
+  if (horario === 'option2') return 'Vespertino'
+  if (horario === 'option3') return 'Noturno'
+  return horario
+}
+
+const consulta = computed(() => {
+  const agendamentos = obterAgendamentos()
+  
+  if (agendamentos && agendamentos.length > 0) {
+    const ultimo = agendamentos[agendamentos.length - 1]
+    
+    let dataObj = new Date()
+    if (ultimo.data) {
+      const [ano, mes, dia] = ultimo.data.split('-')
+      dataObj = new Date(ano, mes - 1, dia)
+    }
+
+    return {
+      tipo: ultimo.consulta || 'Não especificado',
+      hora: formatarHorario(ultimo.horario),
+      medico: ultimo.medico || 'Não informado',
+      local: ultimo.hospital || 'Não informado',
+      dataConsulta: dataObj
+    }
+  }
+
+  return {
+    tipo: 'Exame de Sangue',
+    hora: 'Matutino',
+    medico: 'Dr. Fábio Longo de Moura',
+    local: 'Hospital São Bernardino',
+    dataConsulta: new Date(2026, 7, 29) 
+  }
 })
 
 onMounted(() => {
@@ -52,14 +91,6 @@ const cpfFormatado = computed(() => {
   const cpf = usuario.value.cpf || ''
   if (cpf.length !== 11) return cpf
   return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')
-})
-
-const consulta = ref({
-  tipo: 'Exame de Sangue',
-  hora: '10:30h',
-  medico: 'Dr. Fábio Longo de Moura',
-  local: 'Hospital São Bernardino',
-  dataConsulta: new Date(2026, 7, 29) 
 })
 
 const ultimasVacinas = computed(() => {
@@ -188,7 +219,7 @@ const linkGoogleAgenda = computed(() => {
             <li><strong>Local:</strong> {{ consulta.local }}</li>
           </ul>
 
-          <RouterLink to="/consultas" class="saiba_mais">SAIBA MAIS</RouterLink>
+          <RouterLink to="/minhasconsultas" class="saiba_mais">SAIBA MAIS</RouterLink>
         </div>
       </section>
 
@@ -324,7 +355,7 @@ ul {
   text-align: left;
   flex: 1;
   min-width: 0;
-  padding-right: 24px; 
+  padding-right: 24px;
 }
 
 .titulo_card {
@@ -347,11 +378,12 @@ ul {
 
 .infos_card li {
   text-align: left;
-  word-break: break-word; }
+  word-break: break-word;
+}
 
 .acoes_usuario {
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   gap: 12px;
   margin-top: 16px;
 }
@@ -541,6 +573,10 @@ ul {
 
   .acoes_usuario {
     justify-content: center;
+  }
+
+  .sec_consulta {
+    grid-template-columns: 1fr;
   }
 }
 

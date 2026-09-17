@@ -8,6 +8,8 @@ import PainelView from '@/views/PainelView.vue'
 import EditProfileView from '@/views/EditProfileView.vue'
 import vacinaView from '@/views/vacinaView.vue'
 import cadernetaView from '@/views/cadernetaView.vue'
+import FormConsulta from '@/views/FormConsulta.vue'
+import MinhasConsultasView from '@/views/MinhasConsultasView.vue'
 
 const routes = [
   {
@@ -77,6 +79,17 @@ const routes = [
   name: 'detalhesvacina',
   component: () => import('../views/DetalheVacinaView.vue')
 },
+ {
+      path: '/consultas',
+      name: 'FormConsulta',
+      component: FormConsulta,
+    },
+
+    {
+    path: '/minhasconsultas',
+    name: 'minhasconsultas',
+    component: MinhasConsultasView
+  }
 ]
 
 const router = createRouter({
