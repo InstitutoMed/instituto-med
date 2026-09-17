@@ -111,7 +111,7 @@ function selecionarHospital(hospital) {
             class="btn-selecionar"
             @click="selecionarHospital(hospital)"
           >
-            Selecionar
+            Saiba mais
           </button>
         </div>
         <div class="mapa">

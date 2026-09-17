@@ -344,7 +344,54 @@ function abrirMapa() {
         </div>
       </div>
     </section>
+<section class="secao-medicos">
+  <h2>Médicos disponíveis</h2>
 
+  <div class="carrossel-medicos">
+    <button
+      class="seta-carrossel seta-esquerda"
+      @click="medicoAnterior"
+      aria-label="Médico anterior"
+    >
+      ❮
+    </button>
+
+    <div class="medicos-container">
+      <TransitionGroup name="slide" tag="div" class="medicos-lista">
+        <div
+          v-for="medico in medicosVisiveis"
+          :key="medico.id"
+          class="card-medico"
+        >
+          <img
+            :src="medico.imagem"
+            :alt="medico.nome"
+            class="imagem-medico"
+          />
+
+          <div class="dados-medico">
+            <h3>{{ medico.nome }}</h3>
+            <p>{{ hospital.nome }}</p>
+
+            <div class="avaliacao-medico">
+              <span>★ {{ medico.avaliacao }}</span>
+              <span class="separador">•</span>
+              <span>{{ medico.crm }}</span>
+            </div>
+          </div>
+        </div>
+      </TransitionGroup>
+    </div>
+
+    <button
+      class="seta-carrossel seta-direita"
+      @click="proximoMedico"
+      aria-label="Próximo médico"
+    >
+      ❯
+    </button>
+  </div>
+</section>
 
   </main>
 
@@ -636,6 +683,139 @@ function abrirMapa() {
   border-radius: 20px;
   cursor: pointer;
 }
+cao-medicos {
+  margin-top: 45px;
+  padding-bottom: 30px;
+}
+
+.secao-medicos  h2 {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 28px;
+  color: #222;
+  font-weight: bold;
+}
+
+.carrossel-medicos {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.medicos-container {
+  width: 85%;
+  overflow: hidden;
+  padding: 8px;
+}
+
+.medicos-lista {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.card-medico {
+  width: 240px;
+  min-width: 240px;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16);
+}
+
+.imagem-medico {
+  width: 100%;
+  height: 230px;
+  display: block;
+  object-fit: cover;
+  object-position: top;
+  background: #f2f2f2;
+}
+
+.dados-medico {
+  padding: 12px 14px 14px;
+}
+
+
+
+
+.dados-medico h3 {
+  margin: 0;
+  color: #3d6d86;
+  font-size: 16px;
+}
+
+.dados-medico p {
+  margin: 5px 0 10px;
+  color: #777;
+  font-size: 12px;
+}
+
+.avaliacao-medico {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #777;
+  font-size: 11px;
+}
+
+.avaliacao-medico span:first-child {
+  color: #3d6d86;
+  font-weight: bold;
+}
+
+.separador {
+  font-size: 14px;
+}
+
+.seta-carrossel {
+  position: absolute;
+  z-index: 2;
+  width: 58px;
+  height: 58px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(191, 221, 234, 0.8);
+  color: #111;
+  font-size: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.seta-carrossel:hover {
+  transform: scale(1.08);
+}
+
+.seta-esquerda {
+  left: 0;
+}
+
+.seta-direita {
+  right: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.35s ease;
+}
+
+.slide-enter-from {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.slide-move {
+  transition: transform 0.35s ease;
+}
 
 
 @media (max-width: 700px) {
@@ -654,5 +834,49 @@ function abrirMapa() {
   .cards-inferiores {
     grid-template-columns: 1fr;
   }
+    .secao-medicos {
+  margin-top: 35px;
 }
+
+.medicos-container {
+  width: 100%;
+}
+
+.medicos-lista {
+  gap: 15px;
+  justify-content: flex-start;
+}
+
+.card-medico {
+  width: 190px;
+  min-width: 190px;
+}
+
+.imagem-medico {
+  height: 190px;
+}
+
+.dados-medico h3 {
+  font-size: 13px;
+}
+
+.dados-medico p {
+  font-size: 10px;
+}
+
+.seta-carrossel {
+  width: 42px;
+  height: 42px;
+  font-size: 22px;
+}
+
+.seta-esquerda {
+  left: -8px;
+}
+
+.seta-direita {
+  right: -8px;
+}
+}
+
 </style>
