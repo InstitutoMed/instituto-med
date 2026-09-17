@@ -101,7 +101,7 @@ function selecionarHospital(hospital) {
             <span>{{ hospital.endereco }}</span>
           </div>
           <div class="informacao telefone">
-            <img
+            <img class="telefone"
               src="/img/icones/telefone.png"
               :alt="`Telefone`"
             />
@@ -175,8 +175,8 @@ h1 {
   color: #999;
 }
 .lupa img {
-  width: 65%;
-  height: 65%;
+  width: 30%;
+  height: 30%;
 }
 
 .lista-hospitais {
@@ -215,7 +215,7 @@ h1 {
 
 .informacoes-hospital h2 {
   margin: 0 0 4px;
-  font-size:clamp(20px,2.6vw,28px);
+  font-size:10px;
   color: #111111;
 }
 
@@ -235,8 +235,8 @@ h1 {
 }
 
 .telefone img {
-  width: 20px;
-  height: 18px;
+  width: 8px;
+  height: 10px;
   flex-direction: row;
   align-items: center;
   gap: 2px;
