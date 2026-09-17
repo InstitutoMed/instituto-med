@@ -239,7 +239,7 @@ function abrirMapa() {
             <p>{{ hospital.atendimento }}</p>
           </div>
         </div>
-          <router-link to="/fluxograma">
+          <router-link to="/fluxogramahospitais">
           <button class="btn-fluxo">
             Ver fluxo
           </button>

@@ -43,6 +43,12 @@ const routes = [
     component: () => import('../views/FluxogramaView.vue'),
     meta: { title: 'Fluxograma — Instituto Med' }
   },
+    {
+    path: '/fluxogramahospitais',
+    name: 'fluxogramahospitais',
+    component: () => import('../views/FluxogramaHospitaisView.vue'),
+    meta: { title: 'Fluxograma — Instituto Med' }
+  },
   {
     path: '/perfil',
     alias: '/profile',
