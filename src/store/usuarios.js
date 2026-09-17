@@ -1,70 +1,54 @@
-const CHAVE_USUARIOS = 'usuarios'
-const CHAVE_SESSAO = 'usuarioLogado'
+const CHAVE_USUARIOS = 'app_usuarios'
+const CHAVE_SESSAO = 'app_sessao_usuario'
 
-function lerUsuarios() {
-  try {
-    const dados = localStorage.getItem(CHAVE_USUARIOS)
-    return dados ? JSON.parse(dados) : []
-  } catch {
-    return []
-  }
+export function obterUsuarios() {
+  const dados = localStorage.getItem(CHAVE_USUARIOS)
+  return dados ? JSON.parse(dados) : []
 }
 
-function salvarUsuarios(usuarios) {
+export function cadastrarUsuario(dados) {
+  const usuarios = obterUsuarios()
+  const existe = usuarios.some(u => u.cpf === dados.cpf)
+  if (existe) {
+    throw new Error('CPF já cadastrado.')
+  }
+  usuarios.push(dados)
   localStorage.setItem(CHAVE_USUARIOS, JSON.stringify(usuarios))
 }
 
-function apenasNumeros(valor) {
-  return (valor || '').replace(/\D/g, '')
-}
-
-/**
- * Cadastra um novo usuário. Lança erro se o CPF já existir.
- */
-export function cadastrarUsuario(dados) {
-  const usuarios = lerUsuarios()
-  const cpf = apenasNumeros(dados.cpf)
-
-  const jaExiste = usuarios.some((u) => apenasNumeros(u.cpf) === cpf)
-  if (jaExiste) {
-    throw new Error('Já existe um cadastro com este CPF.')
-  }
-
-  usuarios.push({ ...dados })
-  salvarUsuarios(usuarios)
-  return true
-}
-
-/**
- * Verifica CPF + senha. Retorna o usuário (sem senha) se válido, ou null.
- */
 export function autenticar(cpf, senha) {
-  const usuarios = lerUsuarios()
-  const cpfBusca = apenasNumeros(cpf)
-
-  const usuario = usuarios.find(
-    (u) => apenasNumeros(u.cpf) === cpfBusca && u.senha === senha
-  )
-
-  if (!usuario) return null
-
-  const { senha: _senha, confirmarSenha: _confirmar, ...usuarioSemSenha } = usuario
-  return usuarioSemSenha
+  const usuarios = obterUsuarios()
+  return usuarios.find(u => u.cpf === cpf && u.senha === senha) || null
 }
 
 export function salvarSessao(usuario) {
-  sessionStorage.setItem(CHAVE_SESSAO, JSON.stringify(usuario))
+  localStorage.setItem(CHAVE_SESSAO, JSON.stringify(usuario))
 }
 
 export function obterSessao() {
-  try {
-    const dados = sessionStorage.getItem(CHAVE_SESSAO)
-    return dados ? JSON.parse(dados) : null
-  } catch {
-    return null
-  }
+  const dados = localStorage.getItem(CHAVE_SESSAO)
+  return dados ? JSON.parse(dados) : null
 }
 
 export function encerrarSessao() {
-  sessionStorage.removeItem(CHAVE_SESSAO)
+  localStorage.removeItem(CHAVE_SESSAO)
+}
+
+export function atualizarPerfil(dadosAtualizados) {
+  const usuarios = obterUsuarios()
+  const index = usuarios.findIndex(u => u.cpf === dadosAtualizados.cpf)
+
+  if (index !== -1) {
+    usuarios[index] = { ...usuarios[index], ...dadosAtualizados }
+    localStorage.setItem(CHAVE_USUARIOS, JSON.stringify(usuarios))
+    salvarSessao(usuarios[index])
+    return usuarios[index]
+  }
+  throw new Error('Usuário não encontrado.')
+}
+
+export function removerUsuario(cpf) {
+  const usuarios = obterUsuarios()
+  const usuariosFiltrados = usuarios.filter(u => u.cpf !== cpf)
+  localStorage.setItem(CHAVE_USUARIOS, JSON.stringify(usuariosFiltrados))
 }
