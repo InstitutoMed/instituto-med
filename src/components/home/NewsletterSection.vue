@@ -33,14 +33,14 @@ function submit() {
 .newsletter-wrap{background:var(--blue-50);padding-top:0;}
 .newsletter{
   background:linear-gradient(120deg,var(--blue-500),var(--blue-400));
-  border-radius:26px;padding:34px 40px;
+  border-radius:14px;padding:34px 40px;
   display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
   color:#fff;max-width:1176px;margin:0 auto;
 }
 .newsletter h3{font-size:18px;line-height:1.4;}
-.newsletter form{display:flex;gap:0;background:#fff;border-radius:999px;padding:5px;}
+.newsletter form{display:flex;gap:0;background:#fff;border-radius:8px;padding:5px;}
 .newsletter input{
-  padding:11px 18px;border-radius:999px;border:none;background:transparent;
+  padding:11px 18px;border-radius:6px;border:none;background:transparent;
   color:var(--ink);min-width:220px;font-size:13.5px;
 }
 .newsletter input:focus{outline:none;}

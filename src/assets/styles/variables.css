@@ -12,11 +12,11 @@
   --muted:#5c7690;
   --white:#ffffff;
 
-  --radius-lg:28px;
-  --radius-md:16px;
-  --radius-pill:999px;
+  --radius-lg:14px;
+  --radius-md:10px;
+  --radius-pill:8px;
 
-  --shadow-soft:0 20px 45px -22px rgba(13,76,120,.28);
+  --shadow-soft:none;
 
   --container-width:1600px;
 

@@ -7,22 +7,14 @@
 
       <ul class="nav-links">
         <li v-for="item in navItems" :key="item.id">
-          <router-link
-            v-if="item.to"
-            :to="item.to"
-            :class="{ active: $route.path === item.to }"
-          >{{ item.label }}</router-link>
-          <router-link
-            v-else
-            :to="{ path: '/', hash: item.hash }"
-          >{{ item.label }}</router-link>
+          <span class="nav-placeholder">{{ item.label }}</span>
         </li>
       </ul>
 
       <div class="nav-actions">
-        <button type="button" class="profile-btn" aria-label="Perfil" title="Perfil">
+        <router-link to="/perfil" class="profile-btn" aria-label="Perfil" title="Perfil">
           <img :src="iconUser" alt="">
-        </button>
+        </router-link>
         <button
           class="burger"
           :aria-expanded="mobileOpen"
@@ -35,14 +27,9 @@
     </nav>
 
     <div class="mobile-menu" :class="{ open: mobileOpen }">
-      <template v-for="item in navItems" :key="item.id">
-        <router-link v-if="item.to" :to="item.to" @click="closeMobile">
-          {{ item.label }}
-        </router-link>
-        <router-link v-else :to="{ path: '/', hash: item.hash }" @click="closeMobile">
-          {{ item.label }}
-        </router-link>
-      </template>
+      <span v-for="item in navItems" :key="item.id" class="nav-placeholder">
+        {{ item.label }}
+      </span>
     </div>
   </header>
 </template>
@@ -76,12 +63,7 @@ header{
   font-weight:700;font-size:13px;letter-spacing:.03em;
   text-transform:uppercase;color:rgba(255,255,255,.9);
 }
-.nav-links a{position:relative;padding:6px 0;}
-.nav-links a:hover, .nav-links a.active{color:#fff;}
-.nav-links a.active::after{
-  content:"";position:absolute;left:0;right:0;bottom:-2px;
-  height:2px;background:#fff;border-radius:2px;
-}
+.nav-links .nav-placeholder{display:block;padding:6px 0;cursor:default;}
 
 .nav-actions{display:flex;align-items:center;gap:16px;}
 .profile-btn{
@@ -103,7 +85,8 @@ header{
   display:none;flex-direction:column;gap:2px;
   padding:6px 32px 20px;position:relative;z-index:10;
 }
-.mobile-menu a{
+.mobile-menu .nav-placeholder{
+  display:block;
   padding:12px 4px;font-weight:700;color:#fff;
   border-bottom:1px solid rgba(255,255,255,.14);
   text-transform:uppercase;font-size:13px;

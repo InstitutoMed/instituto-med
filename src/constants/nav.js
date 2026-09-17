@@ -1,8 +1,8 @@
 export const NAV_ITEMS = [
-  { id: 'inicio', label: 'Home', hash: '#inicio' },
-  { id: 'especialistas', label: 'Especialistas', hash: '#sobre' },
-  { id: 'hospitais', label: 'Hospitais', hash: '#hospitais' },
-  { id: 'servicos', label: 'Serviços', hash: '#servicos' },
-  { id: 'duvidas', label: 'Dúvidas', hash: '#duvidas' },
-  { id: 'noticias', label: 'Notícias', hash: '#noticias' }
+  { id: 'home', label: 'Home' },
+  { id: 'atendimento', label: 'Atendimento' },
+  { id: 'hospitais', label: 'Hospitais' },
+  { id: 'sobre', label: 'Sobre nós' },
+  { id: 'caderneta', label: 'Caderneta' },
+  { id: 'fluxograma', label: 'Fluxograma' }
 ]

@@ -21,10 +21,10 @@ defineEmits(['toggle'])
 
 <style scoped>
 .faq-item{
-  border:1px solid var(--blue-100);border-radius:999px;overflow:hidden;
+  border:1px solid var(--blue-100);border-radius:10px;overflow:hidden;
   background:var(--blue-50);align-self:start;
 }
-.faq-item.open{border-radius:20px;}
+.faq-item.open{border-radius:10px;}
 .faq-q{
   display:flex;align-items:center;justify-content:space-between;gap:12px;
   width:100%;text-align:left;padding:16px 22px;font-weight:600;font-size:14px;color:var(--ink);

@@ -36,7 +36,7 @@ function formatarData(iso) {
   transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
 .vacinascard:hover {
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  box-shadow: none;
   transform: translateY(-2px);
 }
 .cardtopo {

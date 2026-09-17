@@ -75,7 +75,7 @@ const floatingItems = [
 }
 .floating-item{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:8px 12px;position:relative;}
 .floating-item + .floating-item::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:1px;background:var(--blue-50);}
-.floating-item .ic{width:52px;height:52px;border-radius:16px;background:var(--blue-50);display:flex;align-items:center;justify-content:center;}
+.floating-item .ic{width:52px;height:52px;border-radius:10px;background:var(--blue-50);display:flex;align-items:center;justify-content:center;}
 .floating-item .ic img{width:24px;height:24px;object-fit:contain;}
 .floating-item span{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.4;}
 

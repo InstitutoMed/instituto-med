@@ -23,7 +23,7 @@ import iconNotificacao from '../../assets/img/icon-notificacao.png'
 <style scoped>
 .app-section{
   background:linear-gradient(135deg,#fff 0%, var(--blue-100) 100%);
-  position:relative;overflow:hidden;padding-bottom:0;
+  position:relative;overflow:hidden;padding-bottom:48px;
 }
 .app-inner{
   max-width:760px;margin:0 auto;padding:70px 32px 40px;text-align:center;
@@ -35,7 +35,7 @@ import iconNotificacao from '../../assets/img/icon-notificacao.png'
 
 .callout-bar{
   position:relative;z-index:3;max-width:900px;margin:0 auto;
-  background:#fff;border-radius:999px;box-shadow:var(--shadow-soft);
+  background:#fff;border-radius:12px;box-shadow:var(--shadow-soft);
   padding:16px 26px;display:flex;align-items:center;gap:16px;
 }
 .callout-bar .bell{
@@ -53,6 +53,7 @@ import iconNotificacao from '../../assets/img/icon-notificacao.png'
   .app-text p{margin:16px auto;}
 }
 @media (max-width:720px){
-  .callout-bar{flex-direction:column;text-align:center;border-radius:24px;}
+  .app-section{padding-bottom:32px;}
+  .callout-bar{flex-direction:column;text-align:center;border-radius:12px;}
 }
 </style>

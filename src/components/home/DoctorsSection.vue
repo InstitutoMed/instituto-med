@@ -19,7 +19,7 @@
           <div class="doctor-info">
             <h4>{{ d.name }}</h4>
             <span class="hosp">{{ d.hosp }}</span>
-            <div class="meta"><span class="stars">★</span> {{ d.rating }} &nbsp;•&nbsp; CRM {{ d.crm }}</div>
+            <span class="crm">CRM {{ d.crm }}</span>
           </div>
         </div>
       </div>
@@ -38,14 +38,12 @@ const doctors = [
     photo: doctorJuliana,
     name: 'Dra. Juliana Andrade',
     hosp: 'Hospital Dona Helena',
-    rating: '4,9',
     crm: '12345'
   },
   {
     photo: doctorRafael,
     name: 'Dr. Rafael Menezes',
     hosp: 'Hospital São José',
-    rating: '4,8',
     crm: '12345'
   }
 ]
@@ -65,7 +63,7 @@ const doctors = [
 .doctor-card:hover{transform:translateY(-6px);}
 .doctor-photo{
   aspect-ratio:5/4;overflow:hidden;
-  background:linear-gradient(160deg,var(--blue-100),#e3f2fa);
+  background:#fff;
   display:flex;align-items:center;justify-content:center;
 }
 .doctor-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;}
@@ -73,9 +71,7 @@ const doctors = [
 .doctor-info{padding:16px 18px 20px;}
 .doctor-info h4{font-size:15.5px;color:var(--ink);}
 .doctor-info .hosp{display:block;font-size:12.5px;color:var(--muted);margin:4px 0 8px;}
-.doctor-info .meta{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px;}
-.doctor-info .meta .stars{color:#ffb020;}
-
+.doctor-info .crm{display:block;font-size:12.5px;color:var(--muted);}
 @media (max-width:980px){
   .doctors-row{grid-template-columns:1fr;}
   .doctors-text{text-align:center;}

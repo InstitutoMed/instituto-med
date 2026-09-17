@@ -7,6 +7,12 @@ const routes = [
     component: () => import('../views/HomeView.vue'),
     meta: { title: 'Instituto Med — Sua saúde conectada' }
   },
+  {
+    path: '/perfil',
+    name: 'perfil',
+    component: () => import('../views/PerfilView.vue'),
+    meta: { title: 'Perfil — Instituto Med' }
+  },
   { path: '/:pathMatch(.*)*', redirect: '/' }
 ]
 
