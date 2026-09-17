@@ -1,12 +1,10 @@
-<script setup>
-import { RouterView } from 'vue-router'
-import AppHeader from './components/AppHeader.vue'
-</script>
-
 <template>
-  <AppHeader />
-
   <RouterView />
 </template>
 
-<style scoped></style>
+<script setup>
+import { RouterView } from 'vue-router'
+import './assets/styles/variables.css'
+import './assets/styles/base.css'
+import './assets/styles/buttons.css'
+</script>
