@@ -4,5 +4,6 @@ export const NAV_ITEMS = [
   { id: 'hospitais', label: 'Hospitais', to: '/hospitais' },
   { id: 'sobre', label: 'Sobre nós', to: '/sobre' },
   { id: 'caderneta', label: 'Caderneta', to: '/caderneta' },
-  { id: 'fluxograma', label: 'Fluxograma', to: '/fluxograma' }
+  { id: 'fluxograma', label: 'Fluxograma', to: '/fluxograma' },
+  { id: 'crudpacientes', label: 'Pacientes', to: '/crudpacientes'},
 ]
