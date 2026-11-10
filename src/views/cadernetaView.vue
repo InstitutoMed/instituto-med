@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
-import vacinaCard from '@/components/vacinaCard.vue'
+import vacinaCard from '@/components/VacinaCard.vue'
 import { vacinas } from '@/data/vacinas'
 import { useRoute, useRouter } from 'vue-router'
 import '@/store/RegistrosVacinas'

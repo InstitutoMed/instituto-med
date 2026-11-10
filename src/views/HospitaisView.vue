@@ -1,99 +1,48 @@
 <script setup>
-import { ref, computed } from "vue";
-import { useRouter } from "vue-router";
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useHospitaisStore } from '../store/hospitais'
 
-const router = useRouter();
+const router = useRouter()
+const searchQuery = ref('')
+const hospitalStore = useHospitaisStore()
 
-const searchQuery = ref("");
-
-const hospitais = ref([
-  {
-    id: 1,
-    nome: "Hospital Dona Helena",
-    endereco:
-      "Rua Blumenau, 123 - América, Joinville - SC 89204-2500, Brazil",
-    telefone: "+55 (47) 3451-3333",
-    imagem: "img/maps/dona-helena.png",
-  },
-  {
-    id: 2,
-    nome: "Hospital Regional Hans Dieter Schmidt (HRHDS)",
-    endereco:
-      "Rua Xavier Arp, 320 - Boa Vista, Joinville - SC 89220-680, Brazil",
-    telefone: "+55 (47) 3451-3100",
-    imagem: "img/maps/hrhds.png",
-  },
-  {
-    id: 3,
-    nome: "Hospital Municipal São José",
-    endereco:
-      "Av. Getúlio Vargas, 238 - Anita Garibaldi, Joinville - SC 89202-030, Brazil",
-    telefone: "+55 (47) 3441-6666",
-    imagem: "img/maps/sao-jose.png",
-  },
-  {
-    id: 4,
-    nome: "Hospital Erasto Gaertner",
-    endereco:
-      "R. Conselheiro Pedreira, 624 - Pirabeiraba, Joinville - SC, 89239-200, Brazil",
-    telefone: "+55 (47) 3121-5400",
-    imagem: "img/maps/sao-jose.png",
-  },
-    {
-    id: 3,
-    nome: "Hospital Bethesda",
-    endereco:
-      "R. Saguaçu, 120 - Saguaçu, Joinville - SC, 89221-010, Brazil",
-    telefone: "+55 (47) 3511-2815",
-    imagem: "img/maps/sao-jose.png",
-  },
-]);
+const hospitais = computed(() => hospitalStore.listar())
 
 const hospitaisFiltrados = computed(() => {
-  const busca = searchQuery.value.toLowerCase().trim();
+  const busca = searchQuery.value.toLowerCase().trim()
 
   if (!busca) {
-    return hospitais.value;
+    return hospitais.value
   }
 
-  return hospitais.value.filter(
-    (hospital) =>
-      hospital.nome.toLowerCase().includes(busca) ||
-      hospital.endereco.toLowerCase().includes(busca)
-  );
-});
+  return hospitais.value.filter((hospital) => {
+    const nome = (hospital.nome || '').toLowerCase()
+    const endereco = (hospital.endereco || '').toLowerCase()
+    return nome.includes(busca) || endereco.includes(busca)
+  })
+})
 
 function selecionarHospital(hospital) {
   router.push({
-    path: "/hospital",
+    path: '/hospital',
     query: {
       id: hospital.id,
     },
-  });
+  })
 }
 </script>
 <template>
   <main class="pagina-hospitais">
     <h1>Hospital</h1>
     <div class="barra-pesquisa">
-      <input
-        type="text"
-        placeholder="Buscar Hospital"
-        v-model="searchQuery"
-      />
+      <input type="text" placeholder="Buscar Hospital" v-model="searchQuery" />
       <span class="lupa">
-        <img
-          src="/img/icones/lupa.png"
-          :alt="`Lupa`"
-        />
+        <img src="/img/icones/lupa.png" :alt="`Lupa`" />
       </span>
     </div>
     <div class="lista-hospitais">
-      <div
-        v-for="hospital in hospitaisFiltrados"
-        :key="hospital.id"
-        class="card-hospital"
-      >
+      <div v-for="hospital in hospitaisFiltrados" :key="hospital.id" class="card-hospital">
         <div class="informacoes-hospital">
           <h2>{{ hospital.nome }}</h2>
           <div class="informacao">
@@ -101,30 +50,16 @@ function selecionarHospital(hospital) {
             <span>{{ hospital.endereco }}</span>
           </div>
           <div class="informacao telefone">
-            <img class="telefone"
-              src="/img/icones/telefone.png"
-              :alt="`Telefone`"
-            />
+            <img class="telefone" src="/img/icones/telefone.png" :alt="`Telefone`" />
             <span>{{ hospital.telefone }}</span>
           </div>
-          <button
-            class="btn-selecionar"
-            @click="selecionarHospital(hospital)"
-          >
-            Saiba mais
-          </button>
+          <button class="btn-selecionar" @click="selecionarHospital(hospital)">Saiba mais</button>
         </div>
         <div class="mapa">
-          <img
-            :src="hospital.imagem"
-            :alt="`Mapa do ${hospital.nome}`"
-          />
+          <img :src="hospital.imagem" :alt="`Mapa do ${hospital.nome}`" />
         </div>
       </div>
-      <p
-        v-if="hospitaisFiltrados.length === 0"
-        class="nenhum-hospital"
-      >
+      <p v-if="hospitaisFiltrados.length === 0" class="nenhum-hospital">
         Nenhum hospital encontrado.
       </p>
     </div>
@@ -145,7 +80,7 @@ function selecionarHospital(hospital) {
 h1 {
   margin: 0 0 28px;
   text-align: center;
-  font-size: clamp(30px,3.4vw,42px);
+  font-size: clamp(30px, 3.4vw, 42px);
   font-weight: 700;
   color: #111111;
 }
@@ -215,7 +150,7 @@ h1 {
 
 .informacoes-hospital h2 {
   margin: 0 0 4px;
-  font-size:10px;
+  font-size: 10px;
   color: #111111;
 }
 
@@ -241,7 +176,7 @@ h1 {
   margin-top: 1px;
   color: #0067a8;
 }
-.telefone img{
+.telefone img {
   width: 8px;
   height: 10px;
 }
@@ -307,64 +242,63 @@ h1 {
 
 @media (min-width: 768px) {
   .barra-pesquisa {
-  width: 100%;
-  max-width: 702px;
-  height: 34px;
+    width: 100%;
+    max-width: 702px;
+    height: 34px;
   }
   .barra-pesquisa input {
     font-size: 14px;
   }
   .lupa img {
-  width: 50%;
-  height: 50%;
-}
+    width: 50%;
+    height: 50%;
+  }
   .lista-hospitais {
-  max-width: 709px;
-  gap: 20px;
-}
-.card-hospital {
-  height: 170px;
-  padding: 24px 8px 24px 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
-}
- .informacoes-hospital h2 {
-  font-size: 14px;
-  font-weight: 700;
-}
-.informacao {
-  font-size: 14px;
+    max-width: 709px;
+    gap: 20px;
+  }
+  .card-hospital {
+    height: 170px;
+    padding: 24px 8px 24px 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+  }
+  .informacoes-hospital h2 {
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .informacao {
+    font-size: 14px;
+  }
 
-}
+  .titulo-info {
+    color: #0067a8;
+    font-weight: 700;
+  }
 
-.titulo-info {
-  color: #0067a8;
-  font-weight: 700;
-}
+  .telefone {
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+    margin-top: 1px;
 
-.telefone {
-  flex-direction: row;
-  align-items: center;
-  gap: 2px;
-  margin-top: 1px;
+    color: #0067a8;
+  }
+  .telefone img {
+    width: 14px;
+    height: 18px;
+  }
+  .icone {
+    font-size: 14px;
+  }
 
-  color: #0067a8;
-}
-.telefone img {
-  width: 14px;
-  height: 18px;
-}
-.icone {
-  font-size: 14px;
-}
-
-.btn-selecionar {
-  width: 120px;
-  height: 100px;
-  font-size: 14px;
-}
-.mapa {
-  width: 200px;
-  height: 100px;
-}
+  .btn-selecionar {
+    width: 120px;
+    height: 100px;
+    font-size: 14px;
+  }
+  .mapa {
+    width: 200px;
+    height: 100px;
+  }
 }
 </style>

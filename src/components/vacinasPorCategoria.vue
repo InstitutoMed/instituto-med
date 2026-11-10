@@ -2,7 +2,7 @@
 import { useRoute } from 'vue-router';
 import { vacinas } from '@/data/vacinas';
 import { computed } from 'vue';
-import vacinaCard from '@/components/Produtos/produtoCard.vue';
+import vacinaCard from '@/components/VacinaCard.vue';
 
 
 const rota = useRoute();
