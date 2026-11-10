@@ -106,6 +106,16 @@ const routes = [
     component: () => import('../views/FormConsulta.vue'),
     meta: { title: 'Agendar consulta — Instituto Med' }
   },
+  {
+      path: '/crudpacientes',
+      name: 'pacientes',
+      component: () => import('../views/CrudPacientesView.vue'),
+  },
+  {
+      path: '/addpacientes',
+      name: 'addpacientes',
+      component: () => import('../views/AddPacientesView.vue'),
+  },
   { path: '/:pathMatch(.*)*', redirect: '/' }
 ]
 
