@@ -12,9 +12,9 @@
           personalizado em um só lugar.
         </p>
         <div class="hero-actions">
-          <a href="#servicos" class="btn btn-white">
-            Comece agora
-          </a>
+          <router-link to="/login">
+            <button class="btn btn-white">comece agora</button>
+          </router-link>
           <span class="hero-secure"><img :src="iconShield" alt="" class="shield-ic"> Seus dados protegidos com segurança.</span>
         </div>
       </div>

@@ -10,7 +10,7 @@ function formatarData(iso) {
 </script>
 
 <template>
-  <RouterLink :to="'/vacina/' + props.id" class="vacinascard">
+  <RouterLink :to="'/detalhesvacina/' + props.id" class="vacinascard">
     <div class="cardtopo" >
       <h3>{{ props.nome }}</h3>
     </div>

@@ -14,8 +14,8 @@
       </ul>
 
       <div class="nav-actions">
-        <router-link to="/perfil" class="profile-btn" aria-label="Perfil" title="Perfil">
-          <img :src="iconUser" alt="">
+        <router-link to="/profile" class="profile-btn" aria-label="Perfil" title="Perfil">
+          <img :src="iconUser" alt="/perfil">
         </router-link>
         <button
           class="burger"

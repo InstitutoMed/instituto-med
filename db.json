@@ -1,0 +1,84 @@
+{
+    "Medicamento": [
+        {
+            "id_medicamento": 1,
+            "tipo_medicamento": "Paracetamol",
+            "lote_medicamento": "LOT001",
+            "quantidade_medicamento": 100,
+            "disponibilidade_medicamento": true,
+            "id_hospital": 1
+        },
+        {
+            "id_medicamento": 2,
+            "tipo_medicamento": "Ibuprofeno",
+            "lote_medicamento": "LOT002",
+            "quantidade_medicamento": 80,
+            "disponibilidade_medicamento": true,
+            "id_hospital": 2
+        },
+        {
+            "id_medicamento": 3,
+            "tipo_medicamento": "Amoxicilina",
+            "lote_medicamento": "LOT003",
+            "quantidade_medicamento": 50,
+            "disponibilidade_medicamento": true,
+            "id_hospital": 3
+        },
+        {
+            "id_medicamento": 4,
+            "tipo_medicamento": "Dipirona",
+            "lote_medicamento": "LOT004",
+            "quantidade_medicamento": 120,
+            "disponibilidade_medicamento": true,
+            "id_hospital": 4
+        },
+        {
+            "id_medicamento": 5,
+            "tipo_medicamento": "Omeprazol",
+            "lote_medicamento": "LOT005",
+            "quantidade_medicamento": 90,
+            "disponibilidade_medicamento": true,
+            "id_hospital": 5
+        },
+        {
+            "id_medicamento": 6,
+            "tipo_medicamento": "Losartana",
+            "lote_medicamento": "LOT006",
+            "quantidade_medicamento": 70,
+            "disponibilidade_medicamento": true,
+            "id_hospital": 6
+        },
+        {
+            "id_medicamento": 7,
+            "tipo_medicamento": "Insulina",
+            "lote_medicamento": "LOT007",
+            "quantidade_medicamento": 40,
+            "disponibilidade_medicamento": false,
+            "id_hospital": 7
+        },
+        {
+            "id_medicamento": 8,
+            "tipo_medicamento": "Vitamina C",
+            "lote_medicamento": "LOT008",
+            "quantidade_medicamento": 200,
+            "disponibilidade_medicamento": true,
+            "id_hospital": 8
+        },
+        {
+            "id_medicamento": 9,
+            "tipo_medicamento": "Azitromicina",
+            "lote_medicamento": "LOT009",
+            "quantidade_medicamento": 60,
+            "disponibilidade_medicamento": true,
+            "id_hospital": 9
+        },
+        {
+            "id_medicamento": 10,
+            "tipo_medicamento": "Loratadina",
+            "lote_medicamento": "LOT010",
+            "quantidade_medicamento": 110,
+            "disponibilidade_medicamento": true,
+            "id_hospital": 10
+        }
+    ]
+}
