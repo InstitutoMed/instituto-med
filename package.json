@@ -7,15 +7,16 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "server": "json-server --watch db.json --port 3000 --id id_medicamento"
+    "server": "json-server --watch db.json --port 3000"
   },
   "dependencies": {
+    "bootstrap": "^6.0.0-alpha.2",
     "json-server": "^0.17.4",
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue": "^3.5.46",
+    "vue-router": "^5.5.1"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.8",
-    "vite": "^8.2.2"
+    "@vitejs/plugin-vue": "^6.0.11",
+    "vite": "^8.3.8"
   }
 }

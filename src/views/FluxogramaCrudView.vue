@@ -62,7 +62,7 @@ async function salvarFluxograma() {
 
   if (idEdicao.value) {
     await fetch(`${API_URL}/Fluxograma/${idEdicao.value}`, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },

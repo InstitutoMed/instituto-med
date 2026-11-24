@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import './assets/styles/variables.css'
 import './assets/styles/base.css'
 import './assets/styles/buttons.css'
