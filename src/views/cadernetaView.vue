@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
-import vacinaCard from '@/components/vacinaCard.vue'
+import VacinaCard from '@/components/VacinaCard.vue'
 import { vacinas } from '@/data/vacinas'
 import { useRoute, useRouter } from 'vue-router'
 import '@/store/RegistrosVacinas'
@@ -14,9 +14,7 @@ const categoriaSelecionada = ref('todos')
 function pesquisar() {
   router.push({
     path: '/caderneta',
-    query: pesquisa.value
-      ? { q: pesquisa.value }
-      : {}
+    query: pesquisa.value ? { q: pesquisa.value } : {},
   })
 }
 
@@ -26,7 +24,7 @@ function selecionarCategoria(categoria) {
 
   router.push({
     path: '/caderneta',
-    query: {}
+    query: {},
   })
 }
 
@@ -35,12 +33,9 @@ const vacinasFiltradas = computed(() => {
 
   return vacinas.filter((vacina) => {
     const bateCategoria =
-      categoriaSelecionada.value === 'todos' ||
-      vacina.categoria === categoriaSelecionada.value
+      categoriaSelecionada.value === 'todos' || vacina.categoria === categoriaSelecionada.value
 
-    const bateBusca =
-      !termo ||
-      vacina.nome.toLowerCase().includes(termo)
+    const bateBusca = !termo || vacina.nome.toLowerCase().includes(termo)
 
     return bateCategoria && bateBusca
   })
@@ -48,95 +43,88 @@ const vacinasFiltradas = computed(() => {
 </script>
 
 <template>
-
-   <div class="breadcrumb">
+  <div class="breadcrumb">
     <RouterLink to="/home">Home</RouterLink>
 
     <span>›</span>
 
-        <RouterLink to="/caderneta">Caderneta</RouterLink>
-
-
-   </div>
+    <RouterLink to="/caderneta">Caderneta</RouterLink>
+  </div>
   <main>
     <h1>Caderneta</h1>
     <div class="barrapesquisa">
       <input type="text" v-model="pesquisa" placeholder="Pesquisar" @keyup.enter="pesquisar" />
     </div>
 
+    <div class="categoria-butoes">
+      <ul>
+        <li>
+          <button
+            @click="selecionarCategoria('todos')"
+            :class="{ selecionado: categoriaSelecionada === 'todos' }"
+          >
+            Todos
+          </button>
+        </li>
 
-     <div class="categoria-butoes">
-  <ul>
-    <li>
-      <button
-        @click="selecionarCategoria('todos')"
-        :class="{ selecionado: categoriaSelecionada === 'todos' }"
-      >
-        Todos
-      </button>
-    </li>
+        <li>
+          <button
+            @click="selecionarCategoria('gestantes')"
+            :class="{ selecionado: categoriaSelecionada === 'gestantes' }"
+          >
+            Gestante
+          </button>
+        </li>
 
-    <li>
-      <button
-        @click="selecionarCategoria('gestantes')"
-        :class="{ selecionado: categoriaSelecionada === 'gestantes' }"
-      >
-        Gestante
-      </button>
-    </li>
+        <li>
+          <button
+            @click="selecionarCategoria('infantil')"
+            :class="{ selecionado: categoriaSelecionada === 'infantil' }"
+          >
+            Infantil
+          </button>
+        </li>
 
-    <li>
-      <button
-        @click="selecionarCategoria('infantil')"
-        :class="{ selecionado: categoriaSelecionada === 'infantil' }"
-      >
-        Infantil
-      </button>
-    </li>
+        <li>
+          <button
+            @click="selecionarCategoria('adolescentes')"
+            :class="{ selecionado: categoriaSelecionada === 'adolescentes' }"
+          >
+            Adolescente e Jovem
+          </button>
+        </li>
 
-    <li>
-      <button
-        @click="selecionarCategoria('adolescentes')"
-        :class="{ selecionado: categoriaSelecionada === 'adolescentes' }"
-      >
-        Adolescente e Jovem
-      </button>
-    </li>
+        <li>
+          <button
+            @click="selecionarCategoria('adultos')"
+            :class="{ selecionado: categoriaSelecionada === 'adultos' }"
+          >
+            Adulto
+          </button>
+        </li>
 
-    <li>
-      <button
-        @click="selecionarCategoria('adultos')"
-        :class="{ selecionado: categoriaSelecionada === 'adultos' }"
-      >
-        Adulto
-      </button>
-    </li>
-
-    <li>
-      <button
-        @click="selecionarCategoria('idosos')"
-        :class="{ selecionado: categoriaSelecionada === 'idosos' }"
-      >
-        Idoso
-      </button>
-    </li>
-  </ul>
-</div>
-<p>Total de vacinas: {{ vacinasFiltradas.length }}</p>
+        <li>
+          <button
+            @click="selecionarCategoria('idosos')"
+            :class="{ selecionado: categoriaSelecionada === 'idosos' }"
+          >
+            Idoso
+          </button>
+        </li>
+      </ul>
+    </div>
+    <p>Total de vacinas: {{ vacinasFiltradas.length }}</p>
     <div class="vacinacontainer">
-
-        <vacinaCard
-          v-for="vacina in vacinasFiltradas"
-          :key="vacina.id"
-          :id="vacina.id"
-          :nome="vacina.nome"
-          :doencas="vacina.doencas"
-          :doses="vacina.doses"
-          :categoria="vacina.categoria"
-          :dataVacinacao="vacina.dataVacinacao"
-
-        />
-
+      <VacinaCard
+        v-for="vacina in vacinasFiltradas"
+        :key="vacina.id"
+        :id="vacina.id"
+        :nome="vacina.nome"
+        :doencas="vacina.doencas"
+        :doses="vacina.doses"
+        :categoria="vacina.categoria"
+        :dataVacinacao="vacina.dataVacinacao"
+      />
     </div>
   </main>
 </template>
@@ -148,11 +136,11 @@ const vacinasFiltradas = computed(() => {
   text-decoration: none;
 }
 .breadcrumb a:hover {
-  color: #61A5C2;
+  color: #61a5c2;
 }
 
 .breadcrumb a.router-link-exact-active {
-  color: #61A5C2;
+  color: #61a5c2;
   font-weight: 600;
   pointer-events: none;
 }
@@ -170,7 +158,6 @@ h1 {
   margin: 8px 0 28px;
   color: #111827;
 }
-
 
 .barrapesquisa {
   display: flex;
@@ -215,10 +202,10 @@ h1 {
 }
 .categoria-butoes button:hover {
   border-color: #969494;
-  color: #61A5C2;
+  color: #61a5c2;
 }
 .categoria-butoes button.selecionado {
-  background: #61A5C2;
+  background: #61a5c2;
   border-color: #949494;
   color: #fff;
 }
@@ -236,7 +223,6 @@ p {
 }
 
 @media (max-width: 480px) {
-
   .breadcrumb {
     padding: 8px 15px;
     font-size: 13px;
