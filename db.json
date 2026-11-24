@@ -80,5 +80,233 @@
             "disponibilidade_medicamento": true,
             "id_hospital": 10
         }
-    ]
+    ],
+    "Fluxograma": [
+    {
+      "id_fluxo": 1,
+      "entrada_paciente": "Recepção",
+      "saida_paciente": "Alta",
+      "horario_pico": "08:00"
+    },
+    {
+      "id_fluxo": 2,
+      "entrada_paciente": "Recepção",
+      "saida_paciente": "Internação",
+      "horario_pico": "09:00"
+    },
+    {
+      "id_fluxo": 3,
+      "entrada_paciente": "Emergência",
+      "saida_paciente": "Alta",
+      "horario_pico": "10:00"
+    },
+    {
+      "id_fluxo": 4,
+      "entrada_paciente": "Emergência",
+      "saida_paciente": "Internação",
+      "horario_pico": "11:00"
+    },
+    {
+      "id_fluxo": 5,
+      "entrada_paciente": "Recepção",
+      "saida_paciente": "Alta",
+      "horario_pico": "12:00"
+    },
+    {
+      "id_fluxo": 6,
+      "entrada_paciente": "Recepção",
+      "saida_paciente": "Alta",
+      "horario_pico": "13:00"
+    },
+    {
+      "id_fluxo": 7,
+      "entrada_paciente": "Emergência",
+      "saida_paciente": "Alta",
+      "horario_pico": "14:00"
+    },
+    {
+      "id_fluxo": 8,
+      "entrada_paciente": "Recepção",
+      "saida_paciente": "Internação",
+      "horario_pico": "15:00"
+    },
+    {
+      "id_fluxo": 9,
+      "entrada_paciente": "Emergência",
+      "saida_paciente": "Alta",
+      "horario_pico": "16:00"
+    },
+    {
+      "id_fluxo": 10,
+      "entrada_paciente": "Recepção",
+      "saida_paciente": "Alta",
+      "horario_pico": "17:00"
+    }
+  ],
+
+"Paciente": [
+  {
+    "cod_usuario": 1,
+    "cpf": "11111111111",
+    "telefone": "47999990001",
+    "nome": "Ana Silva",
+    "dt_nascimento": "2001-05-10",
+    "cep": "89200000"
+  },
+  {
+    "cod_usuario": 2,
+    "cpf": "22222222222",
+    "telefone": "47999990002",
+    "nome": "Bruno Souza",
+    "dt_nascimento": "1999-07-21",
+    "cep": "89210000"
+  },
+  {
+    "cod_usuario": 3,
+    "cpf": "33333333333",
+    "telefone": "47999990003",
+    "nome": "Carla Lima",
+    "dt_nascimento": "2002-01-15",
+    "cep": "89220000"
+  },
+  {
+    "cod_usuario": 4,
+    "cpf": "44444444444",
+    "telefone": "47999990004",
+    "nome": "Daniel Rocha",
+    "dt_nascimento": "1998-03-12",
+    "cep": "89230000"
+  },
+  {
+    "cod_usuario": 5,
+    "cpf": "55555555555",
+    "telefone": "47999990005",
+    "nome": "Eduarda Alves",
+    "dt_nascimento": "2000-11-02",
+    "cep": "89240000"
+  },
+  {
+    "cod_usuario": 6,
+    "cpf": "66666666666",
+    "telefone": "47999990006",
+    "nome": "Felipe Costa",
+    "dt_nascimento": "1997-09-08",
+    "cep": "89250000"
+  },
+  {
+    "cod_usuario": 7,
+    "cpf": "77777777777",
+    "telefone": "47999990007",
+    "nome": "Gabriela Martins",
+    "dt_nascimento": "2003-12-18",
+    "cep": "89260000"
+  },
+  {
+    "cod_usuario": 8,
+    "cpf": "88888888888",
+    "telefone": "47999990008",
+    "nome": "Henrique Gomes",
+    "dt_nascimento": "2001-06-25",
+    "cep": "89270000"
+  },
+  {
+    "cod_usuario": 9,
+    "cpf": "99999999999",
+    "telefone": "47999990009",
+    "nome": "Isabela Pereira",
+    "dt_nascimento": "1999-04-17",
+    "cep": "89280000"
+  },
+  {
+    "cod_usuario": 10,
+    "cpf": "10101010101",
+    "telefone": "47999990010",
+    "nome": "João Pedro",
+    "dt_nascimento": "2002-08-30",
+    "cep": "89290000"
+  }
+],
+"Hospital": [
+  {
+    "id": 1,
+    "cep_hos": "89200000",
+    "fila_hos": "Curta",
+    "consulta_med": "Cardiologia",
+    "local_har": "Bloco A",
+    "registro_med": "REG001"
+  },
+  {
+    "id": 2,
+    "cep_hos": "89210000",
+    "fila_hos": "Média",
+    "consulta_med": "Pediatria",
+    "local_har": "Bloco B",
+    "registro_med": "REG002"
+  },
+  {
+    "id": 3,
+    "cep_hos": "89220000",
+    "fila_hos": "Longa",
+    "consulta_med": "Ortopedia",
+    "local_har": "Bloco C",
+    "registro_med": "REG003"
+  },
+  {
+    "id": 4,
+    "cep_hos": "89230000",
+    "fila_hos": "Curta",
+    "consulta_med": "Clínico Geral",
+    "local_har": "Bloco D",
+    "registro_med": "REG004"
+  },
+  {
+    "id": 5,
+    "cep_hos": "89240000",
+    "fila_hos": "Média",
+    "consulta_med": "Neurologia",
+    "local_har": "Bloco E",
+    "registro_med": "REG005"
+  },
+  {
+    "id": 6,
+    "cep_hos": "89250000",
+    "fila_hos": "Longa",
+    "consulta_med": "Dermatologia",
+    "local_har": "Bloco F",
+    "registro_med": "REG006"
+  },
+  {
+    "id": 7,
+    "cep_hos": "89260000",
+    "fila_hos": "Curta",
+    "consulta_med": "Psiquiatria",
+    "local_har": "Bloco G",
+    "registro_med": "REG007"
+  },
+  {
+    "id": 8,
+    "cep_hos": "89270000",
+    "fila_hos": "Média",
+    "consulta_med": "Ginecologia",
+    "local_har": "Bloco H",
+    "registro_med": "REG008"
+  },
+  {
+    "id": 9,
+    "cep_hos": "89280000",
+    "fila_hos": "Longa",
+    "consulta_med": "Oftalmologia",
+    "local_har": "Bloco I",
+    "registro_med": "REG009"
+  },
+  {
+    "id": 10,
+    "cep_hos": "89290000",
+    "fila_hos": "Curta",
+    "consulta_med": "Endocrinologia",
+    "local_har": "Bloco J",
+    "registro_med": "REG010"
+  }
+]
+
 }

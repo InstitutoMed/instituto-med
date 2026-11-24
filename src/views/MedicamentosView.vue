@@ -15,13 +15,13 @@ const hospital = ref(1);
 
 const idEdicao = ref(null);
 
-// Listar medicamentos
+
 async function carregarMedicamentos() {
   const resposta = await fetch(`${API_URL}/Medicamento`);
   medicamentos.value = await resposta.json();
 }
 
-// Pesquisar por ID
+
 async function pesquisarMedicamento() {
   if (!pesquisaId.value) {
     carregarMedicamentos();
@@ -41,7 +41,7 @@ async function pesquisarMedicamento() {
   }
 }
 
-// Limpar formulário
+
 function limparFormulario() {
   tipo.value = '';
   lote.value = '';
@@ -51,7 +51,7 @@ function limparFormulario() {
   idEdicao.value = null;
 }
 
-// Adicionar ou editar medicamento
+
 async function salvarMedicamento() {
   if (!tipo.value || !lote.value) {
     alert('Preencha os campos obrigatórios!');
@@ -103,7 +103,7 @@ async function salvarMedicamento() {
   carregarMedicamentos();
 }
 
-// Selecionar medicamento para editar
+
 function editarMedicamento(medicamento) {
   idEdicao.value = medicamento.id_medicamento;
   tipo.value = medicamento.tipo_medicamento;
@@ -113,7 +113,7 @@ function editarMedicamento(medicamento) {
   hospital.value = medicamento.id_hospital;
 }
 
-// Excluir medicamento
+
 async function excluirMedicamento(id) {
   const confirmarExclusao = window.confirm(
     'Tem certeza que deseja excluir este medicamento?',

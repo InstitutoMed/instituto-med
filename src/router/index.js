@@ -112,6 +112,26 @@ const routes = [
   component: () => import('../views/MedicamentosView.vue'),
   meta: { title: 'Medicamentos — Instituto Med' }
 },
+{
+  path: '/fluxogramas',
+  name: 'fluxogramas crud',
+  component: () => import('../views/FluxogramaCrudView.vue'),
+  meta: { title: 'Fluxogramas — Instituto Med' }
+},
+{
+  path: '/pacientescrud',
+  name: 'pacientes crud',
+  component: () => import('../views/PacientesCrudView.vue'),
+  meta: { title: 'Pacientes — Instituto Med' }
+},
+
+{
+  path: '/hospitaiscrud',
+  name: 'hospitais crud',
+  component: () => import('../views/HospitaisCrudView.vue'),
+  meta: { title: 'Hospitais — Instituto Med' }
+},
+
   { path: '/:pathMatch(.*)*', redirect: '/' }
 ]
 
